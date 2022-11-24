@@ -1,0 +1,160 @@
+﻿@using InternetBanking_v1.Helper
+@using InternetBanking_v1.Models.ViewModels
+@model IEnumerable<InternetBanking_v1.Models.ViewModels.AccountStatementViewModel>
+
+@{
+    ViewBag.Title = "ViewStatement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var getlist = ViewBag.Statement as IEnumerable<AccountStatementViewModel>;
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Account_Statement
+        <small>@GlobalRes.View_Statement</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Account_Statement</a></li>
+            <li class="active">@GlobalRes.View_Statement</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Account_Statement</a></li>
+            <li class="active">@GlobalRes.View_Statement</li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.View_Statement</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+                            <thead style="color: cadetblue">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Date)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.StateAmount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TranscationDirection)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TranscationNarration)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.BalanceAfterTransaction)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.AccountCurrency)
+                                    </th>
+
+
+                                </tr>
+                            </thead>
+                            @if (Model != null)
+                            {
+                                foreach (var item in Model.OrderBy(item => item.StateID))
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @item.Date
+                                            @*@Html.DisplayFor(modelItem => item.Date)*@
+                                        </td>
+                                        <td>
+                                            @item.StateAmount
+                                            @*@Html.DisplayFor(modelItem => item.StateAmount)*@
+                                        </td>
+                                        <td>
+                                            @item.TranscationDirection
+                                            @*@Html.DisplayFor(modelItem => item.TranscationDirection)*@
+                                        </td>
+                                        <td>
+                                            @item.TranscationNarration
+                                            @*@Html.DisplayFor(modelItem => item.TranscationNarration)*@
+                                            @Html.HiddenFor(modelItem => item.StateID)
+                                        </td>
+                                        <td>
+                                            @item.BalanceAfterTransaction
+                                            @*@Html.DisplayFor(modelItem => item.BalanceAfterTransaction)*@
+                                        </td>
+                                        <td>
+                                            @item.AccountCurrency
+                                            @*@Html.DisplayFor(modelItem => item.BalanceAfterTransaction)*@
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <section class="row">
+                        <div class="col-md-4">
+                            @* Save PDF *@
+                            @using (Html.BeginForm("SavePDF", "AccountStatement"))
+                            {
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        <input type="submit" value="@GlobalRes.Button_Create_PDF" class="btn btn-danger btn-block btn-flat" />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-4">
+                            @using (Html.BeginForm("Export", "AccountStatement"))
+                            {
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-xs-10">
+                                        @*<a href="@Url.Action("ExportToExcel")" class="btn btn-danger btn-block btn-flat">Export Excel</a>*@
+                                        <input type="submit" value="@GlobalRes.Button_Export_Excel" class="btn btn-danger btn-block btn-flat" />
+                                    </div>
+                                </div>
+                            }
+                            @section Scripts {
+                                @Scripts.Render("~/bundles/jqueryval")
+                            }
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

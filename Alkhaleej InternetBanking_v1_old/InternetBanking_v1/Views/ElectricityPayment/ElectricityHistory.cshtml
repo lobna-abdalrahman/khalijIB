@@ -1,0 +1,210 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.ElectricityViewModel>
+
+@{
+    ViewBag.Title = "Electricity History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @GlobalRes.Electricity_Title
+        <small>@GlobalRes.AllTransactions</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i> @GlobalRes.Electricity_Title</a></li>
+            <li class="active">@GlobalRes.AllTransactions</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> @GlobalRes.Electricity_Title</a></li>
+            <li class="active">@GlobalRes.AllTransactions</li>
+        </ol>
+    }
+
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 ">
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.MyTransactions_BoxHeader</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+                            <thead style="color: cadetblue">
+                                <tr>
+                                    @*<th>
+                                        @Html.DisplayNameFor(model => model.tranID)
+                                    </th>*@
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CardNumber)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MeterNo)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TranAmount)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.netAmount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tranStatus)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.token)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.waterFees)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.meterFees)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.customerName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.unitsInKwh)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.operatorMessage)
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            
+                            
+                            @if (CultureHelper.IsRighToLeft())
+                            {
+                                <tbody style="text-align: left;">
+                                    @foreach (var item in Model.OrderBy(item=> item.tranID))
+                                    {
+                                        <tr>
+                                            @*<td>
+                                                @Html.DisplayFor(modelItem => item.tranID)
+                                            </td>*@
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CardNumber)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MeterNo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TranAmount)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.netAmount)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.tranStatus)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.token)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.waterFees)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.meterFees)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.customerName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.unitsInKwh)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.operatorMessage)
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            }
+                            else
+                            {
+                                <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        @*<td>
+                                            @Html.DisplayFor(modelItem => item.tranID)
+                                        </td>*@
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CardNumber)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MeterNo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TranAmount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.netAmount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tranStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.token)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.waterFees)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.meterFees)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.customerName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.unitsInKwh)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.operatorMessage)
+                                        </td>
+
+                                    </tr>
+                                }
+                                </tbody>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

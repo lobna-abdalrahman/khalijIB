@@ -1,0 +1,145 @@
+﻿@using InternetBanking_v1.Context
+@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.SalaryTransferViewModel>
+
+@{
+    ViewBag.Title = "List Of Accounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @Html.ActionLink(GlobalRes.Salary_Transfer_Title, "SalaryTransfer")
+        <small>@GlobalRes.View_Accounts</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Salary_Transfer_Title</a></li>
+            <li class="active">@GlobalRes.View_Accounts </li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Salary_Transfer_Title</a></li>
+            <li class="active">@GlobalRes.View_Accounts </li>
+        </ol>
+    }
+</section>
+<section class="content">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+    <!-- TABLE: LATEST Transactions -->
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">@GlobalRes.My_Transfers</h3>
+                @if (CultureHelper.IsRighToLeft())
+                {
+                    <div class="box-tools" style="position: static; float: left;">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table id="salaryTable" class="table table-bordered table-hover table-bordered table-striped">
+                        <thead style="color: cadetblue">
+                        <tr>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.salary_account_no)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.salary_amount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.salary_file_name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.salary_comp_act)
+                            </th>
+                            @*<th></th>*@
+                        </tr>
+                        </thead>
+
+                        @foreach (var item in Model)
+                        {
+
+                            DataSource data = new DataSource();
+
+                            var AccountNumber = Convert.ToInt32(item.salary_account_no.Substring(13));
+                            var AccountType = data.getaccounttype(item.salary_account_no.ToString().Substring(5, 5));
+                            var BranchName = data.getbranchnameenglish(item.salary_account_no.ToString().Substring(2, 3));
+                            var wholeToAccount = BranchName + " - " + AccountType + " - " + AccountNumber;
+
+                            var fromAccountNumber = Convert.ToInt32(item.salary_comp_act.Substring(13));
+                            var fromAccountType = data.getaccounttype(item.salary_comp_act.ToString().Substring(5, 5));
+                            var fromBranchName = data.getbranchnameenglish(item.salary_comp_act.ToString().Substring(2, 3));
+                            var wholeFromAccount = fromBranchName + " - " + fromAccountType + " - " + fromAccountNumber;
+                            
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => wholeToAccount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.salary_amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.salary_file_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => wholeFromAccount)
+                                </td>
+                                @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>*@
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                   @* <section class="col-md-12">
+                     
+                        <div class="col-md-6">
+                            <label>@GlobalRes.TotalSuccesfulRows</label>
+                            <h3>@ViewBag.SuccessfulCount</h3>
+                        </div>
+
+                        $1$ get Details #1#
+                        @using (Html.BeginForm("MultiTransfer", "SalaryTransfer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-xs-7">
+                                        <input type="submit" value=@GlobalRes.ButtonTransfer class="btn btn-danger btn-block btn-flat" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </section>*@
+                </div>
+
+            </div>
+            </div>
+            </div>
+        </div>
+</section>

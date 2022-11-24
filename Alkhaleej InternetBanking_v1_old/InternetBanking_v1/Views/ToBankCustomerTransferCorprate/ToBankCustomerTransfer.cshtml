@@ -1,0 +1,257 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.ToBanCustomerViewModel
+
+@{
+    ViewBag.Title = "To Bank Customer Transfer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Transfer_Parent
+        <small>@GlobalRes.ToBankCustomer</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">@GlobalRes.ToBankCustomer</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">@GlobalRes.ToBankCustomer</li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+    
+    @if (TempData["Success"] != null)
+    {
+        if (ViewBag.ResponseStat.ToString().Equals("Successful"))
+        {
+
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+        }
+    }
+
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-md-8 connectedSortable col-md-offset-2">
+            <!-- BankCustomer Transfer -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.ToBankCustomer</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-horizontal">
+
+                                    @Html.ValidationSummary(true)
+
+                                    <div class="form-group">
+                                        <label>@GlobalRes.FromAccountNo</label>
+                                        @Html.DropDownList("FromAccount", (IEnumerable<SelectListItem>) ViewBag.clientList, GlobalRes.PlaceHolder_Select_Account, new {@class = "form-control select2", @placeholder = "Enter Account Number..."})
+                                        @Html.ValidationMessageFor(model => model.FromAccount)
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@GlobalRes.Branch</label>
+                                        @Html.DropDownList("BranchList", (IEnumerable<SelectListItem>) ViewBag.branchList, GlobalRes.SelectBranch, new {@class = "form-control select2", @placeholder = "Branch..."})
+                                        @Html.ValidationMessageFor(model => model.BranchName)
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@GlobalRes.AccountType</label>
+                                        @Html.DropDownList("AccTypeList", (IEnumerable<SelectListItem>) ViewBag.AccTypesList, GlobalRes.SelectAccountType, new {@class = "form-control select2", @placeholder = "Branch..."})
+                                        @Html.ValidationMessageFor(model => model.AccountTypeName)
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@GlobalRes.Currency</label>
+                                        @Html.DropDownList("CurrencyList", (IEnumerable<SelectListItem>) ViewBag.CurrencyList, GlobalRes.SelectCurrency, new {@class = "form-control select2", @placeholder = "Branch..."})
+                                        @Html.ValidationMessageFor(model => model.CurrencyName)
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@GlobalRes.ToAccountNo</label>
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(model => model.ToAccount, new {@class = "form-control input-lg", @placeholder = GlobalRes.ToAccountNo})
+                                            @Html.ValidationMessageFor(model => model.ToAccount)
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-danger btn-flat input-lg" data-toggle="modal" data-target="#modal-default">
+                                                    <span><i class="fa fa-heart"></i></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-group">
+                                            <label>Transfer Amount</label>
+                                            @Html.TextBoxFor(model => model.Amount)
+                                            @Html.ValidationMessageFor(model => model.Amount)
+                                        </div>*@
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Amount)
+                                        @Html.TextBoxFor(model => model.Amount, new {@class = "form-control input-lg", @placeholder = "Amount in SDG"})
+                                        @Html.ValidationMessageFor(model => model.Amount)
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-5">
+                                            <input type="submit" onclick="return confirm('Are You Sure you want to transfer',model.Amount , ' ?');" value=@GlobalRes.ButtonSubmit class="btn btn-danger btn-block btn-flat"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
+                            @section Scripts {
+                                @Scripts.Render("~/bundles/jqueryval")
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@*<h2>ToBankCustomerTransfer</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ToBanCustomerViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FromAccount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FromAccount)
+                @Html.ValidationMessageFor(model => model.FromAccount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BranchName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BranchName)
+                @Html.ValidationMessageFor(model => model.BranchName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BranchCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BranchCode)
+                @Html.ValidationMessageFor(model => model.BranchCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccountTypeCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AccountTypeCode)
+                @Html.ValidationMessageFor(model => model.AccountTypeCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccountTypeName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AccountTypeName)
+                @Html.ValidationMessageFor(model => model.AccountTypeName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CurrencyCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CurrencyCode)
+                @Html.ValidationMessageFor(model => model.CurrencyCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CurrencyName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CurrencyName)
+                @Html.ValidationMessageFor(model => model.CurrencyName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ToAccount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ToAccount)
+                @Html.ValidationMessageFor(model => model.ToAccount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Amount)
+                @Html.ValidationMessageFor(model => model.Amount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VerificatioCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VerificatioCode)
+                @Html.ValidationMessageFor(model => model.VerificatioCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

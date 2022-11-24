@@ -1,0 +1,112 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.SalaryAuthViewModel>
+
+@{
+    ViewBag.Title = "ViewSalaryTransfers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Transfer_Parent
+        <small>Authorize Transfers</small>
+    </h1>
+
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">تصديق التحاويل</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">Authorize Transfers</li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 ">
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.AllTransfers</h3>
+                    <div class="box-tools pull-right">
+                        @* <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>*@
+                        @*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+                            <thead style="color: cadetblue">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FileId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FileName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FileDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.NoOfRows)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FileTotal)
+                                    </th>
+
+                                    <th>@GlobalRes.AuthorizeTransferDetails</th>
+                                </tr>
+                            </thead>
+
+                            @foreach (var item in Model.OrderByDescending(item => item.FileId))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FileId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FileName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FileDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NoOfRows)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FileTotal)
+                                    </td>
+                                    @if (CultureHelper.IsRighToLeft())
+                                    {
+                                        <td>                                            
+                                            @Html.ActionLink(GlobalRes.Details, "DoSalaryTransfer", new { id = item.FileId, lang = "ar" })                                           
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>                                            
+                                            @Html.ActionLink(GlobalRes.Details, "DoSalaryTransfer", new { id = item.FileId })                                            
+                                        </td>
+                                    }
+                                    
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

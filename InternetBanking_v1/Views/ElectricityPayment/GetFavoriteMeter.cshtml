@@ -1,0 +1,66 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.ElectricityViewModel>
+@*<h3> Hello to Partial</h3>*@
+<div class="table-responsive">
+    <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+        <thead style="color: cadetblue">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MeterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MeterNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MeterID)
+            </th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeterNo, new { id = "meterNo" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeterID)
+                </td>
+                @if (CultureHelper.IsRighToLeft())
+                {
+                    <td>
+                        @*@Html.ActionLink("إختر", "ChooseMeter", new { id = item.MeterID, lang = "ar" })*@
+                        <a href="#" class="btn btn-primary" onclick="setFavouriteMeter(this)">إختر</a>                        
+                    </td>
+
+                }
+                else
+                {
+                    <td>
+                        @*@Html.ActionLink("Choose", "ChooseMeter", new { id = item.MeterID })*@             
+                        <a href="#" class="btn btn-primary" onclick="setFavouriteMeter(this)">Choose</a>            
+                    </td>
+                }
+
+            </tr>
+        }
+
+    </table>
+    @section Scripts {
+        <script type="text/javascript">
+
+           
+
+        </script>
+
+    }
+
+        
+        
+    
+</div>
+

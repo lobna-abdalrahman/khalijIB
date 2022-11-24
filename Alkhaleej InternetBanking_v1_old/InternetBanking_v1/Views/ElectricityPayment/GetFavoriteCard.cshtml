@@ -1,0 +1,65 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.CardTransferViewModel>
+           
+<div class="table-responsive">
+    <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+        <thead style="color: cadetblue">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CardName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardExp)
+            </th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CardName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CardNumber, new { id = "cardNo" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CardExp)
+                </td>
+                @if (CultureHelper.IsRighToLeft())
+                {
+                    <td>
+                        @*@Html.ActionLink("إختر", "ChooseMeter", new { id = item.MeterID, lang = "ar" })*@
+                        <a href="#" class="btn btn-primary" onclick="setFavouriteCard(this)">إختر</a>
+                    </td>
+
+                }
+                else
+                {
+                    <td>
+                        @*@Html.ActionLink("Choose", "ChooseMeter", new { id = item.MeterID })*@
+                        <a href="#" class="btn btn-primary" onclick="setFavouriteCard(this)">Choose</a>
+                    </td>
+                }
+
+            </tr>
+        }
+
+    </table>
+    @section Scripts {
+        <script type="text/javascript">
+
+
+
+        </script>
+
+    }
+
+
+
+
+</div>

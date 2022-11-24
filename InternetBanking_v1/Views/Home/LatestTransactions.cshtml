@@ -1,0 +1,90 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.DasboardModels.LatestTransactions>
+
+@*@model InternetBanking_v1.Models.DasboardModels.LatestTransactions*@
+
+
+
+
+<!-- TABLE: LATEST Transactions -->
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">@GlobalRes.Dash_LatestTrans</h3>
+        @if (CultureHelper.IsRighToLeft())
+        {
+            <div class="box-tools pull-left" style="position: static;">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                @*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+            </div>
+        }
+        else
+        {
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                @*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+            </div>
+        }
+        
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="table-responsive">
+            <table class="table no-margin">
+                <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Transaction Name</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var lates in Model)
+                {
+                    <tr>
+
+                        <td>@Html.DisplayFor(model => lates.TranId)</td>
+                        <td>@Html.DisplayFor(model => lates.TranName)</td>
+                        <td>@Html.DisplayFor(model => lates.TranAmount)</td>
+                        @if (lates.TranStatus == "Approved" || lates.TranStatus == "Secussfully" || lates.TranStatus == "Successful")
+                        {
+                            <td><span class="label label-success ">Completed</span></td>
+                        }
+                        else if (lates.TranStatus == "Pending")
+                        {
+                            <td><span class="label label-warning">Pending</span></td>
+                        }
+                        else
+                        {
+                            <td><span class="label label-danger">Failed</span></td>
+                        }
+
+                    </tr>
+                }
+
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer clearfix">
+        @*<a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>*@
+        @if (CultureHelper.IsRighToLeft())
+        {
+            <a href="@Url.Action("MyTransactions", "AllTransactions",new {@class = "product-title", lang = "ar"})" class=" btn btn-sm btn-default btn-flat pull-right">@GlobalRes.View_All_Transactions</a>
+        }
+        else
+        {
+            <a href="@Url.Action("MyTransactions", "AllTransactions")" class=" btn btn-sm btn-default btn-flat pull-right">@GlobalRes.View_All_Transactions</a>
+        }
+        
+    </div>
+    <!-- /.box-footer -->
+</div>

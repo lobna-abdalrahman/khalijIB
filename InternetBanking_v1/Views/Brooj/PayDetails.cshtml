@@ -1,0 +1,682 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.PayDetails
+
+@{
+    ViewBag.Title = "PayDetails";
+}
+
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Payment_Parent
+        <small>@GlobalRes.ALBrooj_Title</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.ALBrooj_Title</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.ALBrooj_Title</li>
+        </ol>
+    }
+
+</section>
+@if (Model != null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="invoice-title">
+                    <h2 class="text-center text-bold">Invoice @GlobalRes.ALBrooj</h2><h3 class="pull-right">Order No @Html.DisplayFor(model => model.InvoiceNo)</h3>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <address>
+                            <strong>Payment Method:</strong><br>
+                            Account Transfer<br>
+
+
+                        </address>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <address>
+                            <strong>Order Date:</strong><br>
+                            @Html.DisplayFor(model => model.PaymentDate)<br><br>
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @if (Model != null)
+        {
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 ">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+
+                            <h3 class="panel-title "><strong class="text-success">Order summary</strong></h3>
+
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <colgroup>
+                                        <col class="col-md-3 ">
+                                        <col class="col-md-7">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <td><strong> </strong></td>
+                                            <td class="text-center"><strong> </strong></td>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                        @*   <tr>
+                        <td>
+
+                      @Html.DisplayNameFor(model => model.CustomerFound)
+                    </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.CustomerFound)
+                </td>
+
+
+                </tr>*@
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.InvoiceNo)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.InvoiceNo)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.servicetype)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.servicetype)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.PayCustomerCode)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.PayCustomerCode)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.PayCustomerName)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.PayCustomerName)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.RequiredAmount)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.RequiredAmount)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.FeesAmount)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.FeesAmount)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.TotalAmount)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.TotalAmount)
+                                            </td>
+
+
+                                        </tr>
+                                        @*
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CollectorNumber)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CollectorNumber)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CurrencyCode)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CurrencyCode)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.status)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.status)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.paytype)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.paytype)
+                    </td>
+
+
+                </tr> *@
+                                        @*
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Branch)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Branch)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Currency)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Currency)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AccountType)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AccountType)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Customername)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Customername)
+                    </td>
+
+
+                </tr>
+                                        *@
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.Customeraccount)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.Customeraccount)
+                                            </td>
+
+
+                                        </tr>
+                                        @*
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CustomerID)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CustomerID)
+                    </td>
+
+
+                </tr>
+                                        *@
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.Paymentstatus)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.Paymentstatus)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.PaymentType)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.PaymentType)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.PaymentDate)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.PaymentDate)
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.PaymentVoucherNo)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.PaymentVoucherNo)
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  }
+        else
+        {
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+
+                            <h3 class="panel-title "><strong class="text-danger">Order summary</strong></h3>
+
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <colgroup>
+                                        <col class="col-md-3 ">
+                                        <col class="col-md-7">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <td><strong> </strong></td>
+                                            <td class="text-center"><strong> </strong></td>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                        @*   <tr>
+                        <td>
+
+                      @Html.DisplayNameFor(model => model.CustomerFound)
+                    </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.CustomerFound)
+                </td>
+
+
+                </tr>*@
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.InvoiceNo)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.InvoiceNo)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.servicetype)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.servicetype)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.PayCustomerCode)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.PayCustomerCode)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.PayCustomerName)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.PayCustomerName)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.RequiredAmount)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.RequiredAmount)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.FeesAmount)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.FeesAmount)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.TotalAmount)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.TotalAmount)
+                                            </td>
+
+
+                                        </tr>
+                                        @*
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CollectorNumber)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CollectorNumber)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CurrencyCode)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CurrencyCode)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.status)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.status)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.paytype)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.paytype)
+                    </td>
+
+
+                </tr> *@
+                                        @*
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Branch)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Branch)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Currency)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Currency)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AccountType)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AccountType)
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Customername)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Customername)
+                    </td>
+
+
+                </tr>
+                                        *@
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.Customeraccount)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.Customeraccount)
+                                            </td>
+
+
+                                        </tr>
+                                        @*
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CustomerID)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CustomerID)
+                    </td>
+
+
+                </tr>
+                                        *@
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.Paymentstatus)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.Paymentstatus)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.PaymentType)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.PaymentType)
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.PaymentDate)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.PaymentDate)
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.PaymentVoucherNo)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => model.PaymentVoucherNo)
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (CultureHelper.IsRighToLeft())
+{
+    <div class="form-group col-md-10 col-md-offset-1">
+
+        <div class="col-md-4">
+            <input type="button" value=@GlobalRes.btn_cancel onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-danger btn-lg btn-block btn-flat" />
+
+
+        </div>
+        <div class="col-md-4">
+            <input type="submit" value="طباعه الفاتوره" onclick="location.href='@Url.Action("SavePDF", "Brooj")'" class="btn btn-primary btn-lg btn-block btn-flat" />
+            <br />
+        </div>
+    </div>
+}
+
+        else
+        {
+            <div class="form-group col-md-10 col-md-offset-1">
+                <div class="col-md-4">
+                    <input type="submit" value="Print Invoice" onclick="location.href='@Url.Action("SavePDF", "Brooj")'" class="btn btn-primary btn-lg btn-block btn-flat" />
+                </div>
+                <div class="col-md-4">
+                    <input type="button" value=@GlobalRes.btn_cancel onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-danger btn-lg btn-block btn-flat" />
+
+                    <br />
+                </div>
+            </div>}      @*</div>*@
+        
+    </div>
+}  

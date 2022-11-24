@@ -1,0 +1,209 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.MOHESudViewModel
+
+@{
+    ViewBag.Title = "MOHE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Payment_Parent
+        <small>@GlobalRes.MOHE</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.MOHE </li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.MOHE </li>
+        </ol>
+    }
+    
+</section>
+
+
+<section class="content">
+    <div class="row">
+
+        <section class="col-md-10 col-md-offset-1 connectedSortable">
+
+            <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">@GlobalRes.MOHE_BoxHeader</h3>
+                @if (CultureHelper.IsRighToLeft())
+                {
+                    <div class="box-tools" style="position: static; float: left;">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                    @Html.ValidationSummary(true)
+
+                                    <div class="form-group">
+                                        <label>@GlobalRes.Lable_CardNumber</label>
+                                        @Html.DropDownList("Clients", (IEnumerable<SelectListItem>)ViewBag.clientList, GlobalRes.PlaceHolder_Select_Card, new { @class = "form-control select2", required = "true" })
+                                        @Html.ValidationMessageFor(model => model.CardNumber)
+                                    </div>
+
+    <div class="row" style="visibility: hidden; display: none;" id="expRow">
+        <br />
+        <div class="form-group" style="margin-left: 15px">
+            <label>@GlobalRes.Lable_ExpDate </label>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>@GlobalRes.Lable_Month </label>
+                @Html.DropDownListFor(model => model.Month, new List<SelectListItem>
+                                            {
+                                                new SelectListItem {Text = "January", Value = "01"},
+                                                new SelectListItem {Text = "February", Value = "02"},
+                                                new SelectListItem {Text = "March", Value = "03"},
+                                                new SelectListItem {Text = "April", Value = "04"},
+                                                new SelectListItem {Text = "May", Value = "05"},
+                                                new SelectListItem {Text = "June", Value = "06"},
+                                                new SelectListItem {Text = "July", Value = "07"},
+                                                new SelectListItem {Text = "August", Value = "08"},
+                                                new SelectListItem {Text = "September", Value = "09"},
+                                                new SelectListItem {Text = "October", Value = "10"},
+                                                new SelectListItem {Text = "November", Value = "11"},
+                                                new SelectListItem {Text = "December", Value = "12"}
+                                            }, new { @class = "form-control select2", @style = "width: 100%" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>@GlobalRes.Lable_Year </label>
+                @Html.DropDownListFor(model => model.Year, new List<SelectListItem>
+                                            {
+                                                new SelectListItem {Text = "2017", Value = "17"},
+                                                new SelectListItem {Text = "2018", Value = "18"},
+                                                new SelectListItem {Text = "2019", Value = "19"},
+                                                new SelectListItem {Text = "2020", Value = "20"},
+                                                new SelectListItem {Text = "2021", Value = "21"},
+                                                new SelectListItem {Text = "2022", Value = "22"},
+                                                new SelectListItem {Text = "2023", Value = "23"},
+                                                new SelectListItem {Text = "2024", Value = "24"},
+                                                new SelectListItem {Text = "2025", Value = "25"},
+                                                new SelectListItem {Text = "2026", Value = "26"},
+                                                new SelectListItem {Text = "2027", Value = "27"},
+                                                new SelectListItem {Text = "2028", Value = "28"},
+                                                new SelectListItem {Text = "2029", Value = "29"},
+                                                new SelectListItem {Text = "2030", Value = "30"},
+                                                new SelectListItem {Text = "2031", Value = "31"},
+                                                new SelectListItem {Text = "2032", Value = "32"},
+                                                new SelectListItem {Text = "2033", Value = "33"},
+                                                new SelectListItem {Text = "2034", Value = "34"},
+                                                new SelectListItem {Text = "2035", Value = "35"},
+                                                new SelectListItem {Text = "2036", Value = "36"},
+                                                new SelectListItem {Text = "2037", Value = "37"},
+                                                new SelectListItem {Text = "2038", Value = "38"},
+                                                new SelectListItem {Text = "2039", Value = "39"},
+                                                new SelectListItem {Text = "2040", Value = "40"}
+                                            }, new { @class = "form-control select2", @style = "width: 100%" })
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SETNUMBER)
+                                        @Html.TextBoxFor(model => model.SETNUMBER, new { @class = "form-control input-lg", @placeholder = GlobalRes.MOHE_StudentNo, required = "true" })
+                                        @Html.ValidationMessageFor(model => model.SETNUMBER)
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.STUDCOURSEID)
+                                        @Html.DropDownListFor(model => model.STUDCOURSEID, new List<SelectListItem>
+                                    {
+                                        new SelectListItem {Text = "Academic", Value = "1"},
+                                        new SelectListItem {Text = "Agricultural", Value = "2"},
+                                        new SelectListItem {Text = "Commercial", Value = "3"},
+                                        new SelectListItem {Text = "Industerial", Value = "4"},
+                                        new SelectListItem {Text = "Wonamly", Value = "5"},
+                                        new SelectListItem {Text = "Ahlia", Value = "6"},
+                                        new SelectListItem {Text = "Readings", Value = "7"},
+                                    }, new { @class = "form-control select2", @style = "width: 100%", required = "true" })
+                                        @*@Html.ValidationMessageFor(model => model.BillerName)*@
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.STUDFORMKIND)
+                                        @Html.DropDownListFor(model => model.STUDFORMKIND, new List<SelectListItem>
+                                    {
+                                        new SelectListItem {Text = "General Admission-1st round", Value = "1"},
+                                        new SelectListItem {Text = "Special Admission", Value = "2"},
+                                        new SelectListItem {Text = "Sons of Higher Education Staff", Value = "3"},
+                                        new SelectListItem {Text = "General Admission-2nd round", Value = "6"},
+                                        new SelectListItem {Text = "Special Admission-vacancies", Value = "7"},
+                                        new SelectListItem {Text = "Private Institution Direct", Value = "8"},
+                                        new SelectListItem {Text = "Diploma in public institutions", Value = "9"},
+                                    }, new { @class = "form-control select2", @style = "width: 100%", required = "true" })
+                                        @*@Html.ValidationMessageFor(model => model.BillerName)*@
+                                    </div>
+
+
+
+                                    @*<div class="form-group">
+                                        @Html.LabelFor(model => model.TranAmount)
+                                        @Html.TextBoxFor(model => model.TranAmount, new { @class = "form-control input-lg", @placeholder = "Amount in SDG" })
+                                        @Html.ValidationMessageFor(model => model.TranAmount)
+                                    </div>*@
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.IPIN)
+                                        @Html.TextBoxFor(model => model.IPIN, new { @class = "form-control input-lg", @type = "password", @placeholder = GlobalRes.IPIN, required = "true" })
+                                        @Html.ValidationMessageFor(model => model.IPIN)
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-xs-5">
+                                            <input type="submit" value=@GlobalRes.Button_GetBill class="btn btn-danger btn-block btn-flat" />
+                                        </div>
+                                    </div>                                
+                            }
+
+
+
+                            @section Scripts {
+                                @Scripts.Render("~/bundles/jqueryval")
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+

@@ -1,0 +1,236 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.ViewModels.AccountStatementViewModel
+
+@{
+    ViewBag.Title = "Statement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <h1>
+        @GlobalRes.AccSummary_Parent
+        <small>@GlobalRes.Account_Statement</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.AccSummary_Parent</a></li>
+            <li class="active">@GlobalRes.Account_Statement</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.AccSummary_Parent</a></li>
+            <li class="active">@GlobalRes.Account_Statement</li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-md-12 connectedSortable">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.AccStatementBoxHeader</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <!-- /.box-header -->
+                
+                <div class="box-body">
+                    <div class="row">
+                        @*<div class="col-md-6 col-md-offset-0">*@
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="col-md-6 col-md-offset-0">
+
+                                @Html.ValidationSummary(true)
+
+                                @*<div class="form-group">
+                                    <label>Account No </label>
+                                    @Html.TextBoxFor(model => model.AccountNo)
+                                    @Html.ValidationMessageFor(model => model.AccountNo)
+                                </div>*@
+                             
+                                
+                                <div class="form-group">
+                                    <label>@GlobalRes.Lable_AccountNumber </label>
+                                    @Html.DropDownList("Clients", (IEnumerable<SelectListItem>)ViewBag.clientList, GlobalRes.PlaceHolder_Select_Account, new { @class = "form-control select2", @style = "width: 100%", required = "true" })
+                                    
+                                    @*@Html.DropDownListFor(model => model.AccountID, Model.AccountNo, "Select Account", new { @class = "form-control select2", @style = "width: 100%" })*@
+                                    @*@Html.ValidationMessageFor(model => model.AccountNo)*@
+                                </div>
+                                <div class="box-header">
+                                    <h3 class="box-title">@GlobalRes.Header_Statement_Type_Options</h3>
+                                </div>
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <label>
+                                            
+                                            @Html.RadioButtonFor(model => model.StatementType, "1", new {@class = "flat-red", id="periodCheck",@name = "noOfTrans", @checked = "checked"})
+                                            @GlobalRes.Radio_Period
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                            @Html.RadioButtonFor(model => model.StatementType, "2", new { @class = "flat-red", id = "noOfTransCheck",onclick="return hidePeriod()" })
+                                            @Html.ValidationMessageFor(model => model.StatementType)
+                                            @GlobalRes.Radio_Number_Of_Transaction
+                                        </label>
+                                    </div>
+
+                                </div>
+                                
+                                
+
+                                <div class="form-group">
+                                    <label>@GlobalRes.Lable_FromDate</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.TextBoxFor(model => model.fromDate, new { @class = "form-control pull-right", id = "datepicker" })
+                                        @Html.ValidationMessageFor(model => model.fromDate)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>@GlobalRes.Lable_ToDate</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.TextBoxFor(model => model.toDate, new { @class = "form-control pull-right", @id = "Todatepicker" })
+                                        @Html.ValidationMessageFor(model => model.toDate)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-xs-5">
+                                        @*<input type="submit" value="@GlobalRes.ViewStatementBtn" class="btn btn-danger btn-block btn-flat" />*@
+                                        
+                                        <button type="submit" class="btn btn-danger btn-block btn-flat" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing">@GlobalRes.ViewStatementBtn</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            <div class="col-md-6 col-md-offset-0 ">
+                                
+                                <div class="form-group">
+                                    <label>@GlobalRes.Lable_No_of_Trans</label>
+                                    @Html.DropDownListFor(model => model.tranno, new List<SelectListItem>
+                                    {
+                                        new SelectListItem {Text = "Last 3 Transactions", Value = "3"},
+                                        new SelectListItem {Text = "Last 5 Transactions", Value = "5"},
+                                        new SelectListItem {Text = "Last 10 Transactions", Value = "10"},
+                                      
+                                    }, GlobalRes.PlaceHolder_Select_No_of_Trans, new { @class = "form-control select2", @style = "width: 100%", id = "NoOfTransDropDown"/*,@disabled = "disabled"*/ })
+
+                                </div>
+
+                         
+
+                              
+                                <div class="col-md-4">
+
+                                  
+                                </div>
+
+                            </div>
+                        }
+
+                        @* Save PDF *@
+                        @*@using (Html.BeginForm("PdfTest", "AccountStatement"))
+                        {
+                            <br />
+
+
+                            <div class="form-group">
+                                <div class="col-xs-10">
+                                    <input type="submit" value="@GlobalRes.Button_Create_PDF" class="btn btn-danger btn-block btn-flat" />
+                                </div>
+                            </div>
+                        }*@
+                        @section Scripts {
+                            @Scripts.Render("~/bundles/jqueryval")
+                        
+                            <script>
+
+                                $('#periodCheck').on('click', function () {
+                                    var _this = $(this);
+
+                                    var dateSelectors = $('#NoOfTransDropDown');
+
+                                    if (_this.attr('id') == 'periodCheck') {
+                                        dateSelectors.attr('disabled', true);
+
+                                    }
+                                    else {
+                                        dateSelectors.attr('disabled', false);
+                                    }
+                                });
+                            </script>
+                            
+                            <script type="text/javascript">
+                                //alert('hi there');
+                                $(document).ready(function(){
+                                    $("#periodCheck").on('click', function () {
+
+                                        $("#NoOfTransDropDown").hide();
+                                    });
+                                });
+                            </script>
+                            
+                            
+                            <script type="text/javascript">
+                                var hidePeriod = function () {
+                                    alert('asdasdas');
+                                }
+                            </script>
+                        }
+                        @*</div>*@
+                       
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+<script>
+    $(function () {
+
+        //From Date picker
+        $('#datepicker').datepicker({
+            autoclose: true
+        });
+        //To Date picker
+        $('#Todatepicker').datepicker({
+            autoclose: true
+        });
+        
+    })
+   
+</script>

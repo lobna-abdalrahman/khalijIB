@@ -1,0 +1,91 @@
+﻿@using System.Web.Mvc.Html
+@using System.Web.UI.WebControls
+@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.Login.UserAccount
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout .cshtml";
+}
+
+<div class="login-box">
+
+    <div class="login-logo">
+
+        @*<img src="~/Content/icons/logo.png" />*@
+        <p><b>Internet</b>Banking</p>
+    </div>
+    <!-- /.login-logo -->
+    <!-- Navbar Right Menu -->
+    @*<div class="navbar-custom-menu">
+            <ul class="nav navbar-nav " style="background: rgba(255, 255, 255, 0.56);">
+
+                <!-- Language Switch -->
+                <li>@Url.LangSwitcher("English", ViewContext.RouteData, "en")</li>
+                <li>@Url.LangSwitcher("عربي", ViewContext.RouteData, "ar")</li>
+
+            </ul>
+        </div>*@
+
+    <!-- /.navbar-custom-menu -->
+
+    <div class="login-box-body my-box">
+        <h4 class="login-box-msg" style="color:black">@GlobalRes.ForgotPassword</h4>
+        <h5 class="login-box-msg" style="color:black">@GlobalRes.otpsent</h5>
+
+        @using (Html.BeginForm("otpverification", "Login", "POST"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
+                @Html.ValidationSummary(true)
+
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "OTP" })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4 col-xs-offset-4">
+                        <input type="submit" value="@GlobalRes.verify" class="btn btn-primary btn-block btn-flat" onclick="return displayprogressmessage(this, 'Loggin in...');" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!-- /.login-box -->
+<!-- jQuery 3 -->
+<script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="~/Content/plugins/iCheck/icheck.min.js"></script>
+<script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+        });
+    });
+</script>
+
+<script>
+
+    function DisplayProgressMessage(ctl, msg) {
+
+        $(ctl).prop("disabled", true);
+
+        $(ctl).text(msg);
+
+
+
+        return true;
+
+    };
+
+</script>
+

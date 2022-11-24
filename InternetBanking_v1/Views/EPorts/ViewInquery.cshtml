@@ -1,0 +1,191 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.EPortsViewModel
+
+@{
+    ViewBag.Title = "ViewInquery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.eportsinquery
+        <small>@GlobalRes.eports_title</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.eports_title</a></li>
+            <li class="active">@GlobalRes.eports_title</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.eports_title</a></li>
+            <li class="active">@GlobalRes.eports_title</li>
+        </ol>
+    }
+</section>
+
+<section class="content">
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-md-12 connectedSortable">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.eports_title</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <div class="box-body">
+                    @using (Html.BeginForm("CompletePayment", "EPorts", FormMethod.Post, new { id = "form" }))
+                    {
+                        <div class="row col-sm-offset-3 text-center" style="width:50%">
+                            <div class="panel panel-default">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <strong>
+                                            Invoice Informations
+                                        </strong>
+                                    </div>
+
+                                    <div class="panel-footer" style="font-size:18px">
+                                        @if (Model.OrderStatus != "Paid")
+                                        {
+                                            <br />
+                                            <div class="form-group">
+                                                <label>@GlobalRes.FromAccountNo</label>
+                                                @Html.DropDownList("FromAccount", (IEnumerable<SelectListItem>)ViewBag.clientList, GlobalRes.PlaceHolder_Select_Account, new { @class = "form-control select2", @placeholder = "Enter Account Number...", required = "true", id = "fromAcc" })
+                                                @Html.ValidationMessageFor(model => model.FromAccount)
+                                            </div>
+                                        }
+                                        <br />
+                                        <br />
+                                        @if (!String.IsNullOrEmpty(Model.PaymentVoucherNo))
+                                        {
+                                            <p>@GlobalRes.Voucher_Information : @Model.PaymentVoucherNo</p>
+                                            <br />
+                                            <br />
+                                        }
+                                        @if (!String.IsNullOrEmpty(Model.CustomerMobile))
+                                        {
+                                            <P>@GlobalRes.PhoneNo : @Model.CustomerMobile</P>
+                                            <br />
+                                            <br />
+                                        }
+
+                                        @if (!String.IsNullOrEmpty(Model.CustomerBalance))
+                                        {
+                                            <p>@GlobalRes.Balance : @Model.CustomerBalance</p>
+                                            <br />
+                                            <br />
+                                        }
+                                        @if (!String.IsNullOrEmpty(Model.PaymentDate))
+                                        {
+                                            <p>@GlobalRes.Date : @Model.PaymentDate</p>
+                                            <br />
+                                            <br />
+                                        }
+                                        @if (!String.IsNullOrEmpty(Model.TotalAmount))
+                                        {
+                                            <p>@GlobalRes.TotalAmount : @Model.TotalAmount</p>
+                                            <br />
+                                            <br />
+                                        }
+
+                                        @if (!String.IsNullOrEmpty(Model.FeesAmount))
+                                        {
+                                            <p>@GlobalRes.fees : @Model.FeesAmount</p>
+                                            <br />
+                                            <br />
+                                        }
+                                        @if (Model.paycustomername != "" && Model.paycustomername != null && Model.paycustomername != "null")
+                                        {
+                                            <p>@GlobalRes.payercustomername : @Model.paycustomername</p>
+                                            <br />
+                                            <br />
+                                        }
+
+                                        @if (!String.IsNullOrEmpty(Model.OrderStatus))
+                                        {
+                                            <p>@GlobalRes.orderstatus : @Model.OrderStatus</p>
+                                            <br />
+                                            <br />
+                                        }
+
+                                        @if (!String.IsNullOrEmpty(Model.PaymentStatus))
+                                        {
+                                            <p>@GlobalRes.paymentstatus : @Model.PaymentStatus</p>
+                                            <br />
+                                            <br />
+                                        }
+                                        @if (!String.IsNullOrEmpty(Model.CustomerName))
+                                        {
+                                            <p>@GlobalRes.CustomerName : @Model.CustomerName</p>
+                                            <br />
+                                            <br />
+                                        }
+                                        @if (!String.IsNullOrEmpty(Model.RequiredAmount))
+                                        {
+                                            <p>@GlobalRes.requiredamount : @Model.RequiredAmount</p>
+                                            <br />
+                                            <br />
+                                        }
+                                        @GlobalRes.portlocation :
+                                        @if (Model.PayServiceID == "8")
+                                        {
+                                            @GlobalRes.north
+                                        }
+                                        else
+                                        {
+                                            @GlobalRes.south
+                                        }
+                                        <br />
+                                        <br />
+                                        @if (!String.IsNullOrEmpty(Model.PayCustomerCode))
+                                        {
+                                            <p>@GlobalRes.invoice : @Model.PayCustomerCode</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        if (Model.OrderStatus != "Paid")
+                        {
+                            <div class="form-group">
+                                <div class="col-md-offset-5 col-xs-2">
+                                    <input type="submit" value=@GlobalRes.Pay_Bill class="btn btn-danger btn-block btn-flat" />
+                                </div>
+                            </div>
+                        }
+                        <br />
+                        <br />
+                    }
+                    @using (Html.BeginForm("EPorts", "EPorts", FormMethod.Get, new { id = "form" }))
+                    {
+                        <div class="form-group">
+                            <div class="col-md-2 col-md-offset-5">
+                                <input type="submit" value="@GlobalRes.back" class="btn btn-danger btn-block btn-flat" />
+                            </div>
+                        </div>
+                    }
+                    <br />
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

@@ -1,0 +1,62 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.Account.Bal
+
+@{
+    ViewBag.Title = "PrimaryBalance";
+}
+
+<div class="col-lg-4 col-xs-6">
+    <!-- small box -->
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>@Html.DisplayFor(model => model.AvailableBalance)<sup style="font-size: 20px">SDG</sup>
+                </h3>
+                <p>@GlobalRes.Dash_PrimaryBalance</p>
+            </div>
+            <div class="icon" style="margin-right: 260px;">
+                <i class="fa fa-credit-card"></i>
+            </div>
+            @if (CultureHelper.IsRighToLeft())
+            {
+                <a href="@Url.Action("Accountsummary", "MultiBalance", new { lang = "ar" })" class="small-box-footer">
+                    @GlobalRes.Dash_MoreInfo
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            }
+            else
+            {
+                <a href="@Url.Action("Accountsummary", "MultiBalance")" class="small-box-footer">
+                    @GlobalRes.Dash_MoreInfo
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            }
+            
+        </div>
+    }
+    else
+    {
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>@Html.DisplayFor(model => model.AvailableBalance)<sup style="font-size: 20px"></sup>
+                </h3>
+                <p>@GlobalRes.Dash_PrimaryBalance</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-credit-card"></i>
+            </div>
+            <a href="@Url.Action("Accountsummary", "MultiBalance")" class="small-box-footer">
+                @GlobalRes.Dash_MoreInfo
+                <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    }
+    
+</div>
+
+
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

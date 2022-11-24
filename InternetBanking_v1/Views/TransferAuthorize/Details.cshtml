@@ -1,0 +1,197 @@
+﻿@using InternetBanking_v1.Controllers
+@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.TransferAuthorizeViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <h1>
+        @GlobalRes.Transfer_Parent
+        <small>@GlobalRes.AuthorizeTransfer</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">@GlobalRes.AuthorizeTransfer</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">@GlobalRes.AuthorizeTransfer</li>
+        </ol>
+    }
+
+</section>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                @*<i class="fa fa-text-width"></i>*@
+                <h3 class="box-title">@GlobalRes.AuthorizeTransferDetails</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div>
+                            <blockquote>
+                                <dl class="dl-horizontal">
+
+
+                                    <dt  >
+                                        @Html.DisplayNameFor(model => model.UserID)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.UserID)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.UserName)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.UserName)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.FromAccountNumber)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.FromAccountName)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.ToAccountNumber)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.ToAccountName)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.TransferAmount)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.TransferAmount)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.TransferStatus)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.TransferStatus)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.TransferDate)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.TransferDate)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.ReceiverName)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.ReceiverName)
+                                    </dd>
+
+                                </dl>
+                           
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                
+                @if (CultureHelper.IsRighToLeft())
+                {
+                    using (Html.BeginForm("Authorize", "TransferAuthorize", FormMethod.Post, new {enctype = "multipart/form-data", lang = "ar"}))
+                     {
+
+                         <div class="form-group">
+                             <div class="col-xs-5">
+                                 <input type="submit" value=Authorize onclick="return confirm('Are You Sure you want to Authorize the transfer ?');" class="btn btn-danger btn-block btn-flat"/>
+                             </div>
+                         </div>
+                     }
+
+                    using (Html.BeginForm("RejectTransfer", "TransferAuthorize", FormMethod.Post, new { enctype = "multipart/form-data", lang = "ar" }))
+                     {
+
+                         <div class="form-group">
+                             <div class="col-xs-5">
+                                 <input type="submit" value="Reject" onclick="return confirm('Are You Sure you want to Reject the transfer ?');" class="btn btn-default btn-block btn-flat"/>
+                             </div>
+                         </div>
+                     }
+
+                }
+                else
+                {
+                    using (Html.BeginForm("Authorize", "TransferAuthorize", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                     {
+
+                         <div class="form-group">
+                             <div class="col-xs-5">
+                                 <input type="submit" value=Authorize onclick="return confirm('Are You Sure you want to Authorize the transfer ?');" class="btn btn-danger btn-block btn-flat"/>
+                             </div>
+                         </div>
+                     }
+
+                    using (Html.BeginForm("RejectTransfer", "TransferAuthorize", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                     {
+
+                         <div class="form-group">
+                             <div class="col-xs-5">
+                                 <input type="submit" value="Reject" onclick="return confirm('Are You Sure you want to Reject the transfer ?');" class="btn btn-default btn-block btn-flat"/>
+                             </div>
+                         </div>
+                     }
+
+                    
+                }
+             @*   @using (Html.BeginForm("Authorize", "TransferAuthorize", FormMethod.Post, new {enctype = "multipart/form-data", lang = "ar"}))
+                {
+
+                    <div class="form-group">
+                        <div class="col-xs-5">
+                            <input type="submit" value=Authorize onclick="return confirm('Are You Sure you want to Authorize the transfer ?');" class="btn btn-danger btn-block btn-flat"/>
+                        </div>
+                    </div>
+                }
+
+                @using (Html.BeginForm("RejectTransfer", "TransferAuthorize", FormMethod.Post))
+                {
+
+                    <div class="form-group">
+                        <div class="col-xs-5">
+                            <input type="submit" value="Reject" onclick="return confirm('Are You Sure you want to Reject the transfer ?');" class="btn btn-default btn-block btn-flat"/>
+                        </div>
+                    </div>
+                }
+*@
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            @*<p>
+                @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>*@

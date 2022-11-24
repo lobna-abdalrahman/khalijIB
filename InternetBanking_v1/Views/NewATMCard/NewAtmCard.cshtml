@@ -1,0 +1,28 @@
+﻿<section class="content-header">
+    <h1>
+        Services
+        <small>New ATM Card</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Services</a></li>
+        <li class="active">New ATM Card </li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-md-6 connectedSortable">
+            <!-- Own Transfer -->
+            @Html.Action("DebitCardRequest", "NewATMCard")
+
+        </section>
+        <!-- /Left col -->
+        <!-- Right col -->
+        <section class="col-md-6 connectedSortable">
+            @Html.Action("EpurseCardRequest", "NewATMCard")
+        </section>
+        <!-- /Right col -->
+    </div>
+
+</section>

@@ -1,0 +1,202 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.ManageCardsViewModel>
+
+@{
+    ViewBag.Title = "Manage Cards";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .delete-section {
+        display: inline;
+    }
+</style>
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Services_Parent
+        <small>@GlobalRes.ManageCardsTitle</small>
+    </h1>
+
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.ManageCardsTitle</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.ManageCardsTitle</li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+    
+    @if (TempData["Success"] != null)
+    {
+        if (ViewBag.ResponseStat.ToString().Equals("Successful"))
+        {
+
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+        }
+        else if (ViewBag.ResponseStat.ToString().Equals("Not Successful"))
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+        }
+    }
+    <div class="row">
+        <div class="col-md-12 ">
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.ManageCardsTitle</h3>
+                    <div class="box-tools pull-right">
+                        @* <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>*@
+                        @*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+                            <thead style="color: cadetblue">
+                            @*<table class="table">*@
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CardID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CardName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CardNo)
+                                </th>
+
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CardID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CardName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CardNo)
+                                    </td>
+
+                                    @if (CultureHelper.IsRighToLeft())
+                                    {
+                                        <td>
+                                            @Html.ActionLink("تعديل", "Edit", new {id = item.CardID, lang = "ar"}) |
+                                            @* @Html.ActionLink("Details", "Details", new { id = item.CardID }) |*@
+                                            @Html.ActionLink("حذف", "Delete", new {id = item.CardID})
+                                            @*<div class="delete-section">
+                                                <a class="delete-link" href="@Url.Action("Delete", new { id = item.CardID })">Delete</a>
+                                                <div class="btn btn-primary delete-confirm" style="display:none" data-delete-id="@item.CardID">تأكيد الحذف</div>
+                                            </div>*@
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new {id = item.CardID}) |
+                                            @* @Html.ActionLink("Details", "Details", new { id = item.CardID }) |*@
+                                            @Html.ActionLink("Delete", "Delete", new {id = item.CardID})
+
+                                        </td>
+                                    }
+
+                                </tr>
+                            }
+
+                        </table>
+
+                        @*@section scripts{
+                        <script type="text/javascript">
+                            $(function () {
+                                $("a.delete-link").click(function () {
+                                    var deleteLink = $(this);
+                                    deleteLink.hide();
+                                    var confirmButton = deleteLink.siblings(".delete-confirm");
+                                    confirmButton.show();
+
+                                    var cancelDelete =  function () {
+                                        removeEvents();
+                                        showDeleteLink();
+                                    };
+
+                                    var deleteItem = function () {
+                                        removeEvents();
+                                        confirmButton.hide();
+                                        $.post(
+                                                '@Url.Action("Delete")',
+                                                AddAntiForgeryToken({ id: confirmButton.attr('data-delete-id') }))
+                                            .done(function () {
+                                                var parentRow = deleteLink.parents("tr:first");
+                                                parentRow.fadeOut('fast', function () {
+                                                    parentRow.remove();
+                                                });
+                                            }).fail(function (data) {
+                                                alert("error");
+                                            });
+                                        return false;
+                                    };
+
+                                    var removeEvents = function () {
+                                        confirmButton.off("click", deleteItem);
+                                        $(document).on("click", cancelDelete);
+                                        $(document).off("keypress", onKeyPress);
+                                    };
+
+                                    var showDeleteLink = function () {
+                                        confirmButton.hide();
+                                        deleteLink.show();
+                                    };
+
+                                    var onKeyPress = function (e) {
+                                        //Cancel if escape key pressed
+                                        if (e.which == 27) {
+                                            cancelDelete();
+                                        }
+                                    };
+
+                                    confirmButton.on("click", deleteItem);
+                                    $(document).on("click", cancelDelete);
+                                    $(document).on("keypress", onKeyPress);
+
+                                    return false;
+                                });
+
+                                AddAntiForgeryToken = function (data) {
+                                    data.__RequestVerificationToken = $('input[name=__RequestVerificationToken]').val();
+                                    return data;
+                                };
+                            });
+                        </script>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,59 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.TelecomPostPaidViewModel>
+
+<div class="table-responsive">
+
+    <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+        <thead style="color: cadetblue">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FavoritePhoneName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ToPhoneNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FavoritePhoneID)
+                </th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FavoritePhoneName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ToPhoneNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FavoritePhoneID)
+                    </td>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <td>
+                            @*@Html.ActionLink("إختر", "ChoosePhone", new { id = item.FavoritePhoneID, lang = "ar" })*@
+                            <a href="#" class="btn btn-primary" onclick="setFavouritePhone(this)">إختر</a>
+                        </td>
+
+                    }
+                    else
+                    {
+                        <td>
+                            <a href="#" class="btn btn-primary" onclick="setFavouritePhone(this)">Choose</a>
+                            @*@Html.ActionLink("Choose", "ChoosePhone", new {id = item.FavoritePhoneID})*@
+                        </td>
+                    }
+
+
+                </tr>
+            }
+
+</table>
+
+</div>
+
+

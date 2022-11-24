@@ -1,0 +1,176 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.SalaryAuthViewModel>
+
+@{
+    ViewBag.Title = "MultiTransfer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Corprate_Parent
+        <small>@GlobalRes.Salary_Transfer_Title</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="@Url.Action("SalaryTransfer")"><i class="fa fa-dashboard"></i>@GlobalRes.Salary_Transfer_Title</a></li>
+            <li class="active">@GlobalRes.Salary_Transfer_Title</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("SalaryTransfer")"><i class="fa fa-dashboard"></i>@GlobalRes.Salary_Transfer_Title</a></li>
+            <li class="active">@GlobalRes.Salary_Transfer_Title</li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Accounts and status</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        @*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+                            <thead style="color: cadetblue">
+                            <tr>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.successfulAccount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.successfulStatus)
+                                </th>
+                                @*<th></th>*@
+                            </tr>
+                            </thead>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.successfulAccount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.successfulStatus)
+                                    </td>
+                                    @*<td>
+                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                        </td>*@
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FileId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoOfRows)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.excelFile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salary_account_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salary_amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salary_file_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salary_comp_act)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.successfulAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.successfulStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoOfRows)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.excelFile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.salary_account_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.salary_amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.salary_file_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.salary_comp_act)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.successfulAccount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.successfulStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>*@

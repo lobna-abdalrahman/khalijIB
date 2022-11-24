@@ -1,0 +1,160 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.ProfileInfoViewModel
+
+@{
+    ViewBag.Title = "UpdateProfileInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @GlobalRes.USER
+        <small>@GlobalRes.Update_Information</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.USER</a></li>
+            <li class="active">@GlobalRes.Update_Information</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.USER</a></li>
+            <li class="active">@GlobalRes.Update_Information</li>
+        </ol>
+    }
+
+</section>
+
+
+
+
+
+<section class="content">
+    
+    @if (TempData["updateSuccess"] != null)
+    {
+        if (ViewBag.ResponseStat.ToString().Equals("Successful"))
+        {
+
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+        }
+        else if (ViewBag.ResponseStat.ToString().Equals("Not Successful"))
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+        }
+    }
+
+    <div class="row">
+        <!-- Left Column-->
+        <div class="col-md-10 col-md-offset-1 ">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.Your_Information </h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+
+
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    @Html.ValidationSummary(true)
+                    <div class="box-body">
+                        <div class="row">
+
+                            @*<div class="form-group">
+                            @Html.LabelFor(model => model.FullName, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.FullName)
+                                @Html.ValidationMessageFor(model => model.FullName)
+                            </div>
+                        </div>*@
+                            <div class="col-md-6 ">
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email)
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-lg", @type = "email", @placeholder = "e-mail" })
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                </div>
+
+                                @*   <div class="form-group">
+                                @Html.LabelFor(model => model.Mobile)
+                                @Html.TextBoxFor(model => model.Mobile, new { @class = "form-control input-lg", @placeholder = "09xxxxxxxx" })
+                                @Html.ValidationMessageFor(model => model.Mobile)
+                            </div>*@
+
+                                @*<div class="form-group">
+                                <div class="col-md-offset-2 col-xs-4">
+                                    <input type="submit" value=@GlobalRes.ButtonUpdate class="btn btn-danger btn-block btn-flat" />
+                                </div>
+                            </div>*@
+
+                            </div>
+
+
+                            <div class="col-md-6 ">
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Address)
+                                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @rows = "3", @placeholder = "State/province..." })
+                                    @Html.ValidationMessageFor(model => model.Address)
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="box-footer">
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-xs-4">
+                                <input type="submit" value=@GlobalRes.ButtonUpdate class="btn btn-danger btn-block btn-flat" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+
+
+            </div>
+
+                </div>
+            </div>
+</section>

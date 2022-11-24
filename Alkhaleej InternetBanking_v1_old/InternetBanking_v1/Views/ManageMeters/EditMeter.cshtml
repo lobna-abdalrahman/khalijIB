@@ -1,0 +1,138 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.ManageMetersViewModel
+
+@{
+    ViewBag.Title = "Edit Meter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @GlobalRes.Services_Parent
+        <small>@GlobalRes.EditMeterTitle</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.EditMeterTitle</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.EditMeterTitle</li>
+        </ol>
+    }
+
+</section>
+
+
+<section class="content">
+
+    @if (TempData["Success"] != null)
+    {
+        if (ViewBag.ResponseStat.ToString().Equals("Successful"))
+        {
+
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+        }
+        else if (ViewBag.ResponseStat.ToString().Equals("Not Successful"))
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+        }
+    }
+
+    <div class="row">
+        <!-- Left Column-->
+        <div class="col-md-10 col-md-offset-1 ">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.EditMeterTitle </h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+
+
+
+                @using (Html.BeginForm(new { autocomplete = "off" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true)
+
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-10 ">
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MeterName)
+                                    @Html.TextBoxFor(model => model.MeterName, new { @class = "form-control input-lg", maxlength = "20", @placeholder = GlobalRes.MeterName, required = "true", autocomplete = "Off" })
+                                    @Html.ValidationMessageFor(model => model.MeterName)
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MeterNo)
+                                    @Html.TextBoxFor(model => model.MeterNo, new { @class = "form-control input-lg", maxlength = "11", @placeholder = GlobalRes.MeterNoPlaceholder, onkeypress = "return isNumberKey(event)", autocomplete = "Off", required = "true" })
+                                    @Html.ValidationMessageFor(model => model.MeterNo)
+                                </div>
+
+
+                                @*<div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Create" class="btn btn-default" />
+                                    </div>
+                                </div>*@
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-xs-4">
+                                <input type="submit" value="@GlobalRes.ButtonUpdate" class="btn btn-danger btn-block btn-flat"/>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

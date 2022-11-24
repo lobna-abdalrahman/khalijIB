@@ -1,0 +1,138 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.OrderDatials
+
+@{
+     ViewBag.Title  = "OrderDatials";
+}
+
+
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Payment_Parent
+        <small>@GlobalRes.ALBrooj_Title</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.ALBrooj_Title</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.ALBrooj_Title</li>
+        </ol>
+    }
+
+</section>
+<section class="content">
+    <div class="row">
+        <section class="col-md-10 col-md-offset-1">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.ALBrooj_Title </h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            @*<button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>*@
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            @*<button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>*@
+                        </div>
+                    }
+
+                </div>
+
+                <div class="box-body">
+                    <div class="row ">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="table-responsive">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    @Html.ValidationSummary(true)
+    <table class="table table-striped table-hover table-bordered "  >
+        <colgroup>
+            <col class="col-md-3 " >
+            <col class="col-md-7">
+        </colgroup>
+        <tbody>
+            <tr>
+                <th >
+                    <span class="pull-left">@Html.DisplayNameFor(model => model.PayCustomerName)</span>
+
+                </th>
+                <td >@Html.DisplayFor(model => model.PayCustomerName)</td>
+            </tr>
+            <tr>
+                <th>
+                    <span class="pull-left">   @Html.DisplayNameFor(model => model.InvoiceNo)</span>
+
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.InvoiceNo)
+                </td>
+
+            </tr>
+
+            <tr>
+                <th>
+                    <span class="pull-left">
+                        @Html.DisplayNameFor(model => model.RequiredAmount)
+
+                    </span>
+                </th>
+                <td>@Html.DisplayFor(model => model.RequiredAmount)</td>
+            </tr>
+            <tr>
+                <th><span class="pull-left">@Html.DisplayNameFor(model => model.FeesAmount)</span></th>
+                <td>@Html.DisplayFor(model => model.FeesAmount)</td>
+            </tr>
+            <tr>
+                <th><span class="pull-left">@Html.DisplayNameFor(model => model.TotalAmount)</span></th>
+                <td>                    @Html.DisplayFor(model => model.TotalAmount)</td>
+            </tr>
+            @*<tr >
+                <td ><input type="submit" value=@GlobalRes.Pay_Bill_Button class="  btn btn-success  btn-lg btn-flat  " /></td>
+                <td ><input type="submit" value="Cancel" class=" btn btn-danger btn-lg btn-flat  " /></td>
+
+            </tr>*@
+        </tbody>
+    </table>
+ <div class="form-group">
+                                    <div class="col-md-4">
+                                        <input type="submit" value=@GlobalRes.Pay_Bill class="btn btn-success btn-lg btn-block btn-flat" />
+                                        </div>
+                                    <div class="col-md-4">
+                                        <input type="button" value=@GlobalRes.btn_cancel onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-danger btn-lg btn-block btn-flat" />
+
+                                        <br />
+                                    </div>
+                                </div>
+                                    <hr />
+                                    
+
+                                }
+                            </div>
+                        </div>  
+
+                                
+                           
+                        </div>
+                    </div>
+                </div>
+          
+        </section>
+    </div>
+</section>

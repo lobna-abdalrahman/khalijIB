@@ -1,0 +1,183 @@
+﻿@model InternetBanking_v1.Models.TelecomPostPaidViewModel
+
+@if (TempData["Success"] != null)
+{
+    if (ViewBag.ResponseStat.Equals("Failed"))
+    {
+
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+    @*<p class="alert alert-success" id="successMessage">@ViewBag.ResponseMSG</p>*@
+}
+
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">MobileBill Payment Service</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                @using (Html.BeginForm("PostPaid", "Telecom2", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                { 
+                    @Html.AntiForgeryToken()  
+                    @Html.ValidationSummary(true)
+                    
+                    <div class="form-group">
+                        <label>From Card</label>
+                        @Html.DropDownList("Clients", (IEnumerable<SelectListItem>)ViewBag.clientList, "-- Select Card --", new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.CardNumber)
+                    </div>
+
+                    @*<div class="form-group">
+                    @Html.LabelFor(model => model.PAN, new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.PAN)
+                    @Html.ValidationMessageFor(model => model.PAN)
+                </div>*@
+
+                    @*<div class="form-group">
+                    @Html.LabelFor(model => model.Month, new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Month)
+                    @Html.ValidationMessageFor(model => model.Month)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Year, new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Year)
+                    @Html.ValidationMessageFor(model => model.Year)
+                </div>*@
+
+                    <div class="row">
+                        <br />
+                        <div class="form-group" style="margin-left: 15px">
+                            <label>Expiration Date </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Month </label>
+                                @Html.DropDownListFor(model => model.Month, new List<SelectListItem>
+                            {
+                                new SelectListItem {Text = "January", Value = "01"},
+                                new SelectListItem {Text = "February", Value = "02"},
+                                new SelectListItem {Text = "March", Value = "03"},
+                                new SelectListItem {Text = "April", Value = "04"},
+                                new SelectListItem {Text = "May", Value = "05"},
+                                new SelectListItem {Text = "June", Value = "06"},
+                                new SelectListItem {Text = "July", Value = "07"},
+                                new SelectListItem {Text = "August", Value = "08"},
+                                new SelectListItem {Text = "September", Value = "09"},
+                                new SelectListItem {Text = "October", Value = "10"},
+                                new SelectListItem {Text = "November", Value = "11"},
+                                new SelectListItem {Text = "December", Value = "12"}
+                            }, new { @class = "form-control select2", @style = "width: 100%" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Year </label>
+                                @Html.DropDownListFor(model => model.Year, new List<SelectListItem>
+                            {
+                                new SelectListItem {Text = "2017", Value = "17"},
+                                new SelectListItem {Text = "2018", Value = "18"},
+                                new SelectListItem {Text = "2019", Value = "19"},
+                                new SelectListItem {Text = "2020", Value = "20"},
+                                new SelectListItem {Text = "2021", Value = "21"},
+                                new SelectListItem {Text = "2022", Value = "22"},
+                                new SelectListItem {Text = "2023", Value = "23"},
+                                new SelectListItem {Text = "2024", Value = "24"},
+                                new SelectListItem {Text = "2025", Value = "25"},
+                                new SelectListItem {Text = "2026", Value = "26"},
+                                new SelectListItem {Text = "2027", Value = "27"},
+                                new SelectListItem {Text = "2028", Value = "28"},
+                                new SelectListItem {Text = "2029", Value = "29"},
+                                new SelectListItem {Text = "2030", Value = "30"},
+                                new SelectListItem {Text = "2031", Value = "31"},
+                                new SelectListItem {Text = "2032", Value = "32"},
+                                new SelectListItem {Text = "2033", Value = "33"},
+                                new SelectListItem {Text = "2034", Value = "34"},
+                                new SelectListItem {Text = "2035", Value = "35"},
+                                new SelectListItem {Text = "2036", Value = "36"},
+                                new SelectListItem {Text = "2037", Value = "37"},
+                                new SelectListItem {Text = "2038", Value = "38"},
+                                new SelectListItem {Text = "2039", Value = "39"},
+                                new SelectListItem {Text = "2040", Value = "40"}    
+                            }, new { @class = "form-control select2", @style = "width: 100%" })
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                    @Html.LabelFor(model => model.BillerName, new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.BillerName)
+                    @Html.ValidationMessageFor(model => model.BillerName)
+                </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BillerName)
+                        @Html.DropDownListFor(model => model.BillerName, new List<SelectListItem>
+                    {
+                        new SelectListItem {Text = "Zain", Value = "2"},
+                        new SelectListItem {Text = "MTN", Value = "4"},
+                        new SelectListItem {Text = "Sudani", Value = "6"}
+                    }, new { @class = "form-control select2", @style = "width: 100%" })
+                        @*@Html.ValidationMessageFor(model => model.BillerName)*@
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ToPhoneNo)
+                        @Html.TextBoxFor(model => model.ToPhoneNo, new { @class = "form-control input-lg", @placeholder = "Phone No i.e: 09xxxxxxxx" })
+                        @Html.ValidationMessageFor(model => model.ToPhoneNo)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TranAmount)
+                        @Html.TextBoxFor(model => model.TranAmount, new { @class = "form-control input-lg", @placeholder = "Amount in SDG" })
+                        @Html.ValidationMessageFor(model => model.TranAmount)
+                    </div>
+
+                    <div class="form-group">
+                        <label>IPIN</label>
+                        @Html.TextBoxFor(model => model.IPIN, new { @class = "form-control input-lg", @type = "password", @placeholder = "IPIN" })
+                        @Html.ValidationMessageFor(model => model.IPIN)
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-xs-5">
+                            <input type="submit" value="Get Bill" class="btn btn-danger btn-block btn-flat" />
+                        </div>
+                    </div>
+                }
+
+
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+            </div>
+        </div>
+
+    </div>
+
+</div>

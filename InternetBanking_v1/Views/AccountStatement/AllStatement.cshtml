@@ -1,0 +1,35 @@
+﻿<section class="content-header">
+    <h1>
+        Account
+        <small>Account Statement</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Account</a></li>
+        <li class="active">Account Statement</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-md-6 connectedSortable">
+            <!-- Own Transfer -->
+            @Html.Action("NormalStatement", "AccountStatement")
+
+        </section>
+        <!-- /Left col -->
+        <!-- Right col -->
+        <section class="col-md-6 connectedSortable">
+            @Html.Action("ConditionalStatement", "AccountStatement")
+        </section>
+        <!-- /Right col -->
+    </div>
+
+    <!-- Another Row-->
+    @*<div class="row">
+        <section class="col-md-12 connectedSortable">
+            @Html.Action("OtherBanksCustomerTransfer", "AllTransfer")
+        </section>
+
+    </div>*@
+</section>

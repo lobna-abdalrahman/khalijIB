@@ -1,0 +1,145 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.SendUsViewModel
+
+@{
+    ViewBag.Title = "SendUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Services_Parent
+        <small>@GlobalRes.SendUsMessageTitle</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.SendUsMessageTitle </li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.SendUsMessageTitle </li>
+        </ol>
+    }
+    
+</section>
+
+
+@if (TempData["Success"] != null)
+{
+    if (ViewBag.ResponseStat.ToString().Equals("Successfully Sent"))
+    {
+
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+    if (ViewBag.ResponseStat.ToString().Equals("Error"))
+    {
+
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+}
+
+@*@if (TempData["Success"] != null)
+{
+    if (ViewBag.ResponseStat.ToString().Equals("Successfully Sent"))
+    {
+
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+    if (ViewBag.ResponseStat.ToString().Equals("Error"))
+    {
+
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+}*@
+
+
+
+<section class="content">
+    <div class="row">
+
+        <section class="col-md-10 col-md-offset-1 connectedSortable">
+
+            <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">@GlobalRes.SendYourSuggestion</h3>
+                @if (CultureHelper.IsRighToLeft())
+                {
+                    <div class="box-tools" style="position: static; float: left;">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                    <h4>Feel Free To send us your Suggestions</h4>
+                                    <hr />
+                                    @Html.ValidationSummary(true)
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Message)
+                                        @Html.TextAreaFor(model => model.Message, new { @class="form-control", @rows="3", @placeholder="Make it Constructive..."})
+                                        @Html.ValidationMessageFor(model => model.Message)
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-xs-5">
+                                            <input type="submit" value=@GlobalRes.SendUs_Button class="btn btn-danger btn-block btn-flat" />
+                                        </div>
+                                    </div>
+                            }
+
+
+                            @section Scripts {
+                                @Scripts.Render("~/bundles/jqueryval")
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</section>

@@ -1,0 +1,116 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.EPortsViewModel
+<section class="content-header">
+    <h1>
+        @GlobalRes.Payment_Parent
+        <small>@GlobalRes.Telecom_Title</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.eports_title </li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.eports_title </li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+    @if (TempData["Success"] != null)
+    {
+        if (ViewBag.ResponseStat.ToString().Equals("Secussfully"))
+        {
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+        }
+        else if (ViewBag.ResponseStat.ToString().Equals("Not Successful"))
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+        }
+    }
+
+    <div class="row">
+        <section class="col-md-10 col-md-offset-1 connectedSortable">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.Top_up_Service</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <br />
+                            @using (Html.BeginForm("EPorts", "EPorts", new { autocomplete = "off", id = "myform" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PayCustomerCode)
+                                    @Html.TextBoxFor(model => model.PayCustomerCode, new { @class = "form-control input-lg", @placeholder = GlobalRes.EGov_InvoiceNo, onkeypress = "return isNumberKey(event)", required = "true", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.PayCustomerCode)
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Ports, new { @class = "  col-md-4" })
+                                    <div class="col-md-8">
+                                        <strong>
+                                            <p>
+                                                @foreach (var a in Model.Ports)
+                                                {
+                                                    @Html.RadioButtonFor(b => b.selectedport, a.Value, new { @class = "radio-inline radio" }) @a.Text
+                                                }
+                                            </p>
+                                        </strong>
+                                        @Html.ValidationMessageFor(model => model.selectedport, "", new { @style = "color:#b94a48;margin-top:15px;margin-bottom:15px;" })
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-md-offset-4 col-xs-3">
+                                        <button type="submit" class="btn btn-danger btn-block btn-flat" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing">@GlobalRes.ButtonSubmit</button>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    }
+</section>

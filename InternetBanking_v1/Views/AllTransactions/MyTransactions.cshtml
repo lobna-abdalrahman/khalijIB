@@ -1,0 +1,178 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.AllTransfersViewModel>
+
+@{
+    ViewBag.Title = "MyTransactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @GlobalRes.TransactionsTitle
+        <small>@GlobalRes.AllTransactions</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i> @GlobalRes.TransactionsTitle</a></li>
+            <li class="active">@GlobalRes.AllTransactions</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> @GlobalRes.TransactionsTitle</a></li>
+            <li class="active">@GlobalRes.AllTransactions</li>
+        </ol>
+    }
+    
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.MyTransactions_BoxHeader</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+
+
+                <div class="box-body">
+                    <div class="table-responsive">
+
+                        <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+                            <thead style="color: cadetblue">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TranId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TranName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TranAmount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TranToken)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TranStatus)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TranResult)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TranDate)
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                            </thead>
+
+                            @foreach (var item in Model.OrderByDescending(item => item.TranId))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TranId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TranName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TranAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TranToken)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TranStatus)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TranResult)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TranDate)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("TransactionDetails", "AllTransactions",new { id = item.TranId })" class=" btn btn-sm btn-default btn-flat pull-right">@GlobalRes.showreceipt</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@*<h2>MyTransactions</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TranId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TranName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TranStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TranResult)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TranId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TranName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TranStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TranResult)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>*@

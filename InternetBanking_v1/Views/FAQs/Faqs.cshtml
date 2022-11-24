@@ -1,0 +1,375 @@
+﻿@using InternetBanking_v1.Helper
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @GlobalRes.HelpAndSupportTitle
+        <small>@GlobalRes.FAQs</small>
+    </h1>
+    @*<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Help & Support</a></li>
+        <li class="active">FAQs</li>
+    </ol>*@
+
+</section>
+@if (CultureHelper.IsRighToLeft())
+{
+    
+<section class="content">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            
+            <div class="panel-group" id="faqAccordion">
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question1">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing"> @GlobalRes.Quest1</a>
+                        </h4>
+                    </div>
+                    <div id="question1" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>
+                               @GlobalRes.ans1
+                                <br />
+                                @GlobalRes.ans11
+                                <br />
+                                @GlobalRes.ans12
+                                
+                            </p>
+                            <ul>
+                                 <li>@GlobalRes.feature1</li>
+                                <li>@GlobalRes.feature2</li>
+                                <li>@GlobalRes.feature3</li>
+                                <li>@GlobalRes.feature4</li>
+                              
+                            </ul>
+                            <p> @GlobalRes.feature5 </p>
+</div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question2">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.Quest2</a>
+                        </h4>
+                    </div>
+                    <div id="question2" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary">@GlobalRes.ans2</span></h5>
+                           <ul>
+                               <li>@GlobalRes.service1</li>
+                               <li>@GlobalRes.service2</li>
+                               <li>@GlobalRes.service3</li>
+                               <li>@GlobalRes.service4</li>
+                               <li>@GlobalRes.service5</li>
+                               <li>@GlobalRes.service6</li>
+                               <li>@GlobalRes.service7</li>
+                               <li>@GlobalRes.service8</li>
+                               <li>@GlobalRes.service9</li>
+                               <li>@GlobalRes.service10</li>
+                                
+                           </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.servicesforCoporates</a>
+                        </h4>
+                    </div>
+                    <div id="question3" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>@GlobalRes.servicesforCoporates1</p>
+                            <p>@GlobalRes.servicesforCoporates2</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question4">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest3</a>
+                        </h4>
+                    </div>
+                    <div id="question4" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>
+                                <ul>
+                                    <li>@GlobalRes.ans3</li>
+                                    <li>@GlobalRes.ans31</li>
+                                    <li>@GlobalRes.ans32</li>
+                                    <li>@GlobalRes.ans33</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question5">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest4</a>
+                        </h4>
+                    </div>
+                    <div id="question5" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>@GlobalRes.ans4</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question6">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest5</a>
+                        </h4>
+                    </div>
+                    <div id="question6" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>@GlobalRes.ans5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question7">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest6</a>
+                        </h4>
+                    </div>
+                    <div id="question7" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>@GlobalRes.ans6</p>
+                            <ul><li>@GlobalRes.ans61</li>
+                                <li>@GlobalRes.ans62</li></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question8">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest7</a>
+                        </h4>
+                    </div>
+                    <div id="question8" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p> @GlobalRes.ans7 
+                            <br />
+                                @GlobalRes.ans71
+                            </p>
+                            <br />
+                            <ul>
+                                 
+                                <li>@GlobalRes.ans72</li>
+                                <li>@GlobalRes.ans73</li>
+                                <li>@GlobalRes.ans74</li>
+                                <li>@GlobalRes.ans75</li>
+                                <li>@GlobalRes.ans76</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question9">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest8</a>
+                        </h4>
+                    </div>
+                    <div id="question9" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>@GlobalRes.ans8</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/panel-group-->
+        </div>
+    </div>
+</section>
+}
+else
+{ 
+<section class="content">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            
+            <div class="panel-group" id="faqAccordion">
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question1">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing"> @GlobalRes.Quest1</a>
+                        </h4>
+                    </div>
+                    <div id="question1" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>
+                               @GlobalRes.ans1
+                                <br />
+                                @GlobalRes.ans11
+                                <br />
+                                @GlobalRes.ans12
+                                
+                            </p>
+                            <ul>
+                                 <li>@GlobalRes.feature1</li>
+                                <li>@GlobalRes.feature2</li>
+                                <li>@GlobalRes.feature3</li>
+                                <li>@GlobalRes.feature4</li>
+                              
+                            </ul>
+                            <p> @GlobalRes.feature5 </p>
+</div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question2">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.Quest2</a>
+                        </h4>
+                    </div>
+                    <div id="question2" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary">@GlobalRes.ans2</span></h5>
+                           <ul>
+                               <li>@GlobalRes.service1</li>
+                               <li>@GlobalRes.service2</li>
+                               <li>@GlobalRes.service3</li>
+                               <li>@GlobalRes.service4</li>
+                               <li>@GlobalRes.service5</li>
+                               <li>@GlobalRes.service6</li>
+                               <li>@GlobalRes.service7</li>
+                               <li>@GlobalRes.service8</li>
+                               <li>@GlobalRes.service9</li>
+                               <li>@GlobalRes.service10</li>
+                                
+                           </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.servicesforCoporates</a>
+                        </h4>
+                    </div>
+                    <div id="question3" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>@GlobalRes.servicesforCoporates1</p>
+                            <p>@GlobalRes.servicesforCoporates2</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question4">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest3</a>
+                        </h4>
+                    </div>
+                    <div id="question4" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>
+                                <ul>
+                                    <li>@GlobalRes.ans3</li>
+                                    <li>@GlobalRes.ans31</li>
+                                    <li>@GlobalRes.ans32</li>
+                                    <li>@GlobalRes.ans33</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question5">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest4</a>
+                        </h4>
+                    </div>
+                    <div id="question5" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>@GlobalRes.ans4</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question6">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest5</a>
+                        </h4>
+                    </div>
+                    <div id="question6" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>@GlobalRes.ans5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question7">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest6</a>
+                        </h4>
+                    </div>
+                    <div id="question7" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>@GlobalRes.ans6</p>
+                            <ul><li>@GlobalRes.ans61</li>
+                                <li>@GlobalRes.ans62</li></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question8">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest7</a>
+                        </h4>
+                    </div>
+                    <div id="question8" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p> @GlobalRes.ans7 
+                            <br />
+                                @GlobalRes.ans71
+                            </p>
+                            <br />
+                            <ul>
+                                 
+                                <li>@GlobalRes.ans72</li>
+                                <li>@GlobalRes.ans73</li>
+                                <li>@GlobalRes.ans74</li>
+                                <li>@GlobalRes.ans75</li>
+                                <li>@GlobalRes.ans76</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question9">
+                        <h4 class="panel-title">
+                            <a href="#" class="ing">@GlobalRes.quest8</a>
+                        </h4>
+                    </div>
+                    <div id="question9" class="panel-collapse collapse" style="height: 0px;">
+                        <div class="panel-body">
+                            <h5><span class="label label-primary"></span></h5>
+                            <p>@GlobalRes.ans8</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/panel-group-->
+        </div>
+    </div>
+</section>
+}
+<div class="container ">
+   
+</div>

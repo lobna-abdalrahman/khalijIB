@@ -1,0 +1,28 @@
+﻿<section class="content-header">
+    <h1>
+        @GlobalRes.Payment_Parent
+        <small>Higher Education</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Payment</a></li>
+        <li class="active">Higher Education payment </li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-md-6 connectedSortable">
+            <!-- Own Transfer -->
+            @Html.Action("EduSudanese", "Edu")
+
+        </section>
+        <!-- /Left col -->
+        <!-- Right col -->
+        <section class="col-md-6 connectedSortable">
+            @Html.Action("EduArabic", "Edu")
+        </section>
+        <!-- /Right col -->
+    </div>
+
+</section>

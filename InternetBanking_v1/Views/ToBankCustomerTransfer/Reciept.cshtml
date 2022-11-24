@@ -1,0 +1,152 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.ToBanCustomerViewModel
+@{
+    ViewBag.Title = "Reciept";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Transfer_Parent
+        <small>@GlobalRes.ToBankCustomer</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">@GlobalRes.ToBankCustomer</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">@GlobalRes.ToBankCustomer</li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-md-8 connectedSortable col-md-offset-2">
+            <!-- BankCustomer Transfer -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.ToBankCustomer</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div>
+                                <h2>Details of Transfer </h2>
+                                <table class="table table-bordered table-condensed table-striped">
+                                    <tr>
+                                        <td>@GlobalRes.SenderName :</td>
+                                        <td>@Model.SenderName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@GlobalRes.RecieverName :</td>
+                                        <td>@Model.RecieverName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@GlobalRes.Amount :</td>
+                                        <td>@Model.Amount</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@GlobalRes.TransferReference :</td>
+                                        <td>@Model.TranReference</td>
+                                    </tr>
+
+
+                                </table>
+
+                                @* <table class="table table-bordered table-condensed table-striped">
+                <tr>
+                    <td>
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td colspan="2">Income Details</td>
+                            </tr>
+                            <tr>
+                                <td>Salary</td>
+                                <td>@Model.Salary</td>
+                            </tr>
+                            <tr>
+                                <td>HRA</td>
+                                <td>@Model.HRA</td>
+                            </tr>
+                            <tr>
+                                <td>TA</td>
+                                <td>@Model.TA</td>
+                            </tr>
+                            <tr>
+                                <td>DA</td>
+                                <td>@Model.DA</td>
+                            </tr>
+                            <tr>
+                                <td>Gorss Salary</td>
+                                <td>@Model.GrossSalary</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table class="table table-bordered table-condensed table-striped">
+                            <tr>
+                                <td colspan="2">
+                                    Deductions
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>TDS</td>
+                                <td>@Model.TDS</td>
+                            </tr>
+
+                            <tr>
+                                <td>Net Salary</td>
+                                <td>
+                                    @Model.NetSalary
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>*@
+
+                            </div>
+                        </div>
+                    </div>
+                        
+                </div>
+                <div class="box-footer">
+                   @* @Html.ActionLink("Print Reciept", "PrintSalarySlip")*@
+                    
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+
+
+                
+

@@ -1,0 +1,20 @@
+﻿body {
+
+}
+.myBG {
+    /*background: url("icons/edited_background.png") !important;*/
+    /*background: url("icons/download (8).png") !important;*/
+    background: url("icons/edited_background.jpg") !important;
+    background-repeat: no-repeat !important;
+}
+.my-box {
+    background: rgba(142, 144, 146, 0.39) !important;
+    color:black;
+}
+.my-nav-custom {
+    margin-left: 115px !important;
+}
+
+.my-box-header {
+    color: #00c0ef !important;
+}

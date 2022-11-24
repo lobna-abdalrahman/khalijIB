@@ -1,0 +1,981 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Dashboard" xml:space="preserve">
+    <value>لوحة الرئيسية</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+  <data name="Last_Succesful_Login" xml:space="preserve">
+    <value>آخر دخول ناجح</value>
+  </data>
+  <data name="Last_Unsuccesfull_Logins" xml:space="preserve">
+    <value>آخر دخول غير ناجح</value>
+  </data>
+  <data name="Manage_Account" xml:space="preserve">
+    <value>إدارة ملفك الشخصي</value>
+  </data>
+  <data name="QL_Electricity_info" xml:space="preserve">
+    <value>أدفع فاتورة الكهرباء بسهولة</value>
+  </data>
+  <data name="QL_Electricity_Purchase" xml:space="preserve">
+    <value>دفع الكهرباء</value>
+  </data>
+  <data name="QL_Top_up" xml:space="preserve">
+    <value>قم بشراء رصيد </value>
+  </data>
+  <data name="QL_Transfer" xml:space="preserve">
+    <value>تحويل لحساب</value>
+  </data>
+  <data name="QL_Transfer_info" xml:space="preserve">
+    <value>قم بتحويل نقدي من حسابك إلى حساب آخر</value>
+  </data>
+  <data name="Quick_Links" xml:space="preserve">
+    <value>روابط قصيرة</value>
+  </data>
+  <data name="AccSummary_AccountNumber" xml:space="preserve">
+    <value>رقم الحساب</value>
+  </data>
+  <data name="AccSummary_BoxHeader" xml:space="preserve">
+    <value>حساباتي</value>
+  </data>
+  <data name="AccSummary_Details" xml:space="preserve">
+    <value>تفاصيل</value>
+  </data>
+  <data name="AccSummary_Parent" xml:space="preserve">
+    <value>حسابي</value>
+  </data>
+  <data name="AccSummary_Title" xml:space="preserve">
+    <value>ملخص الحسابات</value>
+  </data>
+  <data name="ButtonSubmit" xml:space="preserve">
+    <value>تأكيد</value>
+  </data>
+  <data name="ChqStatus_BoxHeader" xml:space="preserve">
+    <value>تعرف على حالة شيكاتك</value>
+  </data>
+  <data name="ChqStatus_Title" xml:space="preserve">
+    <value>حالة الشيك</value>
+  </data>
+  <data name="Dash_LatestTrans" xml:space="preserve">
+    <value>آخر حركات</value>
+  </data>
+  <data name="Dash_MoreInfo" xml:space="preserve">
+    <value>معلومات إضافية</value>
+  </data>
+  <data name="Dash_PrimaryBalance" xml:space="preserve">
+    <value>الرصيد</value>
+  </data>
+  <data name="Dash_TransferSummary" xml:space="preserve">
+    <value>ملخص التحاويل</value>
+  </data>
+  <data name="Dash_Transfer_sub" xml:space="preserve">
+    <value>تحويلة</value>
+  </data>
+  <data name="Dash_UserAccounts" xml:space="preserve">
+    <value>حساباتي</value>
+  </data>
+  <data name="Lable_AccountNumber" xml:space="preserve">
+    <value>رقم الحساب</value>
+  </data>
+  <data name="Lable_From_Cheque_Number" xml:space="preserve">
+    <value>من رقم الشيك</value>
+  </data>
+  <data name="Lable_To_Cheque_Number" xml:space="preserve">
+    <value>حتى الشيك رقم</value>
+  </data>
+  <data name="PlaceHolder_from_chqNo" xml:space="preserve">
+    <value>أدخل رقم الشيك</value>
+  </data>
+  <data name="PlaceHolder_Select_Account" xml:space="preserve">
+    <value>-- إختر حساب --</value>
+  </data>
+  <data name="PlaceHolder_to_chqNo" xml:space="preserve">
+    <value>أدخل رقم الشيك</value>
+  </data>
+  <data name="AccountNo" xml:space="preserve">
+    <value>رقم الحساب</value>
+  </data>
+  <data name="Accounts_and_status" xml:space="preserve">
+    <value>الحسابات وحالتها</value>
+  </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>نوع الحساب</value>
+  </data>
+  <data name="Account_Statement" xml:space="preserve">
+    <value>كشف حساب </value>
+  </data>
+  <data name="AccStatementBoxHeader" xml:space="preserve">
+    <value>إختر رقم حساب لمعرفة كشف الحساب </value>
+  </data>
+  <data name="AddCardBoxHeader" xml:space="preserve">
+    <value>أضافة بطاقة جديدة</value>
+  </data>
+  <data name="AddCardButton" xml:space="preserve">
+    <value>إضافة</value>
+  </data>
+  <data name="AddCardTitle" xml:space="preserve">
+    <value>أضافة بطاقة</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="AddressRequired" xml:space="preserve">
+    <value>العنوان مطلوب</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>المبلغ</value>
+  </data>
+  <data name="AmountRequired" xml:space="preserve">
+    <value>الرجاء إدخال المبلغ</value>
+  </data>
+  <data name="arabiName" xml:space="preserve">
+    <value>الإسم بالعربي</value>
+  </data>
+  <data name="BillAmount" xml:space="preserve">
+    <value>قيمة الفاتورة</value>
+  </data>
+  <data name="BillerName" xml:space="preserve">
+    <value>إسم المشغل</value>
+  </data>
+  <data name="BillerNameRequired" xml:space="preserve">
+    <value>إسم المشغل مطلوب</value>
+  </data>
+  <data name="Bill_Information" xml:space="preserve">
+    <value>معلومات الفاتورة</value>
+  </data>
+  <data name="Branch" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="ButtonTransfer" xml:space="preserve">
+    <value>تحويل</value>
+  </data>
+  <data name="ButtonUpdate" xml:space="preserve">
+    <value>تجديد</value>
+  </data>
+  <data name="Button_Create_PDF" xml:space="preserve">
+    <value>PDF حفظ ملف </value>
+  </data>
+  <data name="Button_Export_Excel" xml:space="preserve">
+    <value>Excel حفظ ملف </value>
+  </data>
+  <data name="CardName" xml:space="preserve">
+    <value>إسم البطاقة</value>
+  </data>
+  <data name="CardNameRequired" xml:space="preserve">
+    <value>الرجاء إدخال إسم البطاقة</value>
+  </data>
+  <data name="CardNumber" xml:space="preserve">
+    <value>رقم البطاقة</value>
+  </data>
+  <data name="CardNumberRequired" xml:space="preserve">
+    <value>الرجاء إدخال رقم البطاقة</value>
+  </data>
+  <data name="Change_Your_Password" xml:space="preserve">
+    <value>تجديد كلمة السر</value>
+  </data>
+  <data name="CheqNum" xml:space="preserve">
+    <value>رقم الشيك</value>
+  </data>
+  <data name="ChequeDate" xml:space="preserve">
+    <value>تاريخ الشيك</value>
+  </data>
+  <data name="ChequeNumberRequired" xml:space="preserve">
+    <value>رقم الشيك مطلوب</value>
+  </data>
+  <data name="ChequeRangeError" xml:space="preserve">
+    <value>الرجاء التأكد من نطاق الشيكات</value>
+  </data>
+  <data name="ChequeStatus" xml:space="preserve">
+    <value>حالة الشيك</value>
+  </data>
+  <data name="ConnectivityIssue" xml:space="preserve">
+    <value>هناك خطأ في الوصول, الرجاء المحاولة لاحقا</value>
+  </data>
+  <data name="ContactUsTitle" xml:space="preserve">
+    <value>تواصل معنا</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>متابعة</value>
+  </data>
+  <data name="contractNumber" xml:space="preserve">
+    <value>رقم التعاقد</value>
+  </data>
+  <data name="Corprate_Parent" xml:space="preserve">
+    <value>الشركات</value>
+  </data>
+  <data name="CourseID" xml:space="preserve">
+    <value>نوع المجال</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>العملة</value>
+  </data>
+  <data name="CurrentIPIN" xml:space="preserve">
+    <value>كلمة الإنترنت السرية الحالية</value>
+  </data>
+  <data name="CurrentIPINRequired" xml:space="preserve">
+    <value>كلمة الإنترنت السرية مطلوبة</value>
+  </data>
+  <data name="CurrentPassowrd" xml:space="preserve">
+    <value>كلمة السر الحالية</value>
+  </data>
+  <data name="CurrentPassowrdRequired" xml:space="preserve">
+    <value>الرجاء إدخال كلمة السر الحالية</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>إسم العميل</value>
+  </data>
+  <data name="Customs_bill" xml:space="preserve">
+    <value>الفاتورة</value>
+  </data>
+  <data name="Customs_Title" xml:space="preserve">
+    <value>دفع فاتورة الجمارك</value>
+  </data>
+  <data name="EGovBoxHeader" xml:space="preserve">
+    <value>دفع إيصالات حكومية</value>
+  </data>
+  <data name="EGovTitle" xml:space="preserve">
+    <value>دفع إيصالات حكومية</value>
+  </data>
+  <data name="EGov_InvoiceNo" xml:space="preserve">
+    <value>رقم الإيصال</value>
+  </data>
+  <data name="EGov_InvoiceNo_Required" xml:space="preserve">
+    <value>رقم الإيصال مطلوب</value>
+  </data>
+  <data name="ElectricityInformation" xml:space="preserve">
+    <value>معلومات الكهرباء</value>
+  </data>
+  <data name="Electricity_Information" xml:space="preserve">
+    <value>معلومات الكهرباء</value>
+  </data>
+  <data name="Electricity_Payment_BoxHeader" xml:space="preserve">
+    <value>شراء الكهرباء</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>الرجاء إدخال بريد إلكتروني صالح</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value> البريد الإلكتروني مطلوب</value>
+  </data>
+  <data name="englishName" xml:space="preserve">
+    <value>الإسم بالإنجليزية</value>
+  </data>
+  <data name="FormKind" xml:space="preserve">
+    <value>نوع الإستمارة</value>
+  </data>
+  <data name="formNo" xml:space="preserve">
+    <value>رقم الإستمارة</value>
+  </data>
+  <data name="FromAccountNo" xml:space="preserve">
+    <value>من رقم الحساب</value>
+  </data>
+  <data name="FromFile" xml:space="preserve">
+    <value>من الملف</value>
+  </data>
+  <data name="Header_Statement_Type_Options" xml:space="preserve">
+    <value>أنواع كشف الحساب</value>
+  </data>
+  <data name="InvestmentBoxHeader" xml:space="preserve">
+    <value>صيغ الإستثمار الإسلامية</value>
+  </data>
+  <data name="InvestmentTitle" xml:space="preserve">
+    <value>صيغ الإستثمار الإسلامية</value>
+  </data>
+  <data name="IPIN" xml:space="preserve">
+    <value>رقم الإنترنت السري</value>
+  </data>
+  <data name="IPINRequired" xml:space="preserve">
+    <value>رقم الإنترنت مطلوب</value>
+  </data>
+  <data name="Lable_CardName" xml:space="preserve">
+    <value>إسم البطاقة</value>
+  </data>
+  <data name="Lable_FromDate" xml:space="preserve">
+    <value>من التاريخ</value>
+  </data>
+  <data name="Lable_No_of_Trans" xml:space="preserve">
+    <value>عدد الحركات</value>
+  </data>
+  <data name="Lable_Salary_File" xml:space="preserve">
+    <value>ملف الرواتب</value>
+  </data>
+  <data name="Lable_ToDate" xml:space="preserve">
+    <value>حتى التاريخ</value>
+  </data>
+  <data name="MeterFees" xml:space="preserve">
+    <value>رسوم العداد</value>
+  </data>
+  <data name="MeterNo" xml:space="preserve">
+    <value>رقم العداد</value>
+  </data>
+  <data name="MeterNoLong" xml:space="preserve">
+    <value>تأكد أن رقم العداد مكون من 11 رقم</value>
+  </data>
+  <data name="MeterNoRequired" xml:space="preserve">
+    <value>رقم العداد مطلوب</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="MobileBillPaymentService" xml:space="preserve">
+    <value>دفع فاتورة الهاتف</value>
+  </data>
+  <data name="MobileBill_Payment_Service" xml:space="preserve">
+    <value>دفع فاتورة الهاتف</value>
+  </data>
+  <data name="MobileLong" xml:space="preserve">
+    <value>تأكد أن رقم الهاتف مكون من 12 رقم يشمل مفتاح السودان 249</value>
+  </data>
+  <data name="MobileRequired" xml:space="preserve">
+    <value>رقم الهاتف مطلوب</value>
+  </data>
+  <data name="MOHE" xml:space="preserve">
+    <value> التعليم العالي</value>
+  </data>
+  <data name="MOHE_BoxHeader" xml:space="preserve">
+    <value>سداد رسوم التعليم العالي</value>
+  </data>
+  <data name="MOHE_StudentNo" xml:space="preserve">
+    <value>رقم الطالب</value>
+  </data>
+  <data name="MOHE_StudentNoRequired" xml:space="preserve">
+    <value>الرجاء إدخال رقم الطالب</value>
+  </data>
+  <data name="MyChequeStatus" xml:space="preserve">
+    <value>حالة شيكاتي</value>
+  </data>
+  <data name="My_Statement" xml:space="preserve">
+    <value>حسابي</value>
+  </data>
+  <data name="My_Transfers" xml:space="preserve">
+    <value>تحاويلي</value>
+  </data>
+  <data name="NetAmount" xml:space="preserve">
+    <value>القيمة الصافية</value>
+  </data>
+  <data name="NewIPIN" xml:space="preserve">
+    <value>كلمة الإنترنت السرية الجديدة</value>
+  </data>
+  <data name="NewIPINRequired" xml:space="preserve">
+    <value>كلمة الإنترنت السرية الجديدة مطلوبة</value>
+  </data>
+  <data name="NewPassowrd" xml:space="preserve">
+    <value>كلمة السر الجديدة</value>
+  </data>
+  <data name="NewPassowrdRequired" xml:space="preserve">
+    <value>الرجاء إدخال كلمة السر الجديدة</value>
+  </data>
+  <data name="NotPaidAmount" xml:space="preserve">
+    <value>الأقساط المؤجلة</value>
+  </data>
+  <data name="OperatorMsg" xml:space="preserve">
+    <value>رسالة المحول</value>
+  </data>
+  <data name="OwnTransferTitle" xml:space="preserve">
+    <value>تحويل بين حساباتك</value>
+  </data>
+  <data name="PaidAmount" xml:space="preserve">
+    <value>الأقساط المسددة</value>
+  </data>
+  <data name="Pay_Bill_Button" xml:space="preserve">
+    <value>دفع الفاتورة</value>
+  </data>
+  <data name="PlaceHolder_Select_No_of_Trans" xml:space="preserve">
+    <value>-- إختر عدد الحركات --</value>
+  </data>
+  <data name="PolicyNoRequired" xml:space="preserve">
+    <value>الرجاء إدخال رقم البوليصة</value>
+  </data>
+  <data name="QL_TopupInfo" xml:space="preserve">
+    <value>تمكنك الخدمة من شراء رصيد</value>
+  </data>
+  <data name="Radio_Number_Of_Transaction" xml:space="preserve">
+    <value>عدد الحركات</value>
+  </data>
+  <data name="Radio_Period" xml:space="preserve">
+    <value>فترة زمنية</value>
+  </data>
+  <data name="receiptNo" xml:space="preserve">
+    <value>رقم الإيصال</value>
+  </data>
+  <data name="ReNewIPIN" xml:space="preserve">
+    <value>أعد كتابة كلمة الإنترنت السرية</value>
+  </data>
+  <data name="ReNewIPINRequired" xml:space="preserve">
+    <value>الرجاء إعادة كتابة كلمة الإنترنت السرية</value>
+  </data>
+  <data name="reNewPassowrd" xml:space="preserve">
+    <value>تأكيد كلمة السر الجديدة</value>
+  </data>
+  <data name="RequestNewChequeTitle" xml:space="preserve">
+    <value>طلب دفتر شيكات</value>
+  </data>
+  <data name="SalaryAccountNo" xml:space="preserve">
+    <value>لرقم الحساب</value>
+  </data>
+  <data name="Salary_Transfer_Title" xml:space="preserve">
+    <value>تحويل رواتب</value>
+  </data>
+  <data name="SelectAccountType" xml:space="preserve">
+    <value>-- إختر نوع الحساب --</value>
+  </data>
+  <data name="SelectBranch" xml:space="preserve">
+    <value>-- إختر الفرع --</value>
+  </data>
+  <data name="SelectCurrency" xml:space="preserve">
+    <value>-- إختر العملة--</value>
+  </data>
+  <data name="SendSuggestions" xml:space="preserve">
+    <value>أرسل إقتراحاتك</value>
+  </data>
+  <data name="SendUsMessageTitle" xml:space="preserve">
+    <value>راسلنا</value>
+  </data>
+  <data name="SendUs_Button" xml:space="preserve">
+    <value>إرسال</value>
+  </data>
+  <data name="SendUs_Email" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+  </data>
+  <data name="SendUs_Message" xml:space="preserve">
+    <value>الرسالة...</value>
+  </data>
+  <data name="SendUs_Name" xml:space="preserve">
+    <value>إسم المستخدم</value>
+  </data>
+  <data name="SendUs_Subject" xml:space="preserve">
+    <value>الموضوع</value>
+  </data>
+  <data name="SendYourSuggestion" xml:space="preserve">
+    <value>أرسل مقترحاتك</value>
+  </data>
+  <data name="Services_Parent" xml:space="preserve">
+    <value>الخدمات</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="Telecom_Title" xml:space="preserve">
+    <value>دفعيات الإتصالات</value>
+  </data>
+  <data name="ToAccountNo" xml:space="preserve">
+    <value>تحويل لحساب آخر</value>
+  </data>
+  <data name="ToBankCustomer" xml:space="preserve">
+    <value>تحويل لعميل البنك</value>
+  </data>
+  <data name="ToCardNumber" xml:space="preserve">
+    <value>إلى البطاقة</value>
+  </data>
+  <data name="ToCardNumberRequired" xml:space="preserve">
+    <value>الرجاء إدخال رقم البطاقة</value>
+  </data>
+  <data name="ToCard_BoxHeader" xml:space="preserve">
+    <value>تحويل لبطاقة</value>
+  </data>
+  <data name="ToCard_Title" xml:space="preserve">
+    <value>تحويل لبطاقة</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>رقم التوكن</value>
+  </data>
+  <data name="ToPhoneNo" xml:space="preserve">
+    <value>لرقم الهاتف</value>
+  </data>
+  <data name="ToPhoneNoRequired" xml:space="preserve">
+    <value>رقم الهاتف مطلوب</value>
+  </data>
+  <data name="Top_up_Service" xml:space="preserve">
+    <value>شراء رصيد</value>
+  </data>
+  <data name="total" xml:space="preserve">
+    <value>المجموع</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>المبلغ الكلي</value>
+  </data>
+  <data name="TotalSuccesfulRows" xml:space="preserve">
+    <value>إجمالي الصفوف التي نجح التحويل لها</value>
+  </data>
+  <data name="Total_Amount" xml:space="preserve">
+    <value>القيمة الإجمالية</value>
+  </data>
+  <data name="Total_Rows" xml:space="preserve">
+    <value>إجمالي الصفوف</value>
+  </data>
+  <data name="Total_Succesful_Rows" xml:space="preserve">
+    <value>إجمالي الصفوف التي نجح التحويل لها</value>
+  </data>
+  <data name="Transaction_ID" xml:space="preserve">
+    <value>رقم الحركة</value>
+  </data>
+  <data name="Transaction_Name" xml:space="preserve">
+    <value>إسم الحركة</value>
+  </data>
+  <data name="Transaction_Status" xml:space="preserve">
+    <value>حالة الحركة</value>
+  </data>
+  <data name="Transfer_Parent" xml:space="preserve">
+    <value>تحويل</value>
+  </data>
+  <data name="unbilledAmount" xml:space="preserve">
+    <value>مبلغ غير مدفوع</value>
+  </data>
+  <data name="UnitsInKwh" xml:space="preserve">
+    <value>الوحدات بالكيلو واط</value>
+  </data>
+  <data name="Update_Information" xml:space="preserve">
+    <value>تجديد المعلومات</value>
+  </data>
+  <data name="Update_IPIN_Title" xml:space="preserve">
+    <value>تغيير كلمة الإنترنت السرية</value>
+  </data>
+  <data name="Update_Password_Title" xml:space="preserve">
+    <value>تغيير كلمة السر</value>
+  </data>
+  <data name="USER" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
+  <data name="ViewChequesTitle" xml:space="preserve">
+    <value>عرض الشيكات</value>
+  </data>
+  <data name="ViewInvestment" xml:space="preserve">
+    <value>عرض التفاصيل </value>
+  </data>
+  <data name="View_Accounts" xml:space="preserve">
+    <value>عرض الحسابات</value>
+  </data>
+  <data name="View_Statement" xml:space="preserve">
+    <value>عرض كشف الحساب</value>
+  </data>
+  <data name="WaterFees" xml:space="preserve">
+    <value>رسوم المياه</value>
+  </data>
+  <data name="Your_Information" xml:space="preserve">
+    <value>معلوماتك</value>
+  </data>
+  <data name="Lable_Amount" xml:space="preserve">
+    <value>المبلغ</value>
+  </data>
+  <data name="Lable_CardNumber" xml:space="preserve">
+    <value>رقم البطاقة</value>
+  </data>
+  <data name="Lable_ExpDate" xml:space="preserve">
+    <value>تاريخ الإنتهاء</value>
+  </data>
+  <data name="Lable_IPIN" xml:space="preserve">
+    <value>رقم الإنترنت السري</value>
+  </data>
+  <data name="Lable_Month" xml:space="preserve">
+    <value>الشهر</value>
+  </data>
+  <data name="Lable_Year" xml:space="preserve">
+    <value>السنة</value>
+  </data>
+  <data name="PlaceHolder_Select_Card" xml:space="preserve">
+    <value>-- إختر بطاقتك --</value>
+  </data>
+  <data name="AllTransactions" xml:space="preserve">
+    <value>عرض كل الحركات</value>
+  </data>
+  <data name="Contact_Us" xml:space="preserve">
+    <value>تواصل معنا</value>
+  </data>
+  <data name="Electricity_Title" xml:space="preserve">
+    <value>شراء كهرباء </value>
+  </data>
+  <data name="HelpAndSupportTitle" xml:space="preserve">
+    <value>مساعدة ودعم</value>
+  </data>
+  <data name="Lable_ChequeBook_Size" xml:space="preserve">
+    <value>حجم دفتر الشيكات</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>الرسالة</value>
+  </data>
+  <data name="MessageRequired" xml:space="preserve">
+    <value>الرجاء إدخال الرسالة</value>
+  </data>
+  <data name="MyTransactions_BoxHeader" xml:space="preserve">
+    <value>حركاتي</value>
+  </data>
+  <data name="Payment_Parent" xml:space="preserve">
+    <value>خدمات الدفع</value>
+  </data>
+  <data name="RequestNewChequeBook_BoxHeader" xml:space="preserve">
+    <value>طلب دفتر شيكات</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>الموضوع</value>
+  </data>
+  <data name="SubjectRequired" xml:space="preserve">
+    <value>الموضوع مطلوب</value>
+  </data>
+  <data name="TransactionsTitle" xml:space="preserve">
+    <value>الحركات</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>إسم المستخدم</value>
+  </data>
+  <data name="UserNameRequired" xml:space="preserve">
+    <value>إسم المستخدم مطلوب</value>
+  </data>
+  <data name="View_All_Transactions" xml:space="preserve">
+    <value>عرض كل الحركات</value>
+  </data>
+  <data name="loginBox" xml:space="preserve">
+    <value>الرجاء الدخول لبدء معاملاتك</value>
+  </data>
+  <data name="LoginBtn" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>كلمة السر</value>
+  </data>
+  <data name="passwordRequired" xml:space="preserve">
+    <value>كلمة السر مطلوبة</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>تذكرني</value>
+  </data>
+  <data name="BlockedAccountMessage" xml:space="preserve">
+    <value>عذرا.. تم حجب حسابك الرجاء التواصل مع فرع البنك للمزيد من المعلومات</value>
+  </data>
+  <data name="ChequeBookStatusBtn" xml:space="preserve">
+    <value>عرض الحالة</value>
+  </data>
+  <data name="ChequeBookStatusTitle" xml:space="preserve">
+    <value>حالة طلبات دفتر الشيكات</value>
+  </data>
+  <data name="DeActivatedAccountMessage" xml:space="preserve">
+    <value>عذرا.. تم إيقاف أو حذف حسابك, الرجاء التواصل مع فرع البنك للمزيد من المعلومات</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>من التاريخ</value>
+  </data>
+  <data name="FromDateRequired" xml:space="preserve">
+    <value>من التاريخ مطلوب</value>
+  </data>
+  <data name="IssueWithAccountMessage" xml:space="preserve">
+    <value>عذرا.. هناك خطأ في حسابك.. الرجاء التواصل مع فرع البنك لمزيد من المعلومات</value>
+  </data>
+  <data name="RequestedDate" xml:space="preserve">
+    <value>تاريخ الطلب</value>
+  </data>
+  <data name="RequestedSize" xml:space="preserve">
+    <value>حجم الدفتر المطلوب</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>حتى التاريخ</value>
+  </data>
+  <data name="ToDateRequired" xml:space="preserve">
+    <value>حتى التاريخ مطلوب</value>
+  </data>
+  <data name="ViewStatementBtn" xml:space="preserve">
+    <value>كشف الحساب</value>
+  </data>
+  <data name="CardID" xml:space="preserve">
+    <value>ترتيب البطاقة</value>
+  </data>
+  <data name="EditCard" xml:space="preserve">
+    <value>تعديل بطاقة</value>
+  </data>
+  <data name="ManageCardsTitle" xml:space="preserve">
+    <value>إدارة البطاقات</value>
+  </data>
+  <data name="AuthorizeTransfer" xml:space="preserve">
+    <value>تصديق الحوالة</value>
+  </data>
+  <data name="AuthorizeTransferDetails" xml:space="preserve">
+    <value>تفاصيل الحوالة</value>
+  </data>
+  <data name="FileDate" xml:space="preserve">
+    <value>تاريخ الملف</value>
+  </data>
+  <data name="FileID" xml:space="preserve">
+    <value>رقم الملف</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>إسم الملف</value>
+  </data>
+  <data name="NoOfRows" xml:space="preserve">
+    <value>عدد الحقول</value>
+  </data>
+  <data name="AllTransfers" xml:space="preserve">
+    <value>التحاويل</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>تفاصيل</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>رفض</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>اسم العميل</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>اسم العميل مطلوب</value>
+  </data>
+  <data name="PhoneNo" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="PhoneNoRequired" xml:space="preserve">
+    <value>رقم الهاتف مطلوب</value>
+  </data>
+  <data name="ToNonCustomer" xml:space="preserve">
+    <value>تحويل لكاونتر الفرع</value>
+  </data>
+  <data name="PlaceHolder_Amount" xml:space="preserve">
+    <value>المبلغ بالجنيه السودانى</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>رمز التحقــق</value>
+  </data>
+  <data name="VerificationCodeRequired" xml:space="preserve">
+    <value>الرجاء إدخال رمز التحقق</value>
+  </data>
+  <data name="noStatementRecords" xml:space="preserve">
+    <value>عذرا لاتوجد حركات مسجلة تحت رقم الحساب الذي أخترته</value>
+  </data>
+  <data name="NumericValidationError" xml:space="preserve">
+    <value>أدخل رقم فقط</value>
+  </data>
+  <data name="support" xml:space="preserve">
+    <value>الرجاء الاتصال بالدعم الفنى</value>
+  </data>
+  <data name="ConnectivityErrorMessage" xml:space="preserve">
+    <value>عذرا هناك خطأ في الإتصال.. الرجاء المحولة لاحقا</value>
+  </data>
+  <data name="ChooseDifferentAccountAlert" xml:space="preserve">
+    <value>الرجاءإختيار رقم حساب مختلف</value>
+  </data>
+  <data name="DeclarntRequired" xml:space="preserve">
+    <value>الرجاء إدخال رقم المخلص</value>
+  </data>
+  <data name="Lable_Declarnt" xml:space="preserve">
+    <value>رقم المخلص</value>
+  </data>
+  <data name="RecieverName" xml:space="preserve">
+    <value>اسم المستفيد</value>
+  </data>
+  <data name="SenderName" xml:space="preserve">
+    <value>اسم المحول</value>
+  </data>
+  <data name="TransferReference" xml:space="preserve">
+    <value>مرجع الحركة</value>
+  </data>
+  <data name="BenifitiaryName" xml:space="preserve">
+    <value>إسم المستفيد</value>
+  </data>
+  <data name="BenifitiaryPhone" xml:space="preserve">
+    <value>رقم هاتف المستفيد</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>إختر</value>
+  </data>
+  <data name="chooseFavoriteCard" xml:space="preserve">
+    <value>إختر بطاقة</value>
+  </data>
+  <data name="EditMeterTitle" xml:space="preserve">
+    <value>تعديل معلومات العداد</value>
+  </data>
+  <data name="EditPhoneTitle" xml:space="preserve">
+    <value>تعديل معلومات رقم الهاتف</value>
+  </data>
+  <data name="FavoritePhoneName" xml:space="preserve">
+    <value>أسم صاحب رقم الهاتف المفضل</value>
+  </data>
+  <data name="ManageMetersTitle" xml:space="preserve">
+    <value>إدارة العدادات المفضلة</value>
+  </data>
+  <data name="ManagePhonesTitle" xml:space="preserve">
+    <value>إدارة الهواتف المفضلة</value>
+  </data>
+  <data name="MeterName" xml:space="preserve">
+    <value>إسم العداد</value>
+  </data>
+  <data name="MeterNoPlaceholder" xml:space="preserve">
+    <value>ie: 04xxxxxxxxx</value>
+  </data>
+  <data name="AccountAlreadyExistsError" xml:space="preserve">
+    <value>رقم الحساب موجود مسبقا. الرجاء إدخال رقم حساب جديد</value>
+  </data>
+  <data name="AccountDesc" xml:space="preserve">
+    <value>معلومات الحساب</value>
+  </data>
+  <data name="AccountName" xml:space="preserve">
+    <value>إسم الحساب</value>
+  </data>
+  <data name="AccountNameRequired" xml:space="preserve">
+    <value>إسم الحساب مطلوب</value>
+  </data>
+  <data name="AddAccountButton" xml:space="preserve">
+    <value>أضف الحساب</value>
+  </data>
+  <data name="AddAccountTitle" xml:space="preserve">
+    <value>أضف الحساب</value>
+  </data>
+  <data name="FullAccountNumber" xml:space="preserve">
+    <value>رقم الحساب الكامل</value>
+  </data>
+  <data name="ShortAccountNumber" xml:space="preserve">
+    <value>رقم الحساب</value>
+  </data>
+  <data name="SuccessAccountMessage" xml:space="preserve">
+    <value>تم إضافة رقم الحساب بنجاح</value>
+  </data>
+  <data name="CardlessTransfer" xml:space="preserve">
+    <value>تحويل بدون بطاقة</value>
+  </data>
+  <data name="FavoritePhoneID" xml:space="preserve">
+    <value>معرف الهاتف</value>
+  </data>
+  <data name="FavoritePhoneNameRequired" xml:space="preserve">
+    <value>إسم صاحب الهاتف مطلوب</value>
+  </data>
+  <data name="FavoritePhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="FavoritePhoneNumberRequired" xml:space="preserve">
+    <value>رقم الهاتف مطلوب</value>
+  </data>
+  <data name="MeterID" xml:space="preserve">
+    <value>معرف العداد</value>
+  </data>
+  <data name="MeterNameRequired" xml:space="preserve">
+    <value>إسم العداد مطلوب</value>
+  </data>
+  <data name="MeterNumber" xml:space="preserve">
+    <value>رقم العداد</value>
+  </data>
+  <data name="MeterNumberRequired" xml:space="preserve">
+    <value>رقم العداد مطلوب</value>
+  </data>
+  <data name="Voucher_Information" xml:space="preserve">
+    <value>معلومات التوكن</value>
+  </data>
+  <data name="Lable_DeclarntCode" xml:space="preserve">
+    <value>رقم المخلص</value>
+  </data>
+</root>

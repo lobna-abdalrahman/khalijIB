@@ -1,0 +1,175 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.ManageMetersViewModel>
+
+@{
+    ViewBag.Title = "Manage Meters";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .delete-section {
+        display: inline;
+    }
+</style>
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Services_Parent
+        <small>@GlobalRes.ManageMetersTitle</small>
+    </h1>
+
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.ManageMetersTitle</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.ManageMetersTitle</li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+
+    @if (TempData["Success"] != null)
+    {
+        if (ViewBag.ResponseStat.ToString().Equals("Successful"))
+        {
+
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+        }
+        else if (ViewBag.ResponseStat.ToString().Equals("Not Successful"))
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+        }
+    }
+
+
+    <div class="row">
+        <div class="col-md-12 ">
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.ManageMetersTitle</h3>
+                    <div class="box-tools pull-right">
+                        @* <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>*@
+                        @*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+                            <thead style="color: cadetblue">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MeterName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MeterNo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MeterID)
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            
+                            @if (CultureHelper.IsRighToLeft())
+                            {
+                                <tbody style="text-align: left;">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MeterName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MeterNo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MeterID)
+                                        </td>
+                                        @if (CultureHelper.IsRighToLeft())
+                                        {
+                                            <td>
+                                                @Html.ActionLink("تعديل", "EditMeter", new { id = item.MeterID, lang = "ar" }) |
+                                                @Html.ActionLink("حذف", "Delete", new { id = item.MeterID, lang = "ar" })
+                                            </td>
+
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                @Html.ActionLink("Edit", "EditMeter", new { id = item.MeterID }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.MeterID })
+                                            </td>
+                                        }
+
+                                    </tr>
+                                }
+                                </tbody>
+                            }
+                            else
+                            {
+                                <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MeterName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MeterNo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MeterID)
+                                        </td>
+                                        @if (CultureHelper.IsRighToLeft())
+                                        {
+                                            <td>
+                                                @Html.ActionLink("تعديل", "EditMeter", new { id = item.MeterID, lang = "ar" }) |
+                                                @Html.ActionLink("حذف", "Delete", new { id = item.MeterID, lang = "ar" })
+                                            </td>
+
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                @Html.ActionLink("Edit", "EditMeter", new { id = item.MeterID }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.MeterID })
+                                            </td>
+                                        }
+
+                                    </tr>
+                                }
+                                </tbody>
+                            }
+                           
+
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

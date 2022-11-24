@@ -1,0 +1,171 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.EGovViewModel
+
+@{
+    ViewBag.Title = "GovBillPayment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.EGovTitle
+        <small>@GlobalRes.Bill_Information</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.EGovTitle</a></li>
+            <li class="active">@GlobalRes.Bill_Information </li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.EGovTitle</a></li>
+            <li class="active">@GlobalRes.Bill_Information </li>
+        </ol>
+    }
+    
+</section>
+
+
+@if (TempData["Success"] != null)
+{
+    if (ViewBag.ResponseStat.Equals("Failed"))
+    {
+
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+    @*<p class="alert alert-success" id="successMessage">@ViewBag.ResponseMSG</p>*@
+}
+
+
+
+
+
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <i class="fa fa-text-width"></i>
+                    <h3 class="box-title">@GlobalRes.Bill_Information</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div>
+                                <blockquote>
+
+                                    <dl class="dl-horizontal">
+
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.UnitName)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.UnitName)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.TotalAmount)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.TotalAmount)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.ServiceName)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.ServiceName)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.InvoiceExpiry)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.InvoiceExpiry)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.DueAmount)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.DueAmount)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.ReferenceId)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.ReferenceId)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.InvoiceStatus)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.InvoiceStatus)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.PayerName)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.PayerName)
+                                        </dd>
+
+                                    </dl>
+                                    
+                                    @using (Html.BeginForm())
+                                    {
+                                        <br />
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TranAmount)
+                                            @Html.TextBoxFor(model => model.TranAmount, new { @class = "form-control input-lg", @placeholder = "Amount in SDG" })
+                                            @Html.ValidationMessageFor(model => model.TranAmount)
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-5">
+                                                <input type="submit" value=@GlobalRes.ButtonSubmit class="btn btn-danger btn-block btn-flat" />
+                                            </div>
+                                        </div>
+                                    }
+                                    @section Scripts {
+                                        @Scripts.Render("~/bundles/jqueryval")
+                                    }
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

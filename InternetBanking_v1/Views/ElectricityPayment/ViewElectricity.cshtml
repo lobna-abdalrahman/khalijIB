@@ -1,0 +1,129 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.ElectricityViewModel
+
+@{
+    ViewBag.Title = "Electricity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <h1>
+        @GlobalRes.Electricity_Title
+        <small>@GlobalRes.Electricity_Information</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Electricity_Title</a></li>
+            <li class="active">@GlobalRes.Electricity_Information</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Electricity_Title</a></li>
+            <li class="active">@GlobalRes.Electricity_Information</li>
+        </ol>
+    }
+    
+</section>
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <i class="fa fa-text-width"></i>
+                    <h3 class="box-title">@GlobalRes.Bill_Information</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8">
+
+                            <blockquote>
+                                <dl class="dl-horizontal">
+
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.myMeterNumber)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.myMeterNumber)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.netAmount)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.netAmount)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.token)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.token)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.waterFees)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.waterFees)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.meterFees)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.meterFees)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.customerName)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.customerName)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.unitsInKwh)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.unitsInKwh)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.operatorMessage)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.operatorMessage)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.accountNo)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.accountNo)
+                                    </dd>
+
+                                </dl>
+                            </blockquote>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

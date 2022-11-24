@@ -1,0 +1,125 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.FavoriteMeterModel
+
+@{
+    ViewBag.Title = "Add Meter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Services_Parent
+        <small>@GlobalRes.AddMeterTitle</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.AddMeterTitle</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.AddMeterTitle</li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+
+
+    @if (TempData["Success"] != null)
+    {
+        if (ViewBag.ResponseStat.ToString().Equals("Successful"))
+        {
+
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+        }
+    }
+
+
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-md-12 connectedSortable">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.AddMeterBoxHeader</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <!-- /.box-header -->
+                @using (Html.BeginForm(new { autocomplete = "off" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+
+
+                                @Html.ValidationSummary(true)
+
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MeterName)
+                                    @Html.TextBoxFor(model => model.MeterName, new { @class = "form-control input-lg", maxlength = "20", @placeholder = GlobalRes.MeterName, required = "true", autocomplete = "Off" })
+                                    @Html.ValidationMessageFor(model => model.MeterName)
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MeterNumber)
+                                    @Html.TextBoxFor(model => model.MeterNumber, new { @class = "form-control input-lg", maxlength = "11", @placeholder = GlobalRes.MeterNoPlaceholder, onkeypress = "return isNumberKey(event)", required = "true", autocomplete = "Off" })
+                                    @Html.ValidationMessageFor(model => model.MeterNumber)
+                                </div>
+
+                                @* <div class="form-group">
+                <div class="col-md-offset-2 col-xs-5">
+                    <input type="submit" value=@GlobalRes.AddMeterButton class="btn btn-danger btn-block btn-flat" />
+                </div>
+            </div>*@
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-xs-4">
+                                <input type="submit" value="@GlobalRes.AddMeterButton" class="btn btn-danger btn-block btn-flat" />
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+            </div>
+        </section>
+    </div>
+</section>

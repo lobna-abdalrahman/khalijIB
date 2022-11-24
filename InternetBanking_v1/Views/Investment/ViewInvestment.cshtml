@@ -1,0 +1,172 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.InvestmentViewModel>
+
+@{
+    ViewBag.Title = "ViewInvestment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.InvestmentTitle
+        <small>@GlobalRes.ViewInvestment</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.InvestmentTitle</a></li>
+            <li class="active">@GlobalRes.ViewInvestment</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.InvestmentTitle</a></li>
+            <li class="active">@GlobalRes.ViewInvestment</li>
+        </ol>
+    }
+    
+</section>
+
+<section class="content">
+    <div class="row">
+        
+        <div class="col-md-8 col-md-offset-2">
+            
+            <div class="row">
+                <!-- /.col -->
+                <div class="col-md-4 col-sm-8 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">@GlobalRes.TotalAmount</span>
+                            <span class="info-box-number">@ViewBag.MyTotal</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- /.col -->
+                <div class="col-md-4 col-sm-8 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">@GlobalRes.PaidAmount</span>
+                            <span class="info-box-number">@ViewBag.MyPaid</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- /.col -->
+                <div class="col-md-4 col-sm-8 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">@GlobalRes.NotPaidAmount</span>
+                            <span class="info-box-number">@ViewBag.MyNotPaid</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.ViewInvestment</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+
+
+                    @*        <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <i class="fa fa-text-width"></i>
+                            <h3 class="box-title">Summary</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <blockquote>
+                                <p>@ViewBag.MyTotal</p>
+                                <p>@ViewBag.MyPaid</p>
+                                <p>@ViewBag.MyNotPaid</p>
+                                $1$<small>Someone famous in <cite title="Source Title">Source Title</cite></small>#1#
+                            </blockquote>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>*@
+
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+                            <thead style="color: cadetblue">
+
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CHEQ_C_NO)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CHEQ_D_DATE)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CHEQ_C_STS)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CHEQ_F_AMOUNT)
+                                </th>
+
+                            </tr>
+                            </thead>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CHEQ_C_NO)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CHEQ_D_DATE)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CHEQ_C_STS)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CHEQ_F_AMOUNT)
+                                    </td>
+
+                                </tr>
+                            }
+
+
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+

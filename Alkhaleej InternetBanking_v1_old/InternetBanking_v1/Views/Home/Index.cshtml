@@ -1,0 +1,244 @@
+﻿    @using InternetBanking_v1.App_LocalResources    
+@using InternetBanking_v1.Helper
+@using Spire.Pdf.Exporting.XPS.Schema
+@model InternetBanking_v1.Models.Profile.ProfileModelInfo
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @ViewBag.Title
+        <small>Main</small>
+    </h1>
+  @*  <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> @GlobalRes.Home</a></li>
+        <li class="active">@GlobalRes.Dashboard</li>
+    </ol>*@
+</section>
+@if (TempData["Success"] != null)
+{
+
+if (ViewBag.ResponseStat != null)
+ {
+     if (ViewBag.ResponseStat.ToString().Equals("Secussfully"))
+     {
+
+         <div class="alert alert-success alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+             @ViewBag.ResponseMSG
+         </div>
+
+     }
+     else if (ViewBag.ResponseStat.ToString().Equals("Not Successful"))
+     {
+         <div class="alert alert-danger alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+             @ViewBag.ResponseMSG
+         </div>
+
+     }
+ }
+
+}
+
+
+
+<!-- Main content -->
+<section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+
+        <!-- ./col -->
+        @Html.Action("PrimaryBalance", "Home")
+
+        <!-- ./col -->
+        @Html.Action("NumberOfTransfers", "Home")
+        <!-- ./col -->
+        @Html.Action("NumberOfAccounts", "Home")
+
+    </div>
+    <!-- /.row -->
+    <!-- Main row -->
+    <div class="row">
+            <!-- Left col -->
+            <section class="col-md-4 connectedSortable">
+                <!-- Widget: user widget style 1 -->
+                <div class="box box-widget widget-user-2">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header ui-sortable-handle bg-yellow-active ">
+
+                        <!-- /.widget-user-image -->
+                        <h3 class="widget-user-username">@Html.DisplayFor(model => Model.name)</h3>
+                        <h5 class="widget-user-desc">@Html.DisplayFor(model => Model.CurrentIP)</h5>
+                        <h5 class="widget-user-desc">@Html.DisplayFor(model => Model.LastSuccessfulLogin)</h5>
+                    </div>
+                    <div class="box-footer no-padding">
+                        <ul class="nav nav-stacked">
+                            @if (CultureHelper.IsRighToLeft())
+                            {
+                                <li><a href="#">@GlobalRes.Last_Succesful_Login<span class="pull-left badge bg-blue">@Model.LastSuccessfulLogin</span></a></li>
+
+                                <li><a href="#">@GlobalRes.Last_Unsuccesfull_Logins <span class="pull-left badge bg-red">@Model.LastUnsuccessfulLogin</span></a></li>
+                            }
+                            else
+                            {
+                                <li><a href="#">@GlobalRes.Last_Succesful_Login<span class="pull-right badge bg-blue">@Model.LastSuccessfulLogin</span></a></li>
+
+                                <li><a href="#">@GlobalRes.Last_Unsuccesfull_Logins <span class="pull-right badge bg-red">@Model.LastUnsuccessfulLogin</span></a></li>
+                            }
+                            
+                        </ul>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+                            @if (CultureHelper.IsRighToLeft())
+                            {
+                                <a href="@Url.Action("UpdateProfileInfo", "ProfileInfo",new {lang = "ar"})" class="btn btn-sm btn-default btn-flat pull-right">@GlobalRes.Manage_Account</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("UpdateProfileInfo", "ProfileInfo")" class="btn btn-sm btn-default btn-flat pull-right">@GlobalRes.Manage_Account</a>
+                            }
+                            
+                        </div>
+                        <!-- /.box-footer -->
+
+                    </div>
+                </div>
+                <!-- /.widget-user -->
+
+
+                <!-- QuickLink LIST -->
+                <div class="box box-primary">
+                    <div class="box-header ui-sortable-handle with-border">
+                        <h3 class="box-title">@GlobalRes.Quick_Links</h3>
+                        @if (CultureHelper.IsRighToLeft())
+                        {
+                            <div class="box-tools pull-left" style="position: static;">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        }
+                        
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <ul class="products-list product-list-in-box">
+                            <li class="item">
+                                <div class="product-img">
+                                    <img src="~/Content/dist/img/default-50x50.gif" alt="Product Image">
+                                </div>
+                                <div class="product-info">
+                                    @if (CultureHelper.IsRighToLeft())
+                                    {
+                                        <a href="@Url.Action("ElectricityPay", "ElectricityPayment", new { @class = "product-title", lang = "ar" })">
+                                            @GlobalRes.QL_Electricity_Purchase
+                                            @*<span class="label label-warning pull-right">$1800</span>*@
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ElectricityPay", "ElectricityPayment", new { @class = "product-title" })">
+                                            @GlobalRes.QL_Electricity_Purchase
+                                            @*<span class="label label-warning pull-right">$1800</span>*@
+                                        </a>
+                                    }
+                                    
+                                    <span class="product-description">
+                                        @GlobalRes.QL_Electricity_info
+                                    </span>
+                                </div>
+                            </li>
+                            <!-- /.item -->
+                            <li class="item">
+                                <div class="product-img">
+                                    <img src="~/Content/dist/img/default-50x50.gif" alt="Product Image">
+                                </div>
+                                <div class="product-info">
+                                    @if (CultureHelper.IsRighToLeft())
+                                    {
+                                        <a href="@Url.Action("Telecom", "Telecom", new {@class = "product-title",lang=  "ar"})">
+                                            @GlobalRes.QL_Top_up
+                                            @*<span class="label label-info pull-right">$700</span>*@
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Telecom", "Telecom", new {@class = "product-title"})">
+                                            @GlobalRes.QL_Top_up
+                                            @*<span class="label label-info pull-right">$700</span>*@
+                                        </a>
+                                    }
+                                    
+                                    <span class="product-description">
+                                        @GlobalRes.QL_TopupInfo
+                                    </span>
+                                </div>
+                            </li>
+                            <!-- /.item -->
+                            <li class="item">
+                                <div class="product-img">
+                                    <img src="~/Content/dist/img/default-50x50.gif" alt="Product Image">
+                                </div>
+                                <div class="product-info">
+                                    @if (CultureHelper.IsRighToLeft())
+                                    {
+                                        <a href="@Url.Action("ToBankCustomerTransfer", "ToBankCustomerTransfer", new {@class = "product-title", lang = "ar"})">
+                                            @GlobalRes.QL_Transfer
+                                            @*<span class="label label-danger pull-right">$350</span>*@
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ToBankCustomerTransfer", "ToBankCustomerTransfer", new {@class = "product-title"})">
+                                            @GlobalRes.QL_Transfer
+                                            @*<span class="label label-danger pull-right">$350</span>*@
+                                        </a>
+                                    }
+                                    
+                                    <span class="product-description">
+                                        @GlobalRes.QL_Transfer_info
+                                    </span>
+                                </div>
+                            </li>
+                            <!-- /.item -->
+
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                    @*<div class="box-footer text-center">
+                        <a href="javascript:void(0)" class="uppercase">View All Services</a>
+                    </div>*@
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /.box -->
+
+            </section>
+            <!-- /Left col -->
+
+            <!-- Roght col -->
+            <section class="col-md-8 connectedSortable ">
+            <!-- TABLE: LATEST Transactions -->
+                @Html.Action("LatestTransactions","Home")
+
+            </section>
+            <!-- /Right col -->
+
+        </div>
+
+</section>
+<!-- /.content -->

@@ -1,0 +1,138 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.ChangePasswordViewModel
+
+@{
+    ViewBag.Title = "ChangePassword";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @GlobalRes.Services_Parent
+        <small>@GlobalRes.Update_Password_Title</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.Update_Password_Title</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.Update_Password_Title</li>
+        </ol>
+    }
+
+</section>
+
+
+@if (TempData["Success"] != null)
+{
+    if (ViewBag.ResponseStat.ToString().Equals("Successful"))
+    {
+
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+    else if (ViewBag.ResponseStat.ToString().Equals("Not Successful"))
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+}
+
+
+<section class="content">
+    <div class="row">
+        <!-- Left Column-->
+        <div class="col-md-10 col-md-offset-1 ">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.Change_Your_Password </h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+
+                            @using (Html.BeginForm("otpverification","ChangePassword","POST"))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                @Html.ValidationSummary(true)
+                                if (CultureHelper.IsRighToLeft())
+                                {
+                                    <h3>
+                                        لإعادة تعين كلمة السر يتطلب تحقيق هويتك عن طريق رمز يرسل إلى رقم هاتفك المسجل. قم بضفط الزر لبدأ عملية إعادة التعين.
+                                    </h3>
+                                }
+                                else
+                                {
+                                    <h3>
+                                        A six digit otp has beeen sent to your registered number, please insert otp.
+                                    </h3>
+                                }
+                                <br />
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.otp)
+                                    @Html.TextBoxFor(model => model.otp, new { @class = "form-control input-lg",@placeholder = GlobalRes.otp, required = "true" })
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-3 col-xs-4">
+                                        @if (CultureHelper.IsRighToLeft())
+                                        {
+                                            <input type="submit" value="ارسل الرمز" class="btn btn-danger btn-block btn-flat" />
+                                        }
+                                        else
+                                        {
+                                            <input type="submit" value="Send OTP" class="btn btn-danger btn-block btn-flat" />
+                                        }
+                                    </div>
+                                </div>
+
+                            }
+
+
+
+                            @section Scripts {
+                                @Scripts.Render("~/bundles/jqueryval")
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

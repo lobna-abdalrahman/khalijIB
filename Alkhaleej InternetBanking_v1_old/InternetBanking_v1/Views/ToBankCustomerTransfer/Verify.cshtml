@@ -1,0 +1,123 @@
+﻿@model InternetBanking_v1.Models.ToBanCustomerViewModel
+
+@{
+    ViewBag.Title = "Verify";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        To Bank Customer Transfer
+        <small>Verify Transfer</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> To Bank Customer Transfer</a></li>
+        <li class="active">Verify Transfer</li>
+    </ol>
+</section>
+
+@*@if (TempData["btnclick"] != null)
+{
+    if (ViewBag.btnclick.Equals("true"))
+    {
+
+        <script type="text/javascript" language="javascript"> function deactive() { $("#Submit").attr("disabled", true); }</script>
+    }
+    else
+    {
+        <script type="text/javascript" language="javascript"> function deactive() { $("#Submit").attr("disabled", false); }</script>
+
+    }
+}*@
+@*@if (TempData["Success"] != null)
+{
+    if (ViewBag.ResponseStat.ToString().Equals("Secussfully"))
+    {
+
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+        
+    }
+    else if (ViewBag.ResponseStat.ToString().Equals("Not Successful"))
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+        
+        
+
+    } 
+}*@
+
+
+
+<section class="content">
+    <div class="row">
+        <!-- Left Column-->
+        <div class="col-md-10 col-md-offset-1 ">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Verification Code</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-horizontal">
+
+                                    @Html.ValidationSummary(true)
+                                    
+                                    <div class="form-group">
+                                        @*<div class="col-md-7 col-md-offset-3">*@
+                                        <h5 style="color: #007bb7;"> @GlobalRes.FromAccountNo :<span style="color: #6c6c6c;">  @ViewBag.FromAccount</span></h5>
+                                        <h5 style="color: #007bb7;"> @GlobalRes.ToAccountNo :<span style="color: #6c6c6c;">  @ViewBag.ToAccount</span></h5>
+                                        <h5 style="color: #007bb7;"> @GlobalRes.RecieverName :<span style="color: #6c6c6c;">  @ViewBag.ReceiverName</span></h5>
+                                        <h5 style="color: #007bb7;"> @GlobalRes.Amount :<span style="color: #6c6c6c;">  @ViewBag.Amount <small> SDG</small></span></h5>
+                                        @*</div>*@
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.VerificatioCode)
+                                        @Html.TextBoxFor(model => model.VerificatioCode, new { required = "true", maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.VerificatioCode)
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-xs-5">
+                                            <input type="submit" value="Submit" id="Submit" class="btn btn-danger btn-block btn-flat" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
+                            @section Scripts {
+                                @Scripts.Render("~/bundles/jqueryval")
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</section>

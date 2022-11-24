@@ -1,0 +1,98 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.MOHESudViewModel
+
+@{
+    ViewBag.Title = "MOHE Bill Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.MOHE
+        <small>@GlobalRes.Bill_Information</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.MOHE</a></li>
+            <li class="active">@GlobalRes.Bill_Information </li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.MOHE</a></li>
+            <li class="active">@GlobalRes.Bill_Information </li>
+        </ol>
+    }
+    
+</section>
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                     
+                    <h3 class="box-title">@GlobalRes.Bill_Information</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8">
+
+                            <div>
+                              
+                                    <div class="table-responsive ">
+                                        <table class="table table-bordered table-hover table-bordered table-striped">
+                                            <tbody>
+                                                <tr>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.formNo)
+                                                    </th>
+
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.formNo)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.receiptNo)
+                                                    </th>
+
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.receiptNo)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.englishName)
+                                                    </th>
+
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.englishName)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.arabiName)
+                                                    </th>
+
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.arabiName)
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,120 @@
+﻿@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.TransferAuthorizeViewModel>
+
+@{
+    ViewBag.Title = "UnAuthorizedTransfers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Transfer_Parent
+        <small>Authorize Transfers</small>
+    </h1>
+    
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">تصديق التحاويل</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">Authorize Transfers</li>
+        </ol>
+    }
+   
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 ">
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">All Transfers</h3>
+                    <div class="box-tools pull-right">
+                       @* <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>*@
+                        @*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+                            <thead style="color: cadetblue">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.transferID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.UserID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.UserName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FromAccountName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ToAccountName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TransferAmount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TransferStatus)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TransferDate)
+                                    </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.transferID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UserID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UserName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FromAccountName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ToAccountName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TransferAmount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TransferStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TransferDate)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Details", "Details", new { id = item.transferID }) 
+                                            @*@Html.ActionLink("Authorize", "Authorize", new { id = item.transferID })*@
+                                            @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                        </td>
+                                    </tr>
+                                }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

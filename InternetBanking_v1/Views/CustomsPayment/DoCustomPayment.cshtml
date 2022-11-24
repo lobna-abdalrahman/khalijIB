@@ -1,0 +1,196 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.CustomsViewModel
+
+@{
+    ViewBag.Title = "DoCustomPayment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.CustomsPayment_Title
+        <small>@GlobalRes.Bill_Information</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.CustomsPayment_Title</a></li>
+            <li class="active">@GlobalRes.Bill_Information</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.CustomsPayment_Title</a></li>
+            <li class="active">@GlobalRes.Bill_Information</li>
+        </ol>
+    }
+    
+</section>
+
+
+
+@if (TempData["Success"] != null)
+{
+    if (ViewBag.ResponseStat.ToString().Equals("Secussfully"))
+    {
+
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+    else if (ViewBag.ResponseStat.ToString().Equals("Not Successful"))
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+
+
+    }
+    @*<p class="alert alert-success" id="successMessage">@ViewBag.ResponseMSG</p>*@
+}
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <i class="fa fa-text-width"></i>
+                    <h3 class="box-title">@GlobalRes.Bill_Information</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8">
+
+                            <div>
+                                <blockquote>
+
+                                    <dl class="dl-horizontal">
+
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.BankCode)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.BankCode)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.AmountToBePaid)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.AmountToBePaid)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.Status)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.Status)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.DeclarantCode)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.DeclarantCode)
+                                        </dd>
+                                        
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.DeclarantNAME)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.DeclarantNAME)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.ProcError)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.ProcError)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.RegistrationNumber)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.RegistrationNumber)
+                                        </dd>
+
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.RegistrationSerial)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.RegistrationSerial)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.Transaction)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.Transaction)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.BillYear)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.BillYear)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.DECSER)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.DECSER)
+                                        </dd>
+
+                                    </dl>
+
+ 
+                                    
+                                    @using (Html.BeginForm())
+                                    {
+                                        <br />
+
+
+                                        <div class="form-group">
+                                            <div class="col-xs-5">
+                                                <input type="submit" value=@GlobalRes.Pay_Bill_Button class="btn btn-danger btn-block btn-flat" />
+                                            </div>
+                                        </div>
+                                    }
+                                    @section Scripts {
+                                        @Scripts.Render("~/bundles/jqueryval")
+                                    }
+
+                                </blockquote>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

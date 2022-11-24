@@ -1,0 +1,84 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.CardlessTransferViewModel
+
+@{
+    ViewBag.Title = "View Voucher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <h1>
+        @GlobalRes.Transfer_Parent
+        <small>@GlobalRes.Voucher_Information</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">@GlobalRes.Voucher_Information</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.Voucher_Information</li>
+        </ol>
+    }
+
+</section>
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <i class="fa fa-text-width"></i>
+                    <h3 class="box-title">@GlobalRes.Voucher_Information</h3>
+                </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <blockquote>
+                                <dl class="dl-horizontal">
+
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.voucherNumber)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.voucherNumber)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.voucherCode)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.voucherCode)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.transactionAmount)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.transactionAmount)
+                                    </dd>
+
+                                </dl>
+
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

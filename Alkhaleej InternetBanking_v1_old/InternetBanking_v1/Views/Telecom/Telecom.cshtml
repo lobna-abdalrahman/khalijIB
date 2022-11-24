@@ -1,0 +1,347 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.TelecomPrePaidViewModel
+<section class="content-header">
+    <h1>
+        @GlobalRes.Payment_Parent
+        <small>@GlobalRes.Telecom_Title</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.Telecom_Title </li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.Telecom_Title </li>
+        </ol>
+    }
+    
+</section>
+
+<section class="content">
+    @if (TempData["Success"] != null)
+    {
+        if (ViewBag.ResponseStat.ToString().Equals("Secussfully"))
+        {
+
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+        }
+        else if (ViewBag.ResponseStat.ToString().Equals("Not Successful"))
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+                @ViewBag.ResponseMSG
+            </div>
+
+
+
+        }
+        @*<p class="alert alert-success" id="successMessage">@ViewBag.ResponseMSG</p>*@
+    }
+
+    @*    <div class="row">
+            <!-- Left col -->
+            <section class="col-md-10 col-md-offset-1 connectedSortable">
+                <!-- Own Transfer -->
+                @Html.Action("PrePaid", "Telecom")
+
+
+            </section>
+            $1$<!-- /Left col -->
+            <!-- Right col -->
+            <section class="col-md-6 connectedSortable">
+                @Html.Action("PostPaid", "Telecom")
+            </section>
+            <!-- /Right col -->#1#
+        </div>*@
+
+    <div class="row">
+    <!-- Left col -->
+    <section class="col-md-10 col-md-offset-1 connectedSortable">
+        <!-- Own Transfer -->
+        @* @Html.Action("PrePaid", "Telecom")*@
+
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">@GlobalRes.Top_up_Service</h3>
+                @if (CultureHelper.IsRighToLeft())
+                {
+                    <div class="box-tools" style="position: static; float: left;">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+
+                        @using (Html.BeginForm("Telecom","Telecom",new { autocomplete = "off", id = "myform" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                <label>@GlobalRes.Lable_CardNumber</label>
+                                @Html.DropDownList("Clients", (IEnumerable<SelectListItem>)ViewBag.clientList, GlobalRes.PlaceHolder_Select_Card, new { @class = "form-control select2", required = "true" })
+                                @Html.ValidationMessageFor(model => model.PAN)
+                            </div>
+
+                            @*<div class="form-group">
+                                <label>@GlobalRes.Lable_CardNumber</label>
+                                <div class="input-group ">
+                                    @Html.TextBoxFor(model => model.PAN, new { @class = "form-control input-lg", maxlength = "19", @placeholder = GlobalRes.PlaceHolder_Select_Card, onkeypress = "return isNumberKey(event)", required = "true", id = "cardNo", autocomplete = "Off" })
+                                    @#1#Html.ValidationMessageFor(model => model.PAN)#1#
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-danger btn-flat input-lg" onclick="return GetMyFavoriteCard()">
+                                            <span><i class="fa fa-heart"></i></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.PAN)
+                            </div>*@
+
+                            <div class="row" id="expRow">
+                                <br />
+                                <div class="form-group" style="margin-left: 15px">
+                                    <label>@GlobalRes.Lable_ExpDate </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>@GlobalRes.Lable_Month </label>
+                                        @Html.DropDownListFor(model => model.Month, new List<SelectListItem>
+                                        {
+                                            new SelectListItem {Text = "January", Value = "01"},
+                                            new SelectListItem {Text = "February", Value = "02"},
+                                            new SelectListItem {Text = "March", Value = "03"},
+                                            new SelectListItem {Text = "April", Value = "04"},
+                                            new SelectListItem {Text = "May", Value = "05"},
+                                            new SelectListItem {Text = "June", Value = "06"},
+                                            new SelectListItem {Text = "July", Value = "07"},
+                                            new SelectListItem {Text = "August", Value = "08"},
+                                            new SelectListItem {Text = "September", Value = "09"},
+                                            new SelectListItem {Text = "October", Value = "10"},
+                                            new SelectListItem {Text = "November", Value = "11"},
+                                            new SelectListItem {Text = "December", Value = "12"}
+                                        }, new { @class = "form-control select2", @style = "width: 100%" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>@GlobalRes.Lable_Year </label>
+                                        @Html.DropDownListFor(model => model.Year, new List<SelectListItem>
+                                        {
+                                            new SelectListItem {Text = "2017", Value = "17"},
+                                            new SelectListItem {Text = "2018", Value = "18"},
+                                            new SelectListItem {Text = "2019", Value = "19"},
+                                            new SelectListItem {Text = "2020", Value = "20"},
+                                            new SelectListItem {Text = "2021", Value = "21"},
+                                            new SelectListItem {Text = "2022", Value = "22"},
+                                            new SelectListItem {Text = "2023", Value = "23"},
+                                            new SelectListItem {Text = "2024", Value = "24"},
+                                            new SelectListItem {Text = "2025", Value = "25"},
+                                            new SelectListItem {Text = "2026", Value = "26"},
+                                            new SelectListItem {Text = "2027", Value = "27"},
+                                            new SelectListItem {Text = "2028", Value = "28"},
+                                            new SelectListItem {Text = "2029", Value = "29"},
+                                            new SelectListItem {Text = "2030", Value = "30"}
+                                        }, new { @class = "form-control select2", @style = "width: 100%" })
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.BillerName)
+                                @Html.DropDownListFor(model => model.BillerName, new List<SelectListItem>
+                                {
+                                    new SelectListItem {Text = "Zain", Value = "1"},
+                                    new SelectListItem {Text = "MTN", Value = "3"},
+                                    new SelectListItem {Text = "Sudani", Value = "5"}
+                                }, new { @class = "form-control select2", @style = "width: 100%" })
+                                @*@Html.ValidationMessageFor(model => model.BillerName)*@
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ToPhoneNo)
+                                <div class="input-group ">
+                                    @Html.TextBoxFor(model => model.ToPhoneNo, new { @class = "form-control input-lg", maxlength = "10", @placeholder = "i.e: 09xxxxxxxx -or- 01xxxxxxx", onkeypress = "return isNumberKey(event)", required = "true", id = "phoneNo", autocomplete = "Off" })
+
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-danger btn-flat input-lg" onclick="return GetMyFavoritePhone()">
+                                            <span><i class="fa fa-heart"></i></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.ToPhoneNo)
+                            </div>
+
+                            <input id="username" style="display:none" type="text" name="fakeusernameremembered">
+                            <input id="password" style="display:none" type="password" name="fakepasswordremembered">
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Amount)
+                                @Html.TextBoxFor(model => model.Amount, new { @class = "form-control input-lg", maxlength = "6", @placeholder = GlobalRes.PlaceHolder_Amount, onkeypress = "return isNumberKey(event)", required = "true", @autocomplete = "off" })
+                                @Html.ValidationMessageFor(model => model.Amount)
+                            </div>
+
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IPIN)
+                                <input id="username" style="display:none" type="text" name="fakeusernameremembered">
+                                <input id="password" style="display:none" type="password" name="fakepasswordremembered">
+                                @Html.PasswordFor(model => model.IPIN, new { @class = "form-control input-lg", maxlength = "4", @placeholder = GlobalRes.PlaceHolder_IPIN, onkeypress = "return isNumberKey(event)", required = "true", autocomplete = "off" })
+                                @Html.ValidationMessageFor(model => model.IPIN)
+                            </div>
+                            
+                            
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-xs-5">
+                                    <button type="submit" class="btn btn-danger btn-block btn-flat" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing">@GlobalRes.ButtonSubmit</button>
+                                    @*<input id="showRes" type="submit" value=@GlobalRes.ButtonSubmit class="btn btn-danger btn-block btn-flat" data-loading-text="<i class='fa fa-spinner fa-spin '></i>"/>*@
+                                </div>
+
+                                @* We want to show this while the server process is running:*@
+                                <div id="divProcessing">
+                                   @* <p><img src="~/Content/icons/ajax-loader.gif"></p>*@
+                                </div>
+                            </div>
+
+                        }
+                        
+                        
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+    @*<!-- /Left col -->
+            <!-- Right col -->
+            <section class="col-md-6 connectedSortable">
+                @Html.Action("PostPaid", "Telecom")
+            </section>
+            <!-- /Right col -->*@
+</div>
+    
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        var GetMyFavoritePhone = function() {
+
+            $("#myModal").show();
+            var user_id = 3; //Session["UserID"].ToString();
+
+            $.ajax({
+                type: "POST",
+                url: "/internetBanking/Telecom/GetFavoritePhone",
+                data: { user_id: user_id },
+                success: function(response) {
+                    $("#myModalBodyDiv").html(response);
+
+                    $("#myModal").modal("show");
+
+                }
+            });
+        }
+
+        //Card
+        var GetMyFavoriteCard = function() {
+
+            $("#myModal").show();
+            var user_id = 3; //Session["UserID"].ToString();
+
+            $.ajax({
+                type: "POST",
+                url: "/internetBanking/ElectricityPayment/GetFavoriteCard",
+                data: { user_id: user_id },
+                success: function(response) {
+                    $("#myModalBodyDiv").html(response);
+
+                    $("#myModal").modal("show");
+                    $("#expRow").hide();
+
+                }
+            });
+        }
+    </script>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            //alert("Jak ma");
+            // Hide the "busy" Gif at load:
+            //$("#divProcessing").show();
+            $("#divProcessing").hide();
+
+            $('.btn').on('click', function() {
+                var $this = $(this);
+                $this.button('loading');
+                setTimeout(function() {
+                    $this.button('reset');
+                }, 10000);
+
+
+            });
+
+        });
+    </script>
+
+}
+
+</section>
+
+@*modal*@
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Choose A Favorite Phone</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv">
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                @*<a href="#" class="btn btn-primary" onclick="">Confirm</a>*@
+            </div>
+        </div>
+    </div>
+</div>
+@*End of modal*@
+

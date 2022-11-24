@@ -1,0 +1,14 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.ViewModels.AccountStatementViewModel
+
+<div class="form-group">
+    <label>@GlobalRes.Lable_No_of_Trans</label>
+    @Html.DropDownListFor(model => model.tranno, new List<SelectListItem>
+    {
+        new SelectListItem {Text = "Last 3 Transactions", Value = "3"},
+        new SelectListItem {Text = "Last 5 Transactions", Value = "5"},
+        new SelectListItem {Text = "Last 10 Transactions", Value = "10"},
+
+    }, GlobalRes.PlaceHolder_Select_No_of_Trans, new { @class = "form-control select2", @style = "width: 100%", id = "NoOfTransDropDown"/*,@disabled = "disabled"*/ })
+
+</div>

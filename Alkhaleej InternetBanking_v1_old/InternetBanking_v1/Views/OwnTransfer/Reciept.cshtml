@@ -1,0 +1,119 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.ToBanCustomerViewModel
+@{
+    ViewBag.Title = "Reciept";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Transfer_Parent
+        <small>@GlobalRes.OwnTransferTitle</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">@GlobalRes.OwnTransferTitle</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">@GlobalRes.OwnTransferTitle</li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-md-8 connectedSortable col-md-offset-2">
+            <!-- Own Transfer -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title my-box-header">@GlobalRes.OwnTransferTitle</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-1">
+                            
+                            <div>
+                                @*<h2>Details of Transfer </h2>
+                                <table class="table table-bordered table-condensed table-striped">
+                                    <tr>
+                                        <td>Sender Name :</td>
+                                        <td>@ViewBag.Sender</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reciever Name :</td>
+                                        <td>@ViewBag.Reciever</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transfer Amount :</td>
+                                        <td>@ViewBag.Amount</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transfer Reference :</td>
+                                        <td>@ViewBag.Reference</td>
+                                    </tr>
+
+
+                                </table>*@
+                                <h2>Details of Transfer </h2>
+                                <table class="table table-bordered table-condensed table-striped">
+                                    <tr>
+                                        <td>Sender Name :</td>
+                                        <td>@Model.SenderName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reciever Name :</td>
+                                        <td>@Model.RecieverName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transfer Amount :</td>
+                                        <td>@Model.Amount</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transfer Reference :</td>
+                                        <td>@Model.TranReference</td>
+                                    </tr>
+
+
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    @*@Html.ActionLink("Print Reciept", "PrintSalarySlip")*@
+
+                </div>
+
+            </div>
+        </section>
+    </div>
+</section>
+
+

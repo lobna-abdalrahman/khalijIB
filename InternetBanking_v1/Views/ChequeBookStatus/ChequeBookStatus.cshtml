@@ -1,0 +1,129 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.ChequeBookStatusViewModel
+
+@{
+    ViewBag.Title = "ChequeBookStatus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.AccSummary_Parent
+        <small>@GlobalRes.ChequeBookStatusTitle</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.AccSummary_Parent</a></li>
+            <li class="active">@GlobalRes.ChequeBookStatusTitle</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.AccSummary_Parent</a></li>
+            <li class="active">@GlobalRes.ChequeBookStatusTitle</li>
+        </ol>
+    }
+
+</section>
+
+
+<section class="content">
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-md-10 col-md-offset-1">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.ChequeBookStatusTitle</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-0">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+
+                                @Html.ValidationSummary(true)
+                                <br>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FromDate)
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.TextBoxFor(model => model.FromDate, new { @class = "form-control pull-right", id = "datepicker" })
+                                        @Html.ValidationMessageFor(model => model.FromDate)
+                                    </div>
+                                </div>
+
+                                @*    <div class="form-group">
+                                @Html.LabelFor(model => model.FromDate)
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.FromDate)
+                                    @Html.ValidationMessageFor(model => model.FromDate)
+                                </div>
+                            </div>*@
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ToDate)
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.TextBoxFor(model => model.ToDate, new { @class = "form-control pull-right", @id = "Todatepicker" })
+                                        @Html.ValidationMessageFor(model => model.ToDate)
+                                    </div>
+                                </div>
+
+                                @* <div class="form-group">
+                                @Html.LabelFor(model => model.ToDate)
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.ToDate)
+                                    @Html.ValidationMessageFor(model => model.ToDate)
+                                </div>
+                            </div>*@
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-xs-5">
+                                        <input type="submit" value="@GlobalRes.ChequeBookStatusBtn" class="btn btn-danger btn-block btn-flat" />
+                                    </div>
+                                </div>
+                            }
+
+
+                            @section Scripts {
+                                @Scripts.Render("~/bundles/jqueryval")
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</section>

@@ -1,0 +1,210 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.ChangeIPINViewModel
+
+@{
+    ViewBag.Title = "ChangePin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @GlobalRes.Services_Parent
+        <small>@GlobalRes.Update_IPIN_Title</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.Update_IPIN_Title</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Services_Parent</a></li>
+            <li class="active">@GlobalRes.Update_IPIN_Title</li>
+        </ol>
+    }
+
+</section>
+
+
+@if (TempData["Success"] != null)
+{
+    if (ViewBag.ResponseStat.Equals("Failed"))
+    {
+
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+    @*<p class="alert alert-success" id="successMessage">@ViewBag.ResponseMSG</p>*@
+}
+
+
+
+
+<section class="content">
+    <div class="row">
+    <!-- Left Column-->
+        <div class="col-md-10 col-md-offset-1 ">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">@GlobalRes.Update_IPIN_Title</h3>
+                @if (CultureHelper.IsRighToLeft())
+                {
+                    <div class="box-tools" style="position: static; float: left;">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true)
+                        
+                            <div class="form-group">
+                                <label>@GlobalRes.CardNumber</label>
+                                @Html.DropDownList("Clients", (IEnumerable<SelectListItem>)ViewBag.clientList, GlobalRes.PlaceHolder_Select_Card, new { @class = "form-control select2", required = "true" })
+                                @Html.ValidationMessageFor(model => model.PAN)
+                            </div>
+                        
+                            <div class="row">
+                                <br />
+                                <div class="form-group" style="margin-left: 15px">
+                                    <label>@GlobalRes.Lable_ExpDate </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>@GlobalRes.Lable_Month </label>
+                                        @Html.DropDownListFor(model => model.Month, new List<SelectListItem>
+                                        {
+                                            new SelectListItem {Text = "January", Value = "01"},
+                                            new SelectListItem {Text = "February", Value = "02"},
+                                            new SelectListItem {Text = "March", Value = "03"},
+                                            new SelectListItem {Text = "April", Value = "04"},
+                                            new SelectListItem {Text = "May", Value = "05"},
+                                            new SelectListItem {Text = "June", Value = "06"},
+                                            new SelectListItem {Text = "July", Value = "07"},
+                                            new SelectListItem {Text = "August", Value = "08"},
+                                            new SelectListItem {Text = "September", Value = "09"},
+                                            new SelectListItem {Text = "October", Value = "10"},
+                                            new SelectListItem {Text = "November", Value = "11"},
+                                            new SelectListItem {Text = "December", Value = "12"}
+                                        }, new { @class = "form-control select2", @style = "width: 100%" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>@GlobalRes.Lable_Year </label>
+                                        @Html.DropDownListFor(model => model.Year, new List<SelectListItem>
+                                        {
+                                            new SelectListItem {Text = "2017", Value = "17"},
+                                            new SelectListItem {Text = "2018", Value = "18"},
+                                            new SelectListItem {Text = "2019", Value = "19"},
+                                            new SelectListItem {Text = "2020", Value = "20"},
+                                            new SelectListItem {Text = "2021", Value = "21"},
+                                            new SelectListItem {Text = "2022", Value = "22"},
+                                            new SelectListItem {Text = "2023", Value = "23"},
+                                            new SelectListItem {Text = "2024", Value = "24"},
+                                            new SelectListItem {Text = "2025", Value = "25"},
+                                            new SelectListItem {Text = "2026", Value = "26"},
+                                            new SelectListItem {Text = "2027", Value = "27"},
+                                            new SelectListItem {Text = "2028", Value = "28"},
+                                            new SelectListItem {Text = "2029", Value = "29"},
+                                            new SelectListItem {Text = "2030", Value = "30"},
+                                            new SelectListItem {Text = "2031", Value = "31"},
+                                            new SelectListItem {Text = "2032", Value = "32"},
+                                            new SelectListItem {Text = "2033", Value = "33"},
+                                            new SelectListItem {Text = "2034", Value = "34"},
+                                            new SelectListItem {Text = "2035", Value = "35"},
+                                            new SelectListItem {Text = "2036", Value = "36"},
+                                            new SelectListItem {Text = "2037", Value = "37"},
+                                            new SelectListItem {Text = "2038", Value = "38"},
+                                            new SelectListItem {Text = "2039", Value = "39"},
+                                            new SelectListItem {Text = "2040", Value = "40"}                                            
+                                        }, new { @class = "form-control select2", @style = "width: 100%" })
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CurrentIPIN)
+                                @Html.TextBoxFor(model => model.CurrentIPIN, new { @class = "form-control input-lg", @placeholder = GlobalRes.CurrentIPIN, @type = "password" })
+                                @Html.ValidationMessageFor(model => model.CurrentIPIN)                                
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NewIPIN)
+                                @Html.TextBoxFor(model => model.NewIPIN, new { @class = "form-control input-lg", @placeholder = GlobalRes.NewIPIN, @type = "password" })
+                                @Html.ValidationMessageFor(model => model.NewIPIN)
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ReNewIPIN)                                
+                                @Html.TextBoxFor(model => model.ReNewIPIN, new { @class = "form-control input-lg", @placeholder = GlobalRes.ReNewIPIN, @type = "password" })
+                                @Html.ValidationMessageFor(model => model.ReNewIPIN)                                
+                            </div>
+
+                           @* <div class="form-group">
+                                <div class="col-md-offset-2 col-xs-5">
+                                    <input type="submit" value=@GlobalRes.ButtonSubmit class="btn btn-sm btn-danger btn-flat pull-left" />
+                                </div>
+                            </div>*@
+                        }
+
+                    
+
+                        @section Scripts {
+                            @Scripts.Render("~/bundles/jqueryval")
+                        }
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="box-footer">
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-xs-4">
+                        <input type="submit" value=@GlobalRes.ButtonUpdate class="btn btn-danger btn-block btn-flat" />
+                    </div>
+                </div>
+
+            </div>
+
+                </div>
+                </div>
+            </div>
+</section>

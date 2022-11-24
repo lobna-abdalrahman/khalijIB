@@ -1,0 +1,152 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.NonCustomerTransferViewModel
+
+@*<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">From Account </h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="form-group">
+                    <label>From Account Number</label>
+                    <select class="form-control select2" style="width: 100%;">
+                        <option selected="selected">2405321</option>
+                        <option>2405322</option>
+                        <option>2405543</option>
+                        <option>2405557</option>
+                        <option>4534567</option>
+                        <option>2405423</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+
+                <br />
+                <br>
+ 
+
+                <div class="form-group has-feedback">
+                    <label>Enter Phone Number</label>
+                    <div class="input-group ">
+                        <input class="form-control input-lg" type="text" placeholder="09xxxxxxxx...">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-flat input-lg" data-toggle="modal" data-target="#modal-default">
+                                <span><i class="fa fa-heart"></i></span>
+                            </button>
+                        </span>
+                    </div>
+                    <br>
+                </div>
+                <div class="form-group has-feedback">
+                    <label>Enter Amount</label>
+                    <input class="form-control input-lg" type="text" placeholder="Amount in SDG">
+                    <br>
+                </div>
+                <!-- /.box -->
+                <div class="col-xs-5">
+                    <button type="submit" class="btn btn-danger btn-block btn-flat">Submit</button>
+                </div>
+             
+            </div>
+            <!-- /.col -->
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.box-footer -->
+</div>*@
+
+
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">@GlobalRes.ToBankCustomer</h3>
+        @if (CultureHelper.IsRighToLeft())
+        {
+            <div class="box-tools" style="position: static; float: left;">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        }
+        else
+        {
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        }
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-group">
+                            <label>@GlobalRes.FromAccountNo</label>
+                            @Html.DropDownList("FromAccount", (IEnumerable<SelectListItem>)ViewBag.clientList, GlobalRes.PlaceHolder_Select_Account, new { @class = "form-control select2", @placeholder = "Enter Account Number..." })
+                            @Html.ValidationMessageFor(model => model.FromAccount)
+                        </div>
+
+                        <div class="form-group">
+                            <label>@GlobalRes.Branch</label>
+                            @Html.DropDownList("BranchList", (IEnumerable<SelectListItem>)ViewBag.branchList, GlobalRes.SelectBranch, new { @class = "form-control select2", @placeholder = "Branch..." })
+                            @Html.ValidationMessageFor(model => model.BranchName)
+                        </div>
+
+                         
+
+                        <div class="form-group">
+                            <label>@GlobalRes.Name</label>
+                             
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control input-lg", @placeholder = GlobalRes.Name })
+                                @Html.ValidationMessageFor(model => model.Name)
+                                
+                            
+                        </div>
+                        <div class="form-group">
+                            <label>@GlobalRes.PhoneNo</label>
+                           
+                                @Html.TextBoxFor(model => model.ToPhoneNo, new { @class = "form-control input-lg", @placeholder = GlobalRes.PhoneNo })
+                                @Html.ValidationMessageFor(model => model.ToPhoneNo)
+
+                             
+                        </div>
+                        @*<div class="form-group">
+                                <label>Transfer Amount</label>
+                                @Html.TextBoxFor(model => model.Amount)
+                                @Html.ValidationMessageFor(model => model.Amount)
+                            </div>*@
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Amount)
+                            @Html.TextBoxFor(model => model.Amount, new { @class = "form-control input-lg", @placeholder = "Amount in SDG" })
+                            @Html.ValidationMessageFor(model => model.Amount)
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-5">
+                                <input type="submit" value=@GlobalRes.ButtonSubmit class="btn btn-danger btn-block btn-flat" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

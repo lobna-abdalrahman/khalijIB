@@ -1,0 +1,108 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.Account.MyAccounts
+
+@{
+    ViewBag.Title = "ChequeStatus";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.AccSummary_Parent
+        <small>@GlobalRes.ChqStatus_Title</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.AccSummary_Parent</a></li>
+            <li class="active">@GlobalRes.ChqStatus_Title</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.AccSummary_Parent</a></li>
+            <li class="active">@GlobalRes.ChqStatus_Title</li>
+        </ol>
+    }
+    
+</section>
+
+<section class="content">
+    <div class="row">
+        <section class="col-md-10 col-md-offset-1">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.ChqStatus_BoxHeader </h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    
+                </div>
+                
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                @*<div class="form-horizontal">*@
+                                @Html.ValidationSummary(true)
+
+                                @*<div class="form-group">
+                    <label>Account Number</label>
+                    @Html.TextBoxFor(model => model.AccountNumber, new { @class = "form-control input-lg", @placeholder = "Enter Account Number..." })
+                    @Html.ValidationMessageFor(model => model.AccountNumber)
+                </div>*@
+
+                                <div class="form-group">
+                                    @* <label>@GlobalRes.Lable_AccountNumber</label>*@
+                                    @* <label>@GlobalRes.Lable_AccountNumber</label>*@
+                                    @Html.LabelFor(model => model.AccountNumber)
+                                    @Html.DropDownList("Clients", (IEnumerable<SelectListItem>)ViewBag.clientList, GlobalRes.PlaceHolder_Select_Account, new { @class = "form-control select2", @placeholder = "Enter Account Number..." })
+                                    @*@Html.DropDownListFor(model => model.AccountNumbers, Model.AccountNumbers, "Select Account", new { @class = "form-control select2", @placeholder = "Enter Account Number..." })*@
+                                    @Html.ValidationMessageFor(model => model.AccountNumber)
+                                </div>
+
+                                <div class="form-group">
+                                    <label>@GlobalRes.Lable_From_Cheque_Number</label>
+                                    @Html.TextBoxFor(model => model.ChequeNumber1, new { @class = "form-control input-lg", @placeholder = GlobalRes.PlaceHolder_from_chqNo })
+                                    @Html.ValidationMessageFor(model => model.ChequeNumber1)
+                                </div>
+                                <div class="form-group">
+                                    <label>@GlobalRes.Lable_To_Cheque_Number</label>
+                                    @Html.TextBoxFor(model => model.ChequeNumber2, new { @class = "form-control input-lg", @placeholder = GlobalRes.PlaceHolder_to_chqNo })
+                                    @Html.ValidationMessageFor(model => model.ChequeNumber2)
+                                </div>
+                                <br />
+
+                                <div class="form-group">
+                                    <div class="col-xs-5">
+                                        <input type="submit" value=@GlobalRes.ButtonSubmit class="btn btn-danger btn-block btn-flat" />
+                                        <br />
+                                    </div>
+                                </div>
+                                @*</div>*@
+                            }
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </div>
+</section>
+

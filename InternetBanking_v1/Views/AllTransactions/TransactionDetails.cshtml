@@ -1,0 +1,1102 @@
+﻿@model InternetBanking_v1.Models.ReceiptModel
+
+@{
+    ViewBag.Title = "TransactionDetails";
+    var token = "";
+    if (Model.token != null && Model.token != "")
+    {
+        token = Model.token.Substring(1, 4) + "-" + Model.token.Substring(4, 4) + "-" + Model.token.Substring(8, 4) + "-" + Model.token.Substring(12, 4) + "-" + Model.token.Substring(16, 4);
+    }
+    Layout = null;//"~/Views/Shared/_LoginLayout .cshtml";
+}
+
+<style>
+    @@media print {
+        body * {
+            visibility: hidden;
+        }
+
+        .divtoprint * {
+            visibility: visible;
+            /*height: 20px;*/
+        }
+
+        .paypal__footer * {
+            visibility: hidden;
+        }
+    }
+</style>
+
+<style>
+    @@import url("https://fonts.googleapis.com/css?family=Barlow+Condensed:100,200,300,400,500,600,700,800,900|Barlow+Semi+Condensed:100,200,300,400,500,600,700,800,900|Barlow:100,200,300,400,500,600,700,800,900&display=swap");
+
+    .about {
+        position: fixed;
+        z-index: 10;
+        bottom: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        transition: all 0.2s ease;
+    }
+
+        .about .bg_links {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 100%;
+            backdrop-filter: blur(5px);
+            position: absolute;
+        }
+
+        .about .logo {
+            width: 40px;
+            height: 40px;
+            z-index: 9;
+            background-image: url(https://rafaelavlucas.github.io/assets/codepen/logo_white.svg);
+            background-size: 50%;
+            background-repeat: no-repeat;
+            background-position: 10px 7px;
+            opacity: 0.9;
+            transition: all 1s 0.2s ease;
+            bottom: 0;
+            right: 0;
+        }
+
+        .about .social {
+            opacity: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+            .about .social .icon {
+                width: 100%;
+                height: 100%;
+                background-size: 20px;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-color: transparent;
+                display: flex;
+                transition: all 0.2s ease, background-color 0.4s ease;
+                opacity: 0;
+                border-radius: 100%;
+            }
+
+            .about .social.portfolio {
+                transition: all 0.8s ease;
+            }
+
+                .about .social.portfolio .icon {
+                    background-image: url(https://rafaelavlucas.github.io/assets/codepen/link.svg);
+                }
+
+            .about .social.dribbble {
+                transition: all 0.3s ease;
+            }
+
+                .about .social.dribbble .icon {
+                    background-image: url(https://rafaelavlucas.github.io/assets/codepen/dribbble.svg);
+                }
+
+            .about .social.linkedin {
+                transition: all 0.8s ease;
+            }
+
+                .about .social.linkedin .icon {
+                    background-image: url(https://rafaelavlucas.github.io/assets/codepen/linkedin.svg);
+                }
+
+        .about:hover {
+            width: 105px;
+            height: 105px;
+            transition: all 0.6s cubic-bezier(0.64, 0.01, 0.07, 1.65);
+        }
+
+            .about:hover .logo {
+                opacity: 1;
+                transition: all 0.6s ease;
+            }
+
+            .about:hover .social {
+                opacity: 1;
+            }
+
+                .about:hover .social .icon {
+                    opacity: 0.9;
+                }
+
+                .about:hover .social:hover {
+                    background-size: 28px;
+                }
+
+                    .about:hover .social:hover .icon {
+                        background-size: 65%;
+                        opacity: 1;
+                    }
+
+                .about:hover .social.portfolio {
+                    right: 0;
+                    bottom: calc(100% - 40px);
+                    transition: all 0.3s 0s cubic-bezier(0.64, 0.01, 0.07, 1.65);
+                }
+
+                    .about:hover .social.portfolio .icon:hover {
+                        background-color: #698fb7;
+                    }
+
+                .about:hover .social.dribbble {
+                    bottom: 45%;
+                    right: 45%;
+                    transition: all 0.3s 0.15s cubic-bezier(0.64, 0.01, 0.07, 1.65);
+                }
+
+                    .about:hover .social.dribbble .icon:hover {
+                        background-color: #ea4c89;
+                    }
+
+                .about:hover .social.linkedin {
+                    bottom: 0;
+                    right: calc(100% - 40px);
+                    transition: all 0.3s 0.25s cubic-bezier(0.64, 0.01, 0.07, 1.65);
+                }
+
+                    .about:hover .social.linkedin .icon:hover {
+                        background-color: #0077b5;
+                    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border: 0;
+        -webkit-tap-highlight-color: transparent;
+        text-decoration: none;
+        color: inherit;
+        box-sizing: border-box;
+    }
+
+        *:focus {
+            outline: 0;
+        }
+
+        * input::-webkit-outer-spin-button,
+        * input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+    body {
+        background-color: #f5f5f5;
+        font-family: "Barlow", sans-serif;
+        font-weight: normal;
+        background-color: white;
+    }
+
+    .logo {
+        position: fixed;
+        z-index: 5;
+        bottom: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 100%;
+        backdrop-filter: blur(5px);
+    }
+
+        .logo img {
+            width: 55%;
+            height: 55%;
+            transform: translateY(-1px);
+            opacity: 0.8;
+        }
+
+    @@media screen and (max-width: 799px) {
+        .logo {
+            display: none;
+        }
+    }
+
+    .wrapper {
+        width: 100%;
+        height: 100vh;
+        min-height: 400px;
+        font-family: "Barlow", sans-serif;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 0 5%;
+    }
+
+    @@media screen and (max-width: 460px) {
+        .wrapper {
+            height: auto;
+            min-height: 100vh;
+            padding: 0 16px;
+        }
+    }
+
+    .container {
+        background-color: transparent;
+        margin: 40px auto;
+        text-align: center;
+        transition: all 0.4s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+    }
+
+    @@media screen and (max-width: 460px) {
+        .container {
+            margin: 20px auto;
+        }
+    }
+
+    .container .cta {
+        background-color: #DEB43F;
+        color: #e4e7f1;
+        padding: 0px 24px;
+        border-radius: 40px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 14px;
+        height: 40px;
+        text-align: center;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0px 10px 20px rgba(67, 80, 114, 0.4);
+        transform: translateY(8px);
+    }
+
+        .container .cta:hover {
+            box-shadow: 0px 5px 10px rgba(67, 80, 114, 0.4);
+        }
+
+    .container .thanks {
+        margin-bottom: 32px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        color: #DEB43F;
+        position: absolute;
+        transform: translateY(-60px);
+    }
+
+    .receipt {
+        max-width: 440px;
+        width: 100%;
+        padding: 40px;
+        color: #111111;
+        background-color: #f5f6fa;
+        margin: 0px auto 0;
+        text-align: initial;
+        transition: all 0.4s ease;
+        display: none;
+        border-top: dashed 2px #e4e7f1;
+        border-bottom: dashed 2px #e4e7f1;
+    }
+
+    @@media screen and (max-width: 460px) {
+        .receipt {
+            padding: 16px;
+            margin: 28px auto 0;
+        }
+    }
+
+    .receipt__message {
+        text-align: center;
+        border-bottom: 2px solid #e4e7f1;
+        padding: 8px 8px 32px 8px;
+    }
+
+    .receipt__title {
+        margin-bottom: 32px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .receipt__text {
+        margin-bottom: 24px;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .receipt .product {
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid #e4e7f1;
+        padding: 16px 8px;
+    }
+
+    .receipt .product__name {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .receipt .product__quantity {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .receipt .product__image {
+        border: 1px solid #e4e7f1;
+        width: 70px;
+        height: 70px;
+        background-color: white;
+        margin-right: 16px;
+        padding: 8px;
+    }
+
+        .receipt .product__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .receipt .price__pricing {
+        display: flex;
+        justify-content: space-between;
+        margin: 16px 0;
+        padding: 0 8px;
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: 500;
+    }
+
+        .receipt .price__pricing:last-of-type {
+            margin-bottom: 0px;
+        }
+
+    .receipt .price__total {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 8px;
+        margin-bottom: 32px;
+        border-top: 2px solid #e4e7f1;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .receipt .price__totalNumber {
+        font-weight: bold;
+    }
+
+    .receipt .info__infoTitle {
+        padding: 0 8px;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 600;
+    }
+
+    .receipt .info__addressContent {
+        display: flex;
+        margin-top: 16px;
+    }
+
+    @@media screen and (max-width: 460px) {
+        .receipt .info__addressContent {
+            flex-direction: column;
+        }
+    }
+
+    .receipt .info__address {
+        background-color: #e4e7f1;
+        margin-right: 16px;
+        padding: 16px;
+        font-size: 12px;
+        line-height: 18px;
+        width: 50%;
+    }
+
+        .receipt .info__address:last-of-type {
+            margin-right: 0px;
+        }
+
+    @@media screen and (max-width: 460px) {
+        .receipt .info__address {
+            margin-right: 0px;
+            margin-bottom: 16px;
+            width: 100%;
+        }
+
+            .receipt .info__address:last-of-type {
+                margin-bottom: 0px;
+            }
+    }
+
+    .receipt .info__addressTitle {
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .receipt .btn {
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 8px 16px;
+        background-color: #e4e7f1;
+        box-shadow: inset 0px -2px 0px #111111;
+        transition: all 0.4s ease;
+        cursor: pointer;
+    }
+
+        .receipt .btn:hover {
+            box-shadow: inset 0px -40px 0px #F2D258;
+            color: white;
+        }
+
+    .anime {
+        position: relative;
+        max-width: 480px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    @@media screen and (max-width: 460px) {
+        .anime {
+            padding: 0 20px;
+        }
+    }
+
+    .anime:before,
+    .anime:after {
+        position: absolute;
+        content: "";
+        width: 150px;
+        height: 20px;
+        animation: bg 1.2s 0.2s ease forwards;
+        border-radius: 40px 40px 0px 0px;
+        z-index: 1;
+        box-shadow: inset 0px 19px 0px #DEB43F;
+        background-color: #DEB43F;
+        transition: all 0.4s ease;
+    }
+
+    .anime:after {
+        margin-top: 20px;
+        z-index: -1;
+        border-radius: 0px 0px 40px 40px;
+        box-shadow: inset 0px -18px 0px #DEB43F;
+    }
+
+    @@keyframes bg {
+        0% {
+            background-color: #DEB43F;
+            width: 140px;
+            top: 50%;
+        }
+
+        50% {
+            background-color: #DEB43F;
+            width: 100%;
+        }
+
+        100% {
+            background-color: #F5D65C;
+            width: 100%;
+            top: 0px;
+        }
+    }
+
+    .anime .thanks {
+        display: none;
+    }
+
+    .anime .receipt {
+        animation: receipt 3s 1.6s ease both;
+        display: block;
+    }
+
+    @@keyframes receipt {
+        0% {
+            transform: translateY(-110%);
+        }
+
+        20% {
+            transform: translateY(-90%);
+        }
+
+        30% {
+            transform: translateY(-80%);
+        }
+
+        40% {
+            transform: translateY(-70%);
+        }
+
+        60% {
+            transform: translateY(-60%);
+        }
+
+        70% {
+            transform: translateY(-40%);
+        }
+
+        100% {
+            transform: translateY(0%);
+        }
+    }
+
+    .anime .cta {
+        display: none;
+    }
+</style>
+
+<div class="wrapper">
+    <div class="container divtoprint">
+        <p class="thanks">Transaction receipt</p>
+
+        <button class="cta">Printing receipt ...</button>
+        <div class="receipt">
+            <img src="~/Content/icons/logo gold.png" style="margin-left:45px;" />
+            <div class="receipt__message">
+                <h2 class="receipt__title">Transaction Receipt</h2>
+                <h2 class="receipt__title">@Model.Date  -  @Model.Time</h2>
+            </div>
+
+            @*<div class="product">
+                    <figure class="product__image">
+                        <img src="https://rafaelalucas.com/dailyui/17/assets/watch.png"
+                             alt="" />
+                    </figure>
+                    <div>
+                        <h3 class="product__name">Xiaomi Amazfit Red - Smartwatch</h3>
+                        <p class="product__quantity">1 x €89.00</p>
+                    </div>
+                </div>*@
+
+            <div class="price">
+                @if (Model != null && !String.IsNullOrEmpty(Model.available))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.available</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.available)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.leger))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.leger</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.leger)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.acuirerTransactionFees))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.acuirertransactionfees</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.acuirerTransactionFees)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.Date))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.ToDate</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.Date)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.Time))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.time</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.Time)</p>
+                    </div>
+                }
+                @if (Model != null && Model.frombranch != "NULL" && !String.IsNullOrEmpty(Model.frombranch))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.frombranch</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.frombranch)</p>
+                    </div>
+                }
+                @if (Model != null && Model.fromaccounttype != "Account Type Not Found" && !String.IsNullOrEmpty(Model.fromaccounttype))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.fromaccounttype</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.fromaccounttype)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.toaccounttype))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.toaccounttype</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.toaccounttype)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.tobranch))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.tobranch</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.tobranch)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.expDate))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.Lable_ExpDate</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.expDate)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.responseMessage))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.responsemessage</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.responseMessage)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.responseStatus))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.responsestatus</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.responseStatus)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.fromCard))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.fromcard</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.fromCard)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.token))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.Token</p>
+                        <p class="price__princingNumber">@token</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.toCard))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.ToCardNumber</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.toCard)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.issuerTransactionFees))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.issuertransactionfees</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.issuerTransactionFees)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.dynamicFees))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.dynamicfees</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.dynamicFees)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.ReceiptNumber))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.receiptNumber</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.ReceiptNumber)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.studentNo))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.studentno</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.studentNo)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.formNo))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.formNo</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.formNo)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.englishName))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.englishName</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.englishName)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.arabicName))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.arabicname</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.arabicName)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.fromaccount))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.FromAccountNo</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.fromaccount)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.BankCode))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.bankcode</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.BankCode)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.Transrefrence))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.TransferReference</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.Transrefrence)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.DeclarantNAME))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.declrantname</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.DeclarantNAME)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.InstanceID))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.instanceid</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.InstanceID)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.ProcStatus))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.procstatus</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.ProcStatus)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.ProcError))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.procError</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.ProcError)</p>
+                    </div>
+                }
+
+                @if (Model != null && !String.IsNullOrEmpty(Model.receiptserial))
+                {
+                    <div class="price__total">
+                        <p class="price__totalTitle">@GlobalRes.receiptNo</p>
+                        <p class="price__totalNumber">@Html.DisplayFor(model => model.receiptserial) SDG</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.Office))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.Office</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.Office)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.Declarant))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.Declarant</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.Declarant)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.DECNBER))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.DeclarantNumber</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.DECNBER)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.Transaction))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.transactionslabel</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.Transaction)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.Year))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.year</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.Year)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.DECSER))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.Declarant</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.DECSER)</p>
+                    </div>
+                }
+
+                @if (Model != null && !String.IsNullOrEmpty(Model.DecNo))
+                {
+                    <div class="price__total">
+                        <p class="price__totalTitle">@GlobalRes.DeclarantNumber</p>
+                        <p class="price__totalNumber">@Html.DisplayFor(model => model.DecNo) SDG</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.E15ReceiptNumber))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.e15number</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.E15ReceiptNumber)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.paymentinfo))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.Payment</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.paymentinfo)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.DeclarantNumber))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.DeclarantNumber</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.DeclarantNumber)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.Declarant_Name))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.Declarant</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.Declarant_Name)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.meterFees))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.MeterFees</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.meterFees)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.netAmount))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.NetAmount</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.netAmount)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.customerName))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.FromAccountNo</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.customerName)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.accountNo))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.FullAccountNumber</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.accountNo)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.meterNumber))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.MeterNumber</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.meterNumber)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.unitsInKWh))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.UnitsInKwh</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.unitsInKWh)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.meterFees))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.MeterFees</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.meterFees)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.waterFees))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.WaterFees</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.waterFees)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.opertorMessage))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.OperatorMsg</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.opertorMessage)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.ReferenceId))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.refrenceid</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.ReferenceId)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.UnitName))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.unitname</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.UnitName)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.ServiceName))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.servicename</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.ServiceName)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.PayerName))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.payername</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.PayerName)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.TotalAmount))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.TotalAmount</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.TotalAmount)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.receiptNo))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.receiptNo</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.receiptNo)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.contractNumber))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.contractNumber</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.contractNumber)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.unbilledAmount))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.unbilledAmount</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.unbilledAmount)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.total_Amount))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.TotalAmount</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.total_Amount)</p>
+                    </div>
+                }
+                @if (Model != null && !String.IsNullOrEmpty(Model.lastInvoiceDate))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.LastInvoiceDate</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.lastInvoiceDate)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.last4Digits))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.last4digits</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.last4Digits)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.billedAmount))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.billedamount</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.billedAmount)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.BillAmount))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.BillAmount</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.BillAmount)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.total))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.total</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.total)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.SubscriberID))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.SubscriberID</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.SubscriberID)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.unbilledAmount))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.unbilledAmount</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.unbilledAmount)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.bill_Amount))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.BillAmount</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.bill_Amount)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.DueAmount))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.dueamount</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.DueAmount)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.InvoiceExpiry))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.invoiceexpiry</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.InvoiceExpiry)</p>
+                    </div>
+                }@if (Model != null && !String.IsNullOrEmpty(Model.InvoiceStatus))
+                {
+                    <div class="price__pricing">
+                        <p class="price__princingTitle">@GlobalRes.invoicestatus</p>
+                        <p class="price__princingNumber">@Html.DisplayFor(model => model.InvoiceStatus)</p>
+                    </div>
+                }
+
+
+                @if (Model != null && !String.IsNullOrEmpty(Model.Amount))
+                {
+                    <div class="price__total">
+                        <p class="price__totalTitle">@GlobalRes.Amount</p>
+                        <p class="price__totalNumber">@Html.DisplayFor(model => model.Amount) SDG</p>
+                    </div>
+                }
+
+            </div>
+            <div class="receipt__message">
+                <a class="btn" onclick="window.print();">Print</a>
+                <a href="@Url.Action("MyTransactions", "AllTransactions")" class="btn">@GlobalRes.back</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener("load", (event) => {
+        const cta = document.querySelector(".cta"),
+            container = document.querySelector(".container"),
+            receipt = document.querySelector(".receipt");
+
+        cta.addEventListener("click", printReceipt);
+
+        container.classList.add("anime");
+        cta.innerHTML = "";
+
+        container.style.height = receipt.clientHeight + 45 + "px";
+        function printReceipt() {
+            container.classList.add("anime");
+            cta.innerHTML = "";
+
+            container.style.height = receipt.clientHeight + 45 + "px";
+        }
+    });
+</script>

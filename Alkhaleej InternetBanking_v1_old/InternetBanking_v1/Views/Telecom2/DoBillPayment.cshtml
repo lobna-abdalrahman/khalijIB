@@ -1,0 +1,146 @@
+﻿@model InternetBanking_v1.Models.TelecomPostPaidViewModel
+
+@{
+    ViewBag.Title = "DoBillPayment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+<section class="content-header">
+    <h1>
+        Mobile billPayment
+        <small>My bill</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Mobile billPayment</a></li>
+        <li class="active">My bill </li>
+    </ol>
+</section>
+
+
+@if (TempData["Success"] != null)
+{
+    if (ViewBag.ResponseStat.Equals("Failed"))
+    {
+
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+    @*<p class="alert alert-success" id="successMessage">@ViewBag.ResponseMSG</p>*@
+}
+
+<div class="content">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <i class="fa fa-text-width"></i>
+                    <h3 class="box-title">My Bill Information</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            
+                            @*<div class="form-group">
+                                @Html.DisplayNameFor(model => model.BillAmount)
+                                @Html.DisplayFor(model => model.BillAmount)
+                            </div>
+                            
+                            <div class="form-group">
+                                @Html.DisplayNameFor(model => model.total)
+                                @Html.DisplayFor(model => model.total)
+                            </div>
+                            
+                            <div class="form-group">
+                                @Html.DisplayNameFor(model => model.contractNumber)
+                                @Html.DisplayFor(model => model.contractNumber)
+                            </div>
+                            
+                            <div class="form-group">
+                                @Html.DisplayNameFor(model => model.unbilledAmount)
+                                @Html.DisplayFor(model => model.unbilledAmount)
+                            </div>*@
+
+
+                            <div>
+                                <blockquote>
+                                    <dl class="dl-horizontal">
+
+
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.BillAmount)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.BillAmount)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.total)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.total)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.contractNumber)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.contractNumber)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.unbilledAmount)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.unbilledAmount)
+                                        </dd>
+
+                                    </dl>
+                                    @using (Html.BeginForm()) { 
+                                        <br/>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TranAmount)
+                                        @Html.TextBoxFor(model => model.TranAmount, new { @class = "form-control input-lg", @placeholder = "Amount in SDG" })
+                                        @Html.ValidationMessageFor(model => model.TranAmount)
+                                    </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-5">
+                                                <input type="submit" value="Submit" class="btn btn-danger btn-block btn-flat" />
+                                            </div>
+                                        </div>
+                                    }
+                                    @section Scripts {
+                                        @Scripts.Render("~/bundles/jqueryval")
+                                    }
+                                </blockquote>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </div>
+</div>

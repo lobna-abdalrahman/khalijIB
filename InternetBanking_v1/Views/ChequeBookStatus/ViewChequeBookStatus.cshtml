@@ -1,0 +1,120 @@
+﻿@using InternetBanking_v1.Context
+@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.ChequeBookStatusViewModel>
+
+@{
+    ViewBag.Title = "View ChequeBook Status";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.AccSummary_Parent
+        <small>@GlobalRes.ChequeBookStatusTitle</small>
+    </h1>
+
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.AccSummary_Parent</a></li>
+            <li class="active">حالة طلبات دفاتر الشيكات</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.AccSummary_Parent</a></li>
+            <li class="active">@GlobalRes.ChequeBookStatusTitle</li>
+        </ol>
+    }
+
+</section>
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.ChequeBookStatusTitle</h3>
+                    <div class="box-tools pull-right">
+                        @* <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>*@
+                        @*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+                            <thead style="color: cadetblue">
+                                <tr>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.AccountNumber)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.RequestedSize)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Date)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.RequestStatus)
+                                    </th>
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+
+                            @foreach (var item in Model)
+                            {
+                                DataSource data = new DataSource();
+                                ;
+                                var AccountNumber=""; var AccountType=""; var BranchName = ""; var wholeAccount="";
+                                if (AccountNumber != "")
+                                {
+                                    AccountNumber = Convert.ToInt64(item.AccountNumber.Substring(13)).ToString();
+                                    AccountType = data.getaccounttype(item.AccountNumber.ToString().Substring(5, 5));
+                                    BranchName = data.getbranchnameenglish(item.AccountNumber.ToString().Substring(2, 3));
+                                    wholeAccount = BranchName + " - " + AccountType + " - " + AccountNumber;
+                                }
+                                else
+                                {
+                                    AccountNumber = "N/A";
+                                    AccountType = "N/A";
+                                    BranchName = "N/A";
+                                    wholeAccount = "N/A";
+                                }
+                                <tr>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => wholeAccount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestedSize)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Date)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestStatus)
+                                    </td>
+                                    @*  <td>
+                                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                    </td>*@
+                                </tr>
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

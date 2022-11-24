@@ -1,0 +1,124 @@
+﻿@*@model IEnumerable<InternetBanking_v1.Models.ViewModels.AccountStatementViewModel>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+@using InternetBanking_v1.Helper
+@model IEnumerable<InternetBanking_v1.Models.AccountSummaryViewModel>
+
+@{
+    ViewBag.Title = "ViewStatement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.AccSummary_Parent
+        <small>@GlobalRes.Account_Statement</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.AccSummary_Parent</a></li>
+            <li class="active">@GlobalRes.Account_Statement</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.AccSummary_Parent</a></li>
+            <li class="active">@GlobalRes.Account_Statement</li>
+        </ol>
+    }
+    
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.Account_Statement</h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-hover table-bordered table-striped">
+                            <thead style="color: cadetblue">
+                            <tr>
+                                @*<th>
+                                    @Html.HiddenFor()For(model => model.StateID)
+                                </th>*@                                
+                                <th>
+                                    @Html.DisplayNameFor(model => model.StateAmount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TranscationDirection)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TranscationNarration)
+                                </th>
+                                
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BalanceAfterTransaction)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Date)
+                                </th>
+                            </tr>
+                            </thead>
+                            @foreach (var item in Model.OrderBy(item => item.StateID))
+                            {
+                                <tr>
+                                     
+                                       
+                                                                     
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.StateAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TranscationDirection)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TranscationNarration)
+                                        @Html.HiddenFor(modelItem => item.StateID)
+                                    </td>
+                                    
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BalanceAfterTransaction)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Date)
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

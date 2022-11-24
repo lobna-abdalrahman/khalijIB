@@ -1,0 +1,168 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.OwnTransferViewModel
+
+@{
+    ViewBag.Title = "Verify";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Transfer_Parent
+        <small>@GlobalRes.OwnTransferTitle</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">@GlobalRes.OwnTransferTitle</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Transfer_Parent</a></li>
+            <li class="active">@GlobalRes.OwnTransferTitle</li>
+        </ol>
+    }
+
+</section>
+
+@*@if (TempData["btnclick"] != null)
+{
+    if (ViewBag.btnclick.toString().Equals("true"))
+    {
+         
+        <script type="text/javascript" language="javascript"> function deactive() { $("#Submit").attr("disabled", true); }</script>
+    }
+    else
+    {
+        <script type="text/javascript" language="javascript"> function deactive() { $("#Submit").attr("disabled", false); }
+        </script>
+
+    }
+}*@
+
+
+
+@*@if (TempData["Success"] != null)
+{
+    if (ViewBag.ResponseStat.ToString().Equals("Secussfully"))
+    {
+
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+    else if (ViewBag.ResponseStat.ToString().Equals("Not Successful"))
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> @ViewBag.ResponseStat</h4>
+            @ViewBag.ResponseMSG
+        </div>
+
+    }
+}*@
+
+
+
+<section class="content">
+    <div class="row">
+        <!-- Left Column-->
+        <div class="col-md-10 col-md-offset-1 ">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <h3 class="box-title">@GlobalRes.VerificationCode</h3>
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <h3 class="box-title">@GlobalRes.VerificationCode</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-horizontal">
+
+                                    @Html.ValidationSummary(true)
+                                    
+                                    
+                                    <div class="form-group">
+                                        @*<div class="col-md-7 col-md-offset-3">*@
+                                            <h5 style="color: #007bb7;"> @GlobalRes.FromAccountNo :<span style="color: #6c6c6c;">  @ViewBag.FromAccount</span></h5>
+                                            <h5 style="color: #007bb7;"> @GlobalRes.ToAccountNo :<span style="color: #6c6c6c;">  @ViewBag.ToAccount</span></h5>
+                                            <h5 style="color: #007bb7;"> @GlobalRes.Amount :<span style="color: #6c6c6c;">  @ViewBag.Amount <small> SDG</small></span></h5>
+                                        @*</div>*@
+                                    </div>
+                                        
+
+                                        <div class="form-group">
+                                            <label>@GlobalRes.VerificationCode</label>
+                                            @Html.TextBoxFor(model => model.VerificatioCode,new{ required = "true", maxlength = "10"})
+                                            @Html.ValidationMessageFor(model => model.VerificatioCode)
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-xs-5">
+                                                <input type="submit" value="@GlobalRes.ButtonSubmit" id="Submit" class="btn btn-danger btn-block btn-flat" onclick="document.forms[0].submit()" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                <script type="text/javascript">
+                                    window.onbeforeunload = function() {
+                                        var inputs = document.getElementsByTagName("INPUT");
+                                        for (var i in inputs) {
+                                            if (inputs[i].type == "button" || inputs[i].type == "submit") {
+                                                inputs[i].disabled = true;
+                                            }
+                                        }
+                                    };
+                                </script>
+                                
+                                <script type="text/javascript">
+                                    window.onbeforeunload = function() {
+                                        $("input[type=button], input[type=submit]").attr("disabled", "disabled");
+                                    }
+                                </script>
+                            }
+
+
+
+                            @section Scripts {
+                                @Scripts.Render("~/bundles/jqueryval")
+                            }
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+
+
+                    </div>
+                </div>
+
+</section>

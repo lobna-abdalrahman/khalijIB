@@ -1,0 +1,170 @@
+﻿@using InternetBanking_v1.Helper
+@model InternetBanking_v1.Models.SalaryTransferViewModel
+
+@{
+    ViewBag.Title = "SalaryTransfer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <h1>
+        @GlobalRes.Corprate_Parent
+        <small>@GlobalRes.Salary_Transfer_Title</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Corprate_Parent</a></li>
+            <li class="active">@GlobalRes.Salary_Transfer_Title</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Corprate_Parent</a></li>
+            <li class="active">@GlobalRes.Salary_Transfer_Title</li>
+        </ol>
+    }
+
+</section>
+
+
+<section class="content">
+    <div class="row">
+
+        <!--Col-->
+        <section class="col-md-10 col-md-offset-1">
+            <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">@GlobalRes.Salary_Transfer_Title</h3>
+                @if (CultureHelper.IsRighToLeft())
+                {
+                    <div class="box-tools" style="position: static; float: left;">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            @using (Html.BeginForm("SalaryTransfer","SalaryTransfer",FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                
+                                    
+                                @Html.ValidationSummary(true)
+                                    
+                                <div class="form-group">
+                                    <label>@GlobalRes.Lable_AccountNumber</label>
+                                    @Html.DropDownList("Clients", (IEnumerable<SelectListItem>)ViewBag.clientList, GlobalRes.PlaceHolder_Select_Account, new { @class = "form-control select2", @style = "width: 100%" })
+                                </div>
+
+                                    @*<div class="form-group">
+                                        @Html.LabelFor(model => model.AccountNumber, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.AccountNumber)
+                                            @Html.ValidationMessageFor(model => model.AccountNumber)
+                                        </div>
+                                    </div>*@
+                                    
+                                <div class="form-group">
+                                    <label for="file">@GlobalRes.Lable_Salary_File</label>
+                                    <input type="file" name="file" id="file">
+                                    <p class="help-block">.excel file</p>
+                                </div>
+
+                                    @*<div class="form-group">
+                                        @Html.LabelFor(model => model.excelFile, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.excelFile)
+                                            @Html.ValidationMessageFor(model => model.excelFile)
+                                        </div>
+                                    </div>*@
+
+                                <div class="form-group">
+                                    <div class="col-xs-5">
+                                        <input type="submit" value=@GlobalRes.ButtonSubmit class="btn btn-danger btn-block btn-flat" />
+                                    </div>
+                                </div>
+                              
+                            }
+
+                            @section Scripts {
+                                @Scripts.Render("~/bundles/jqueryval")
+                            }
+                        </div>
+                    </div>
+                </div>
+                @{
+                    if (!ViewBag.showData)
+                    {
+
+                    }
+                    else
+                    {
+                        <div class="box-footer">
+                            <div class="row">
+                                <section class="col-md-12">
+                                    <div class="col-md-3">
+                                        <label>@GlobalRes.Total_Amount</label>
+                                        <h3>@ViewBag.TotalAmount</h3>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>@GlobalRes.Total_Rows</label>
+                                        <h3>@ViewBag.CountRows</h3>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>@GlobalRes.Total_Succesful_Rows</label>
+                                        <h3>@ViewBag.SuccessfulCount</h3>
+                                    </div>
+                                    @* get Details *@
+                                    @if (CultureHelper.IsRighToLeft())
+                                    {
+                                        using (Html.BeginForm("DoSalaryTransfer", "SalaryTransfer", FormMethod.Post, new { enctype = "multipart/form-data", @lang = "ar" }))
+                                         {
+                                             <div class="col-md-3">
+                                                 <div class="form-group">
+                                                     <div class="col-xs-7">
+                                                         <input type="submit" value=@GlobalRes.Continue class="btn btn-danger btn-block btn-flat" />
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         } 
+                                    }
+                                    else
+                                    {
+                                        using (Html.BeginForm("DoSalaryTransfer", "SalaryTransfer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                         {
+                                             <div class="col-md-3">
+                                                 <div class="form-group">
+                                                     <div class="col-xs-7">
+                                                         <input type="submit" value=@GlobalRes.Continue class="btn btn-danger btn-block btn-flat" />
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         } 
+                                        
+                                    }
+ 
+                                    
+                                </section>
+</div>
+                        </div>
+                    }
+                }
+             
+            </div>
+        </section>
+    </div>
+</section>

@@ -1,0 +1,50 @@
+﻿@using InternetBanking_v1.Helper
+
+<div class="col-lg-4 col-xs-6">
+    <!-- small box -->
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>@ViewBag.TranCount<sup style="font-size: 20px">@GlobalRes.Dash_Transfer_sub</sup></h3>
+                <p>@GlobalRes.Dash_TransferSummary</p>
+            </div>
+            <div class="icon" style="margin-right: 260px;">
+                <i class="fa fa-send"></i>
+            </div>
+            @if (CultureHelper.IsRighToLeft())
+            {
+                <a href="@Url.Action("AllTransfers", "MyTransfers", new { lang = "ar" })" class="small-box-footer">
+                    @GlobalRes.Dash_MoreInfo
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            }
+            else
+            {
+                <a href="@Url.Action("AllTransfers", "MyTransfers")" class="small-box-footer">
+                    @GlobalRes.Dash_MoreInfo
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            }
+            
+        </div>
+    }
+    else
+    {
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>@ViewBag.TranCount<sup style="font-size: 20px">@GlobalRes.Dash_Transfer_sub</sup></h3>
+                <p>@GlobalRes.Dash_TransferSummary</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-send"></i>
+            </div>
+            <a href="@Url.Action("AllTransfers", "MyTransfers")" class="small-box-footer">
+                @GlobalRes.Dash_MoreInfo
+                <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+        
+    }
+
+</div>

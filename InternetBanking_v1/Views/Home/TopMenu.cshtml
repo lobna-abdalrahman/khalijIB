@@ -1,0 +1,349 @@
+﻿@using System.Web.Mvc.Html
+@model IEnumerable<InternetBanking_v1.Models.Menu>
+@using InternetBanking_v1.Context
+@using InternetBanking_v1.Helper
+<style>
+    .navbar .dropdown-menu li {
+        color: black;
+    }
+
+        .navbar .dropdown-menu li a {
+            color: black;
+        }
+
+        .navbar .dropdown-menu li:hover {
+            color: #e8b620;
+            background-color: black;
+        }
+
+        .navbar .dropdown-menu li a:hover {
+            color: #e8b620;
+            /*background-color: black;*/
+        }
+
+        .navbar .dropdown-menu li:focus {
+            color: white;
+            background-color: black;
+        }
+
+        .navbar .dropdown-menu li a:focus {
+            color: white;
+            background-color: black;
+        }
+
+        .alsomenu:hover{
+            background-color:black;
+            color:#e8b620;
+        }
+</style>
+@*
+
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <nav class="navbar navbar-static-top">
+            <div class="container " style="width: auto">
+                <div class="navbar-header logo">
+
+                    <a href="@Url.Action("Index", "Home", new { @class = "navbar-brand" })">
+                        @#1#Html.ActionLink("Internet Banking", "Index", "Home", null, new { @class = "navbar-brand" })#1#
+                        <span><img src="~/Content/icons/mini-logo.png" /></span>
+                    </a>
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="fa fa-bars"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse " id="navbar-collapse">
+                    <ul class="nav navbar-nav pull-left" >
+                        $1$<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>#1#
+                        @foreach (var m in Model)
+                        {
+                            if (m.MenuParentID == 0)
+                            {
+                                //  var submenu = Model.Where(n => n.MenuParentID == m.MID,true).ToList();
+                                var submenu = Model.Where(n => n.MenuParentID == m.MID).ToList();
+                                if (submenu != null && submenu.Count > 0)
+                                {
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown">
+
+                                            @{
+                                                if (!m.MenuIMG.ToString().Equals("~"))
+                                                {
+                                                    <img id="img" src="@Url.Content(m.MenuIMG)" />
+
+
+                                                }
+                                            }
+
+                                            <span style="font-size: 15px; color: #e8b620">@m.MenuName</span><span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            @foreach (var e in submenu)
+                                            {
+                                                <li><a href="/ar/@e.MenuURL">@e.MenuName </a></li>
+                                            }
+
+
+
+                                        </ul>
+                                    </li>
+
+                                }
+                                else
+                                {
+                                    //if parent menu does not have child menu
+                                    <li>
+                                        <a href="@m.MenuURL"><span style="font-size: 15px; color: #e8b620">@m.MenuName</span></a>
+                                    </li>
+                                }
+                            }
+                        }
+
+                    </ul>
+
+
+
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu" >
+                        <ul class="nav navbar-nav ">
+                            $1$ <li>@Url.LangSwitcher("English", ViewContext.RouteData, "en")</li>
+                        <li>@Url.LangSwitcher("عربي", ViewContext.RouteData, "ar")</li>#1#
+
+                            <!-- User Account Menu -->
+                            <li>@Html.ActionLink((string)ViewBag.username, "UpdateProfileInfo", "ProfileInfo")</li>
+                            <!--logout-->
+                            <li>
+                                <a href="@Url.Action("Logout","Home")">
+                                    Logout
+                                    <i class="fa fa-power-off"></i>
+                                </a>
+                            </li>
+                            <!--/logout-->
+                        </ul>
+                    </div>
+                    <!-- /.navbar-custom-menu -->
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+        </nav>
+    }
+    else
+    {
+        <nav class="navbar navbar-static-top">
+            <div class="container " style="width: auto">
+                <div class="navbar-header logo">
+
+                    <a href="@Url.Action("Index", "Home", new { @class = "navbar-brand" })">
+                        @#1#Html.ActionLink("Internet Banking", "Index", "Home", null, new { @class = "navbar-brand" })#1#
+                        <span><img src="~/Content/icons/mini-logo.png" /></span>
+                    </a>
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="fa fa-bars"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse " id="navbar-collapse">
+                    <ul class="nav navbar-nav pull-left" style="margin-right: 4em;">
+                        $1$<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>#1#
+                        @foreach (var m in Model)
+                        {
+                            if (m.MenuParentID == 0)
+                            {
+                                //  var submenu = Model.Where(n => n.MenuParentID == m.MID,true).ToList();
+                                var submenu = Model.Where(n => n.MenuParentID == m.MID).ToList();
+                                if (submenu != null && submenu.Count > 0)
+                                {
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown">
+
+                                            @{
+                                                if (!m.MenuIMG.ToString().Equals("~"))
+                                                {
+                                                    <img id="img" src="@Url.Content(m.MenuIMG)" />
+
+
+                                                }
+                                            }
+
+                                            <span style="font-size: 15px; color: #e8b620">@m.MenuName</span><span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            @foreach (var e in submenu)
+                                            {
+                                                <li><a href="@e.MenuURL">@e.MenuName </a></li>
+                                            }
+
+
+
+                                        </ul>
+                                    </li>
+
+                                }
+                                else
+                                {
+                                    //if parent menu does not have child menu
+                                    <li>
+                                        <a href="@m.MenuURL"><span style="font-size: 15px; color: #e8b620">@m.MenuName</span></a>
+                                    </li>
+                                }
+                            }
+                        }
+
+                    </ul>
+
+
+
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu my-nav" >
+                        <ul class="nav navbar-nav ">
+                            $1$ <li>@Url.LangSwitcher("English", ViewContext.RouteData, "en")</li>
+                        <li>@Url.LangSwitcher("عربي", ViewContext.RouteData, "ar")</li>#1#
+
+                            <!-- User Account Menu -->
+                            <li>@Html.ActionLink((string)ViewBag.username, "UpdateProfileInfo", "ProfileInfo")</li>
+                            <!--logout-->
+                            <li>
+                                <a href="@Url.Action("Logout","Home")">
+                                    Logout
+                                    <i class="fa fa-power-off"></i>
+                                </a>
+                            </li>
+                            <!--/logout-->
+                        </ul>
+                    </div>
+                    <!-- /.navbar-custom-menu -->
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+        </nav>
+    }
+*@
+
+@if (CultureHelper.IsRighToLeft())
+{
+
+    <ul class="nav navbar-nav pull-left ">
+        @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>*@
+        @foreach (var m in Model)
+        {
+            if (m.MenuParentID == 0)
+            {
+                //  var submenu = Model.Where(n => n.MenuParentID == m.MID,true).ToList();
+                var submenu = Model.Where(n => n.MenuParentID == m.MID).ToList();
+                if (submenu != null && submenu.Count > 0)
+                {
+                    <li class="dropdown">
+                        <a class="dropdown-toggle text-black" data-toggle="dropdown">
+                            @{
+                                if (!m.MenuIMG.ToString().Equals("~"))
+                                {
+                                    <img id="img" src="@Url.Content(m.MenuIMG)" />
+
+
+                                }
+                            }
+                            <span style="font-size: 15px; color: #000000">@m.MenuName</span><span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu alsomenu" role="menu" style="background-color:white;border-color:white">
+                            @foreach (var e in submenu)
+                            {
+                                @* <li><a href="/ar/@e.MenuURL">@e.MenuName </a></li>*@
+                                <li><a href="@e.MenuURL/ar">@e.MenuName </a></li>
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    //if parent menu does not have child menu
+                    <li>
+                        <a href="@m.MenuURL"><span style="font-size: 15px; color: #000000">@m.MenuName</span></a>
+                    </li>
+                }
+            }
+        }
+        <li style="color:white">
+            -----------------------------------------------------------
+        </li>
+        <li style="color:white">
+            -
+        </li>
+        <li>
+            <a style="color:black" href="@Url.Action("UpdateProfileInfo", "ProfileInfo")">
+                @Session["username"].ToString()
+                <i class="fa fa-user"></i>
+            </a>
+        </li>
+        <li>
+            <a style="color:black" href="@Url.Action("Logout","Home")">
+                Logout
+                <i class="fa fa-power-off"></i>
+            </a>
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav pull-left" style="margin-right: 4em;">
+        @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>*@
+        @foreach (var m in Model)
+        {
+            if (m.MenuParentID == 0)
+            {
+                //  var submenu = Model.Where(n => n.MenuParentID == m.MID,true).ToList();
+                var submenu = Model.Where(n => n.MenuParentID == m.MID).ToList();
+                if (submenu != null && submenu.Count > 0)
+                {
+                    <li class="dropdown">
+                        <a class="dropdown-toggle text-black" data-toggle="dropdown">
+                            @{
+                                if (!m.MenuIMG.ToString().Equals("~"))
+                                {
+                                    <img id="img" src="@Url.Content(m.MenuIMG)" />
+                                }
+                            }<span style="font-size: 15px; color: #000000;">@m.MenuName</span><span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" style="background-color:white;border-color:white">
+                            @foreach (var e in submenu)
+                            {
+                                <li><a href="@e.MenuURL" style="color:#000000">@e.MenuName </a></li>
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    //if parent menu does not have child menu
+                    <li>
+                        <a href="@m.MenuURL"><span style="font-size: 15px">@m.MenuName</span></a>
+                    </li>
+                }
+            }
+        }
+        <li style="color:white">
+            ---------------------------------
+        </li>
+        <li style="color:white">
+            -
+        </li>
+        <li>
+            <a style="color:black" href="@Url.Action("UpdateProfileInfo", "ProfileInfo")">
+                @Session["username"].ToString()
+                <i class="fa fa-user"></i>
+            </a>
+        </li>
+        <li>
+            <a style="color:black" href="@Url.Action("Logout","Home")">
+                Logout
+                <i class="fa fa-power-off"></i>
+            </a>
+        </li>
+    </ul>
+}

@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Accounts Summary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<InternetBanking_v1.Models.Account.AccountSummary>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Accounts
+        <small>Accounts Summary</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Account</a></li>
+        <li class="active">Accounts Summary</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <!-- TABLE: LATEST Transactions -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">My Accounts</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        @*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover ">
+                            <thead>
+                            <tr style="color: cadetblue">
+                                <th>Account #</th>
+                                <th>Account Type</th>
+                                <th>Branch Name</th>
+                                <th>Available Balance</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            @foreach (var acc in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(model => acc.AccountNumber)</td>
+                                    <td>@Html.DisplayFor(model => acc.AccountType)</td>
+                                    <td>@Html.DisplayFor(model => acc.BranchName)</td>
+                                    <td>@Html.DisplayFor(model => acc.AvailableBalance)</td>
+          
+                                </tr>
+                            }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    @*<a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>*@
+                    @*<a href="javascript:vosid(0)" class="btn btn-sm btn-default btn-flat pull-right">Do Action</a>*@
+                </div>
+                <!-- /.box-footer -->
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,41 @@
+﻿@*@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <hgroup>
+        <h1>Error.</h1>
+        <h2>An error occurred while processing your request.</h2>
+    </hgroup>
+</body>
+</html>*@
+
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<div style="background-color: #ECF0F5; color: White; height: 10px; ">
+</div>
+<div style="background-color: #ABABAB; color: White; height: 170px; ">
+    <div style=" padding:20px;">
+        <h3>
+            Application Error:
+        </h3>
+        <h4>
+            Sorry, an error occurred while processing your request.
+        </h4>
+        <h6>@Html.ActionLink("Go Back To Home Page", "Index", "Home")</h6>
+        <br />
+        <br />
+    </div>
+</div>
+<div style="background-color: #d69e2f; color: White; height: 20px;">
+</div>  

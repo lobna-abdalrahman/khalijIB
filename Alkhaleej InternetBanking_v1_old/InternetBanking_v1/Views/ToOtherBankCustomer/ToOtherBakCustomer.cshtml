@@ -1,0 +1,84 @@
+﻿<section class="content-header">
+    <h1>
+        Transfer
+        <small>To Other Bank's Customer</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Transfer</a></li>
+        <li class="active">To Other Bank's Customer</li>
+    </ol>
+</section>
+
+<section class="content">
+
+    <!-- Another Row-->
+    <div class="row">
+        <section class="col-md-12 connectedSortable">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">To Other Bank's Customer</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Bank</label>
+                                <input class="form-control input-lg" type="text" placeholder="Your Bank is...">
+                            </div>
+
+                            <br />
+                            <div class="form-group has-feedback">
+                                <label>Enter Amount</label>
+                                <input class="form-control input-lg" type="text" placeholder="Amount in SDG">
+                                <br>
+                            </div>
+                            <!-- /.box -->
+                            <div class="col-xs-4">
+                                <button type="submit" class="btn btn-danger btn-block btn-flat">Submit</button>
+                            </div>
+                            @*<a href="javascript:vosid(0)" class="btn btn-sm btn-danger btn-flat pull-left">Submit</a>*@
+                        </div>
+                        <!-- /.col -->
+                        <!-- Right Col-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>@GlobalRes.Lable_AccountNumber</label>
+                                <div class="input-group ">
+                                    <input class="form-control input-lg" type="text" placeholder="Full Account#...">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-info btn-flat input-lg" data-toggle="modal" data-target="#modal-default">
+                                            <span><i class="fa fa-heart"></i></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <br />
+                            <!-- /.form-group -->
+                            <div class="form-group">
+                                <label>@GlobalRes.Currency</label>
+                                <select class="form-control select2" style="width: 100%;">
+                                    <option selected="selected">SDG</option>
+                                    <option>USD</option>
+                                    <option>SR</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+                            <!-- /.form-group -->
+
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-footer -->
+            </div>
+        </section>
+
+    </div>
+</section>

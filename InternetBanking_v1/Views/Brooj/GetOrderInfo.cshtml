@@ -1,0 +1,318 @@
+﻿@using InternetBanking_v1.Helper
+
+@model InternetBanking_v1.Models.BroojModel
+
+@{
+    ViewBag.Title = "GetOrderInfo";
+    
+}
+
+
+<section class="content-header">
+    <h1>
+        @GlobalRes.Payment_Parent
+        <small>@GlobalRes.ALBrooj_Title</small>
+    </h1>
+    @if (CultureHelper.IsRighToLeft())
+    {
+        <ol class="breadcrumb pull-left" style="position: static;">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.ALBrooj_Title</li>
+        </ol>
+    }
+    else
+    {
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@GlobalRes.Payment_Parent</a></li>
+            <li class="active">@GlobalRes.ALBrooj_Title</li>
+        </ol>
+    }
+
+</section>
+
+<section class="content">
+    <div class="row">
+        <section class="col-md-10 col-md-offset-1">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@GlobalRes.ALBrooj_Title </h3>
+                    @if (CultureHelper.IsRighToLeft())
+                    {
+                        <div class="box-tools" style="position: static; float: left;">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                 @Html.ValidationSummary(true)
+
+                                
+
+                                <div class="form-group">
+                                     @Html.LabelFor(model => model.AccountNumber)
+                                    @Html.DropDownList("Clients", (IEnumerable<SelectListItem>)ViewBag.clientList, GlobalRes.PlaceHolder_Select_Account, new { @class = "form-control select2", @placeholder = "Enter Account Number..." })
+                                    @*@Html.DropDownListFor(model => model.AccountNumbers, Model.AccountNumbers, "Select Account", new { @class = "form-control select2", @placeholder = "Enter Account Number..." })*@
+                                    @Html.ValidationMessageFor(model => model.AccountNumber)
+                                </div>
+
+                                <div class="form-group">
+                                    <label>@GlobalRes.order_no</label>
+                                    @Html.TextBoxFor(model => model.InvoiceNo, new { @class = "form-control input-lg", @placeholder = GlobalRes.order_no })
+                                    @Html.ValidationMessageFor(model => model.InvoiceNo)
+                                </div>
+                               
+                                <br />
+                                if (CultureHelper.IsRighToLeft())
+    {
+                                <div class="form-group">
+                                   
+                                    <div class="col-md-4">
+                                        <input type="button" value=@GlobalRes.btn_cancel onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-danger btn-lg btn-block btn-flat" />
+
+                                     
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="submit" value="استعلام عن الطلب" class="btn btn-primary btn-lg btn-block btn-flat" />
+                                        <br />
+                                    </div>
+                                </div>
+                                }
+                                
+                            else
+                            {
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <input type="submit" value="Get Order Info" class="btn btn-primary btn-lg btn-block btn-flat" />
+                                        </div>
+                                    <div class="col-md-4">
+                                        <input type="button" value=@GlobalRes.btn_cancel onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-danger btn-lg btn-block btn-flat" />
+
+                                        <br />
+                                    </div>
+                                </div>}      @*</div>*@
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+
+@*<h2>GetOrderInfo</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>BroojModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerFound, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerFound)
+                @Html.ValidationMessageFor(model => model.CustomerFound)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InvoiceNo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InvoiceNo)
+                @Html.ValidationMessageFor(model => model.InvoiceNo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.servicetype, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.servicetype)
+                @Html.ValidationMessageFor(model => model.servicetype)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PayCustomerCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PayCustomerCode)
+                @Html.ValidationMessageFor(model => model.PayCustomerCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PayCustomerName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PayCustomerName)
+                @Html.ValidationMessageFor(model => model.PayCustomerName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RequiredAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RequiredAmount)
+                @Html.ValidationMessageFor(model => model.RequiredAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FeesAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FeesAmount)
+                @Html.ValidationMessageFor(model => model.FeesAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TotalAmount)
+                @Html.ValidationMessageFor(model => model.TotalAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CollectorNumber, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CollectorNumber)
+                @Html.ValidationMessageFor(model => model.CollectorNumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CurrencyCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CurrencyCode)
+                @Html.ValidationMessageFor(model => model.CurrencyCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.status, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.status)
+                @Html.ValidationMessageFor(model => model.status)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.paytype, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.paytype)
+                @Html.ValidationMessageFor(model => model.paytype)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Branch, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Branch)
+                @Html.ValidationMessageFor(model => model.Branch)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Currency, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Currency)
+                @Html.ValidationMessageFor(model => model.Currency)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccountType, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AccountType)
+                @Html.ValidationMessageFor(model => model.AccountType)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Customername, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Customername)
+                @Html.ValidationMessageFor(model => model.Customername)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Customeraccount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Customeraccount)
+                @Html.ValidationMessageFor(model => model.Customeraccount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerID)
+                @Html.ValidationMessageFor(model => model.CustomerID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Paymentstatus, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Paymentstatus)
+                @Html.ValidationMessageFor(model => model.Paymentstatus)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentType, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PaymentType)
+                @Html.ValidationMessageFor(model => model.PaymentType)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PaymentDate)
+                @Html.ValidationMessageFor(model => model.PaymentDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentVoucherNo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PaymentVoucherNo)
+                @Html.ValidationMessageFor(model => model.PaymentVoucherNo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}*@
+ 
+ 
