@@ -378,6 +378,7 @@ namespace InternetBanking_v1.Controllers
 
             else
             {
+
                 message = "All Fields are required ";
                 ModelState.AddModelError("", "Something is missing" + message);
                 return View();
