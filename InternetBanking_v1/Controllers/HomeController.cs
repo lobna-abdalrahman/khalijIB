@@ -123,8 +123,8 @@ namespace InternetBanking_v1.Controllers
                 info_name = Session["name"].ToString();
             }
 
-            //string UserBalance = "{\"tranDateTime\": \"170322061748\",\"IBAN\": \"SD9044000002780001\",\"Currency\": \"938\",\"bal\": \"6835.3\",\"uuid\": \"someuuid\",\"errormsg\": \"Secussfully\",\"errorcode\": \"1\"}"; //
-            string UserBalance = balanceLogic.GetUserBalance(Session["additionalReference"].ToString());
+            string UserBalance = "{\"tranDateTime\": \"170322061748\",\"IBAN\": \"SD9044000002780001\",\"Currency\": \"938\",\"bal\": \"6835.3\",\"uuid\": \"someuuid\",\"errormsg\": \"Secussfully\",\"errorcode\": \"1\"}"; //
+            //string UserBalance = balanceLogic.GetUserBalance(Session["additionalReference"].ToString());
             //string UserBalance = "{\"tranDateTime\":\"021021125855\",\"IBAN\":\"SD4244000000830001\",\"bal\":\"27174.48\",\"uuid\":\"someuuid\",\"errormsg\":\"Secussfully\",\"errorcode\":\"1\"}";
             //string UserBalance = "{\"tranDateTime\":\"201021012336\",\"IBAN\":\"SD1544020011500001\",\"Currency\":\"938\",\"bal\":\"6.21968486E7\",\"uuid\":\"anything\",\"errormsg\":\"Secussfully\",\"errorcode\":\"1\"}";
             JObject balanceresponse = JObject.Parse(UserBalance);
